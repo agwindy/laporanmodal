@@ -7,376 +7,217 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Light base */
-    --bg:        #f0f4f8;
-    --surface:   #ffffff;
-    --surface2:  #f7fafc;
-    --border:    #dde3ec;
-    --border2:   #c8d3e0;
-    --text:      #1a2332;
-    --text-mid:  #4a5e72;
-    --text-dim:  #8fa3b8;
+    --bg:#f0f4f8;--surface:#ffffff;--surface2:#f7fafc;--border:#dde3ec;--border2:#c8d3e0;
+    --text:#1a2332;--text-mid:#4a5e72;--text-dim:#8fa3b8;
+    --pt-green:#1da462;--pt-green-light:#e8f7f0;--pt-green-mid:#b8e8d0;--pt-green-border:#7dd4a8;
+    --px-blue:#0057b8;--px-blue-light:#e6eef9;--px-blue-mid:#b3cef0;--px-blue-border:#6aa3e0;
+    --red:#e5363b;--red-light:#fdeaea;--amber:#d97706;--amber-light:#fef3e2;
+    --purple:#7c3aed;--purple-light:#f3effe;--purple-mid:#c4b5fd;--purple-border:#a78bfa;
+    --slate:#64748b;--shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+    --shadow-md:0 4px 12px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh;font-size:14px}
 
-    /* Pertalite — hijau brand Pertamina */
-    --pt-green:        #1da462;
-    --pt-green-light:  #e8f7f0;
-    --pt-green-mid:    #b8e8d0;
-    --pt-green-border: #7dd4a8;
+  /* HEADER */
+  .header{background:#fff;border-bottom:1px solid var(--border);padding:0 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:100;min-height:64px;flex-wrap:wrap;gap:8px;padding-top:8px;padding-bottom:8px}
+  .header-left{display:flex;align-items:center;gap:12px}
+  .logo-icon{width:40px;height:40px;min-width:40px;background:linear-gradient(135deg,var(--px-blue) 0%,var(--pt-green) 100%);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;letter-spacing:-0.5px;box-shadow:0 2px 8px rgba(0,87,184,.25)}
+  .header-title h1{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-0.3px}
+  .header-title p{font-size:10px;color:var(--text-dim);font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+  .header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .header-date-label{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+  input[type=date]{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:12px;outline:none;cursor:pointer;max-width:150px}
+  .print-btn{padding:7px 14px;background:var(--text);border:none;color:#fff;border-radius:8px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;transition:opacity .15s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+  .print-btn:hover{opacity:.85}
 
-    /* Pertamax — biru brand Pertamina */
-    --px-blue:        #0057b8;
-    --px-blue-light:  #e6eef9;
-    --px-blue-mid:    #b3cef0;
-    --px-blue-border: #6aa3e0;
+  /* TABS */
+  .tabs-wrapper{background:#fff;border-bottom:1px solid var(--border);padding:0 16px;display:flex;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .tabs-wrapper::-webkit-scrollbar{display:none}
+  .tab-btn{padding:14px 16px;border:none;background:none;color:var(--text-dim);font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;text-transform:uppercase;letter-spacing:.8px;margin-bottom:-1px;white-space:nowrap}
+  .tab-btn:hover{color:var(--text-mid)}
+  .tab-btn.active{color:var(--px-blue);border-bottom-color:var(--px-blue)}
+  .tab-btn.tab-global.active{color:var(--amber);border-bottom-color:var(--amber)}
+  .tab-btn.tab-modal.active{color:var(--purple);border-bottom-color:var(--purple)}
 
-    /* Aksen umum */
-    --red:        #e5363b;
-    --red-light:  #fdeaea;
-    --amber:      #d97706;
-    --amber-light:#fef3e2;
-    --slate:      #64748b;
+  /* CONTENT */
+  .content{padding:16px;max-width:1440px;margin:0 auto}
+  .tab-pane{display:none}
+  .tab-pane.active{display:block}
 
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,0.10);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    min-height: 100vh;
-    font-size: 14px;
-  }
-
-  /* ── HEADER ── */
-  .header {
-    background: #ffffff;
-    border-bottom: 1px solid var(--border);
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: var(--shadow-sm);
-    position: sticky; top: 0; z-index: 100;
-    height: 68px;
-  }
-  .header-left { display: flex; align-items: center; gap: 14px; }
-  .logo-icon {
-    width: 44px; height: 44px;
-    background: linear-gradient(135deg, var(--px-blue) 0%, var(--pt-green) 100%);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; font-weight: 800;
-    color: #fff; font-family: 'Plus Jakarta Sans', sans-serif;
-    letter-spacing: -0.5px;
-    box-shadow: 0 2px 8px rgba(0,87,184,0.25);
-  }
-  .header-title h1 {
-    font-size: 18px; font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.3px;
-  }
-  .header-title p {
-    font-size: 11px; color: var(--text-dim);
-    font-weight: 500; letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  .header-right { display: flex; align-items: center; gap: 12px; }
-  .header-date-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
-  input[type=date] {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 7px 12px; border-radius: 8px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px; outline: none; cursor: pointer;
-  }
-  .print-btn {
-    padding: 8px 18px;
-    background: var(--text);
-    border: none; color: #fff;
-    border-radius: 8px; cursor: pointer;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 13px; font-weight: 600;
-    transition: opacity 0.15s;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .print-btn:hover { opacity: 0.85; }
-
-  /* ── TABS ── */
-  .tabs-wrapper {
-    background: #fff;
-    border-bottom: 1px solid var(--border);
-    padding: 0 32px;
-    display: flex; align-items: center; gap: 0;
-  }
-  .tab-btn {
-    padding: 16px 24px;
-    border: none; background: none;
-    color: var(--text-dim);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 13px; font-weight: 700;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.15s;
-    text-transform: uppercase; letter-spacing: 0.8px;
-    margin-bottom: -1px;
-  }
-  .tab-btn:hover { color: var(--text-mid); }
-  .tab-btn.active { color: var(--px-blue); border-bottom-color: var(--px-blue); }
-  .tab-btn.tab-global.active { color: var(--amber); border-bottom-color: var(--amber); }
-
-  /* ── LAYOUT ── */
-  .content { padding: 24px 32px; max-width: 1440px; margin: 0 auto; }
-  .tab-pane { display: none; }
-  .tab-pane.active { display: block; }
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-  /* ── CARD / SECTION ── */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
-  .card-header {
-    padding: 13px 20px;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 10px;
-    font-size: 12px; font-weight: 700;
-    letter-spacing: 1px; text-transform: uppercase;
-  }
-  .card-header.green  { background: var(--pt-green-light); color: var(--pt-green); border-bottom-color: var(--pt-green-mid); }
-  .card-header.blue   { background: var(--px-blue-light); color: var(--px-blue); border-bottom-color: var(--px-blue-mid); }
-  .card-header.red    { background: var(--red-light); color: var(--red); border-bottom-color: #f5b8ba; }
-  .card-header.amber  { background: var(--amber-light); color: var(--amber); border-bottom-color: #f6d090; }
-  .card-header.slate  { background: var(--surface2); color: var(--slate); border-bottom-color: var(--border); }
-
-  .pip {
-    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-  }
-  .pip.green  { background: var(--pt-green); }
-  .pip.blue   { background: var(--px-blue); }
-  .pip.red    { background: var(--red); }
-  .pip.amber  { background: var(--amber); }
-  .pip.slate  { background: var(--slate); }
-
-  /* ── NOZZLE TABLE ── */
-  .nozzle-table { width: 100%; border-collapse: collapse; }
-  .nozzle-table th {
-    padding: 10px 16px;
-    font-size: 10px; letter-spacing: 1.2px;
-    text-transform: uppercase; color: var(--text-dim);
-    text-align: left;
-    background: var(--surface2);
-    border-bottom: 1px solid var(--border);
-    font-weight: 700;
-  }
-  .nozzle-table td {
-    padding: 9px 16px;
-    border-bottom: 1px solid #f0f4f8;
-  }
-  .nozzle-table tr:last-child td { border-bottom: none; }
-  .nozzle-table tr:hover td { background: #f9fbff; }
-
-  .badge {
-    display: inline-block; padding: 3px 11px;
-    border-radius: 20px; font-weight: 700;
-    font-size: 12px; letter-spacing: 0.5px;
-  }
-  .badge.green {
-    background: var(--pt-green-light);
-    border: 1px solid var(--pt-green-border);
-    color: var(--pt-green);
-  }
-  .badge.blue {
-    background: var(--px-blue-light);
-    border: 1px solid var(--px-blue-border);
-    color: var(--px-blue);
+  /* GRID - mobile-first */
+  .grid-2{display:grid;grid-template-columns:1fr;gap:16px}
+  .grid-3{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:768px){
+    .grid-2{grid-template-columns:1fr 1fr}
+    .grid-3{grid-template-columns:1fr 1fr 1fr}
   }
 
-  /* ── INPUTS ── */
-  .inp {
-    width: 100%;
-    background: #fff;
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 7px 11px;
-    border-radius: 7px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px; outline: none;
-    transition: border-color 0.15s, box-shadow 0.15s;
-  }
-  .inp:focus { border-color: var(--px-blue); box-shadow: 0 0 0 3px rgba(0,87,184,0.08); }
-  .inp[readonly] { cursor: default; font-weight: 600; }
-  .inp.ro-green  { background: var(--pt-green-light); color: var(--pt-green); border-color: var(--pt-green-mid); }
-  .inp.ro-blue   { background: var(--px-blue-light); color: var(--px-blue); border-color: var(--px-blue-mid); }
-  .inp.ro-slate  { background: var(--surface2); color: var(--slate); border-color: var(--border); }
-  .inp.ro-red    { background: var(--red-light); color: var(--red); border-color: #f5b8ba; }
-  .inp.ro-amber  { background: var(--amber-light); color: var(--amber); border-color: #f6d090; }
+  /* CARD */
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden;margin-bottom:16px}
+  .card-header{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase}
+  .card-header.green{background:var(--pt-green-light);color:var(--pt-green);border-bottom-color:var(--pt-green-mid)}
+  .card-header.blue{background:var(--px-blue-light);color:var(--px-blue);border-bottom-color:var(--px-blue-mid)}
+  .card-header.red{background:var(--red-light);color:var(--red);border-bottom-color:#f5b8ba}
+  .card-header.amber{background:var(--amber-light);color:var(--amber);border-bottom-color:#f6d090}
+  .card-header.slate{background:var(--surface2);color:var(--slate);border-bottom-color:var(--border)}
+  .card-header.purple{background:var(--purple-light);color:var(--purple);border-bottom-color:var(--purple-mid)}
 
-  /* ── FIELD ── */
-  .field-label {
-    font-size: 10px; letter-spacing: 0.8px; text-transform: uppercase;
-    color: var(--text-dim); margin-bottom: 5px; font-weight: 700;
-  }
+  .pip{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  .pip.green{background:var(--pt-green)}.pip.blue{background:var(--px-blue)}.pip.red{background:var(--red)}
+  .pip.amber{background:var(--amber)}.pip.slate{background:var(--slate)}.pip.purple{background:var(--purple)}
 
-  /* ── PRICE ROW ── */
-  .price-row {
-    padding: 16px 20px;
-    display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap;
-  }
-  .price-field { display: flex; flex-direction: column; min-width: 160px; }
-  .lock-btn {
-    padding: 8px 16px; border-radius: 8px; border: none;
-    cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
-    transition: all 0.15s; display: flex; align-items: center; gap: 6px;
-  }
-  .lock-btn.unlocked { background: var(--pt-green-light); border: 1px solid var(--pt-green-border); color: var(--pt-green); }
-  .lock-btn.locked   { background: var(--red-light); border: 1px solid #f5b8ba; color: var(--red); }
-  .lock-pill {
-    padding: 4px 10px; border-radius: 20px;
-    font-size: 10px; font-weight: 700; letter-spacing: 0.8px;
-  }
-  .lock-pill.unlocked { background: var(--pt-green-light); color: var(--pt-green); }
-  .lock-pill.locked   { background: var(--red-light); color: var(--red); }
+  /* NOZZLE TABLE - scrollable on mobile */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .nozzle-table{width:100%;border-collapse:collapse;min-width:420px}
+  .nozzle-table th{padding:8px 12px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);text-align:left;background:var(--surface2);border-bottom:1px solid var(--border);font-weight:700}
+  .nozzle-table td{padding:8px 12px;border-bottom:1px solid #f0f4f8}
+  .nozzle-table tr:last-child td{border-bottom:none}
+  .nozzle-table tr:hover td{background:#f9fbff}
 
-  /* ── STAT CARDS ── */
-  .stat-row {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 12px; padding: 16px 20px;
-    border-top: 1px solid var(--border);
-    background: var(--surface2);
-  }
-  .stat-card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 10px; padding: 14px 16px;
-    position: relative; overflow: hidden;
-  }
-  .stat-card::after {
-    content: ''; position: absolute;
-    top: 0; left: 0; right: 0; height: 3px;
-    border-radius: 10px 10px 0 0;
-  }
-  .stat-card.green::after  { background: var(--pt-green); }
-  .stat-card.blue::after   { background: var(--px-blue); }
-  .stat-card.red::after    { background: var(--red); }
-  .stat-card.amber::after  { background: var(--amber); }
-  .stat-card.slate::after  { background: var(--slate); }
-  .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); font-weight: 700; margin-bottom: 7px; }
-  .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 600; }
-  .stat-value.green  { color: var(--pt-green); }
-  .stat-value.blue   { color: var(--px-blue); }
-  .stat-value.red    { color: var(--red); }
-  .stat-value.amber  { color: var(--amber); }
-  .stat-value.slate  { color: var(--slate); }
-  .stat-sub { font-size: 10px; color: var(--text-dim); margin-top: 3px; }
+  .badge{display:inline-block;padding:2px 9px;border-radius:20px;font-weight:700;font-size:11px}
+  .badge.green{background:var(--pt-green-light);border:1px solid var(--pt-green-border);color:var(--pt-green)}
+  .badge.blue{background:var(--px-blue-light);border:1px solid var(--px-blue-border);color:var(--px-blue)}
 
-  /* ── PENGELUARAN ── */
-  .pengeluaran-body { padding: 14px 20px; }
-  .pengeluaran-item {
-    display: grid; grid-template-columns: 1fr 160px 34px;
-    gap: 8px; align-items: center; margin-bottom: 8px;
-  }
-  .add-btn {
-    width: 100%; padding: 9px;
-    background: none; border: 1.5px dashed var(--border2);
-    color: var(--text-dim); border-radius: 8px;
-    cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
-    transition: all 0.15s;
-  }
-  .add-btn:hover { border-color: var(--px-blue); color: var(--px-blue); background: var(--px-blue-light); }
-  .del-btn {
-    width: 34px; height: 34px;
-    background: var(--red-light); border: 1px solid #f5b8ba;
-    color: var(--red); border-radius: 7px; cursor: pointer;
-    font-size: 15px; display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s;
-  }
-  .del-btn:hover { background: #fbd5d5; }
+  .inp{width:100%;background:#fff;border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:7px;font-family:'JetBrains Mono',monospace;font-size:12px;outline:none;transition:border-color .15s,box-shadow .15s;min-width:0}
+  .inp:focus{border-color:var(--px-blue);box-shadow:0 0 0 3px rgba(0,87,184,.08)}
+  .inp[readonly]{cursor:default;font-weight:600}
+  .inp.ro-green{background:var(--pt-green-light);color:var(--pt-green);border-color:var(--pt-green-mid)}
+  .inp.ro-blue{background:var(--px-blue-light);color:var(--px-blue);border-color:var(--px-blue-mid)}
+  .inp.ro-slate{background:var(--surface2);color:var(--slate);border-color:var(--border)}
+  .inp.ro-red{background:var(--red-light);color:var(--red);border-color:#f5b8ba}
+  .inp.ro-amber{background:var(--amber-light);color:var(--amber);border-color:#f6d090}
+  .inp.ro-purple{background:var(--purple-light);color:var(--purple);border-color:var(--purple-mid)}
 
-  /* ── STOK ── */
-  .stok-body { padding: 16px 20px; }
-  .stok-product-label {
-    font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
-    text-transform: uppercase; margin-bottom: 10px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .stok-product-label .dot { width: 10px; height: 10px; border-radius: 50%; }
-  .stok-product-label .dot.green { background: var(--pt-green); }
-  .stok-product-label .dot.blue  { background: var(--px-blue); }
-  .stok-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr auto;
-    gap: 10px; align-items: end; margin-bottom: 14px;
-  }
-  .ket-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    padding: 7px 12px; border-radius: 8px;
-    font-size: 12px; font-weight: 700; letter-spacing: 0.3px;
-    white-space: nowrap;
-  }
-  .ket-badge.plus   { background: var(--pt-green-light); color: var(--pt-green); border: 1px solid var(--pt-green-border); }
-  .ket-badge.minus  { background: var(--red-light); color: var(--red); border: 1px solid #f5b8ba; }
-  .ket-badge.zero   { background: var(--surface2); color: var(--slate); border: 1px solid var(--border); }
+  .field-label{font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px;font-weight:700}
 
-  /* ── SUMMARY TABLE ── */
-  .sum-table { width: 100%; border-collapse: collapse; }
-  .sum-table th {
-    background: var(--surface2); padding: 10px 16px;
-    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
-    color: var(--text-dim); text-align: left;
-    border-bottom: 1px solid var(--border); font-weight: 700;
-  }
-  .sum-table td {
-    padding: 10px 16px;
-    border-bottom: 1px solid #f0f4f8;
-    font-size: 13px;
-  }
-  .sum-table tr:last-child td { border-bottom: none; }
-  .sum-table .total-row td {
-    background: var(--px-blue-light);
-    color: var(--px-blue); font-weight: 700;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-  }
-  .sum-table td:not(:first-child) { font-family: 'JetBrains Mono', monospace; }
+  /* PRICE ROW */
+  .price-row{padding:14px 16px;display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
+  .price-field{display:flex;flex-direction:column;min-width:140px;flex:1}
+  .lock-btn{padding:7px 13px;border-radius:8px;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.4px;transition:all .15s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+  .lock-btn.unlocked{background:var(--pt-green-light);border:1px solid var(--pt-green-border);color:var(--pt-green)}
+  .lock-btn.locked{background:var(--red-light);border:1px solid #f5b8ba;color:var(--red)}
+  .lock-pill{padding:4px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.6px;white-space:nowrap}
+  .lock-pill.unlocked{background:var(--pt-green-light);color:var(--pt-green)}
+  .lock-pill.locked{background:var(--red-light);color:var(--red)}
 
-  /* ── PRODUCT DIVIDER INSIDE CARD ── */
-  .prod-divider {
-    height: 1px; background: var(--border);
-    margin: 14px 0;
+  /* STAT ROW */
+  .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;padding:12px 16px;border-top:1px solid var(--border);background:var(--surface2)}
+  .stat-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden}
+  .stat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0}
+  .stat-card.green::after{background:var(--pt-green)}.stat-card.blue::after{background:var(--px-blue)}
+  .stat-card.red::after{background:var(--red)}.stat-card.amber::after{background:var(--amber)}
+  .stat-card.slate::after{background:var(--slate)}.stat-card.purple::after{background:var(--purple)}
+  .stat-label{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--text-dim);font-weight:700;margin-bottom:6px}
+  .stat-value{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600}
+  .stat-value.green{color:var(--pt-green)}.stat-value.blue{color:var(--px-blue)}.stat-value.red{color:var(--red)}
+  .stat-value.amber{color:var(--amber)}.stat-value.slate{color:var(--slate)}.stat-value.purple{color:var(--purple)}
+  .stat-sub{font-size:10px;color:var(--text-dim);margin-top:3px}
+
+  /* PENGELUARAN */
+  .pengeluaran-body{padding:12px 16px}
+  .pengeluaran-item{display:grid;grid-template-columns:1fr;gap:6px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border)}
+  .pengeluaran-item:last-child{border-bottom:none;margin-bottom:0}
+  .peng-row{display:grid;grid-template-columns:1fr 34px;gap:6px;align-items:center}
+  @media(min-width:500px){
+    .pengeluaran-item{grid-template-columns:1fr 160px 34px;padding-bottom:0;border-bottom:none;margin-bottom:8px}
+    .peng-row{display:contents}
+  }
+  .add-btn{width:100%;padding:8px;background:none;border:1.5px dashed var(--border2);color:var(--text-dim);border-radius:8px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.4px;transition:all .15s;margin-top:4px}
+  .add-btn:hover{border-color:var(--px-blue);color:var(--px-blue);background:var(--px-blue-light)}
+  .del-btn{width:34px;height:34px;background:var(--red-light);border:1px solid #f5b8ba;color:var(--red);border-radius:7px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+  .del-btn:hover{background:#fbd5d5}
+
+  /* STOK */
+  .stok-body{padding:14px 16px}
+  .stok-product-label{font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+  .stok-product-label .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+  .stok-product-label .dot.green{background:var(--pt-green)}.stok-product-label .dot.blue{background:var(--px-blue)}
+
+  /* Stok grid - stack on mobile */
+  .stok-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+  @media(min-width:600px){.stok-grid{grid-template-columns:1fr 1fr 1fr 1fr auto}}
+  .ket-badge{display:inline-flex;align-items:center;gap:4px;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
+  .ket-badge.plus{background:var(--pt-green-light);color:var(--pt-green);border:1px solid var(--pt-green-border)}
+  .ket-badge.minus{background:var(--red-light);color:var(--red);border:1px solid #f5b8ba}
+  .ket-badge.zero{background:var(--surface2);color:var(--slate);border:1px solid var(--border)}
+
+  /* Totalisator lock strip */
+  .totalisator-strip{padding:8px 16px;background:var(--surface2);border-top:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .reset-btn{padding:6px 12px;background:#fff;border:1px solid var(--border2);color:var(--text-mid);border-radius:7px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;transition:all .15s}
+  .reset-btn:hover{background:var(--red-light);border-color:#f5b8ba;color:var(--red)}
+
+  /* SUMMARY TABLES */
+  .sum-table{width:100%;border-collapse:collapse;min-width:320px}
+  .sum-table th{background:var(--surface2);padding:9px 14px;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--text-dim);text-align:left;border-bottom:1px solid var(--border);font-weight:700}
+  .sum-table td{padding:9px 14px;border-bottom:1px solid #f0f4f8;font-size:12px}
+  .sum-table tr:last-child td{border-bottom:none}
+  .sum-table .total-row td{background:var(--px-blue-light);color:var(--px-blue);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:13px}
+  .sum-table td:not(:first-child){font-family:'JetBrains Mono',monospace}
+
+  .prod-divider{height:1px;background:var(--border);margin:12px 0}
+
+  /* MODAL TAB */
+  .modal-section-body{padding:14px 16px}
+  .modal-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:10px}
+  .modal-grid-2{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:10px}
+  .modal-grid-3{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:10px}
+  .modal-grid-4{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  @media(min-width:600px){
+    .modal-grid{grid-template-columns:1fr 1fr 1fr}
+    .modal-grid-2{grid-template-columns:1fr 1fr}
+    .modal-grid-3{grid-template-columns:1fr 1fr 1fr}
+    .modal-grid-4{grid-template-columns:1fr 1fr 1fr 1fr}
   }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 960px) {
-    .content { padding: 16px; }
-    .grid-2 { grid-template-columns: 1fr; }
-    .stok-grid { grid-template-columns: 1fr 1fr; }
-    .header { padding: 0 16px; height: auto; padding: 12px 16px; }
-    .tabs-wrapper { padding: 0 16px; overflow-x: auto; }
-  }
+  /* DO section */
+  .do-section{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;align-items:end}
+  @media(min-width:600px){.do-section{grid-template-columns:1fr 1fr 1fr 1fr auto}}
 
-  @media print {
-    .header { position: static; box-shadow: none; }
-    .tabs-wrapper { display: none; }
-    .tab-pane { display: block !important; }
-    .print-btn, .add-btn, .del-btn, .lock-btn { display: none; }
-    .card { box-shadow: none; break-inside: avoid; }
+  /* Result banners */
+  .result-banner{margin:0 16px 16px;border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .result-banner.profit{background:var(--pt-green-light);border:2px solid var(--pt-green-border)}
+  .result-banner.loss{background:var(--red-light);border:2px solid #f5b8ba}
+  .result-banner.neutral{background:var(--surface2);border:2px solid var(--border)}
+  .result-banner-label{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:5px}
+  .result-banner-label.profit{color:var(--pt-green)}.result-banner-label.loss{color:var(--red)}.result-banner-label.neutral{color:var(--slate)}
+  .result-banner-value{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700}
+  .result-banner-value.profit{color:var(--pt-green)}.result-banner-value.loss{color:var(--red)}.result-banner-value.neutral{color:var(--slate)}
+  .result-banner-formula{font-size:10px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;word-break:break-all}
+
+  .final-result-card{margin:16px;border-radius:14px;padding:20px;background:linear-gradient(135deg,#1a2332 0%,#2d3f55 100%);color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+  .final-result-card .label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:7px}
+  .final-result-card .value{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700}
+  .final-result-card .value.profit{color:#4ade80}.final-result-card .value.loss{color:#f87171}
+  .final-result-card .formula{font-size:10px;color:rgba(255,255,255,.5);font-family:'JetBrains Mono',monospace;margin-top:4px;word-break:break-all}
+
+  .section-divider{height:1px;background:var(--border);margin:4px 16px 14px}
+  .sub-section-title{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+  .sub-section-title::before{content:'';width:3px;height:13px;border-radius:2px;background:var(--purple);display:inline-block}
+
+  /* Penguapan info box */
+  .peng-info-box{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:12px}
+  .peng-info-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text-dim);margin-bottom:8px}
+  .peng-info-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;padding:5px 0;border-bottom:1px solid var(--border)}
+  .peng-info-row:last-child{border-bottom:none}
+  .peng-info-label{font-size:12px;color:var(--text-mid)}
+  .peng-info-val{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600}
+  .peng-info-val.plus{color:var(--pt-green)}.peng-info-val.minus{color:var(--red)}.peng-info-val.zero{color:var(--slate)}
+
+  /* Uang rounded note */
+  .uang-note{font-size:10px;color:var(--amber);margin-top:3px;font-style:italic}
+
+  @media print{
+    .header{position:static;box-shadow:none}
+    .tabs-wrapper{display:none}
+    .tab-pane{display:block!important}
+    .print-btn,.add-btn,.del-btn,.lock-btn,.reset-btn{display:none}
+    .card{box-shadow:none;break-inside:avoid}
   }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="header-left">
     <div class="logo-icon">SP</div>
@@ -387,38 +228,36 @@
   </div>
   <div class="header-right">
     <div>
-      <div class="header-date-label">Tanggal Laporan</div>
+      <div class="header-date-label">Tanggal</div>
       <input type="date" id="reportDate">
     </div>
     <button class="print-btn" onclick="window.print()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
       Cetak
     </button>
   </div>
 </header>
 
-<!-- TABS -->
 <div class="tabs-wrapper">
   <button class="tab-btn active" onclick="switchTab('shift1',this)">Shift 1</button>
   <button class="tab-btn" onclick="switchTab('shift2',this)">Shift 2</button>
   <button class="tab-btn tab-global" onclick="switchTab('global',this)">Global</button>
+  <button class="tab-btn tab-modal" onclick="switchTab('modal',this)">Modal &amp; Laba</button>
 </div>
 
 <div class="content">
 
-<!-- ════════════════ SHIFT 1 ════════════════ -->
+<!-- ════ SHIFT 1 ════ -->
 <div id="shift1" class="tab-pane active">
-
-  <!-- HARGA -->
   <div class="card">
     <div class="card-header amber"><span class="pip amber"></span>Harga Per Liter</div>
     <div class="price-row">
       <div class="price-field">
-        <div class="field-label">Pertalite (Rp/Liter)</div>
+        <div class="field-label">Pertalite (Rp/L)</div>
         <input class="inp" type="number" id="s1_price_pertalite" value="10000" oninput="calcAll()">
       </div>
       <div class="price-field">
-        <div class="field-label">Pertamax (Rp/Liter)</div>
+        <div class="field-label">Pertamax (Rp/L)</div>
         <input class="inp" type="number" id="s1_price_pertamax" value="13900" oninput="calcAll()">
       </div>
       <button class="lock-btn unlocked" id="s1_lockBtn" onclick="toggleLock('s1')">🔓 Kunci Harga</button>
@@ -426,36 +265,46 @@
     </div>
   </div>
 
-  <!-- NOZZLE -->
   <div class="grid-2">
-    <!-- PERTALITE -->
     <div class="card">
-      <div class="card-header green"><span class="pip green"></span>Pertalite — Nozzle A1, A2, C</div>
-      <table class="nozzle-table">
-        <thead><tr><th>Nozzle</th><th>Tot. Awal (L)</th><th>Tot. Akhir (L)</th><th>Penjualan (L)</th><th>Penjualan (Rp)</th></tr></thead>
-        <tbody>
-          <tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" id="s1_ta_A1" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s1_tk_A1" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-green" type="text" id="s1_vol_A1" readonly></td><td><input class="inp ro-green" type="text" id="s1_rp_A1" readonly></td></tr>
-          <tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" id="s1_ta_A2" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s1_tk_A2" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-green" type="text" id="s1_vol_A2" readonly></td><td><input class="inp ro-green" type="text" id="s1_rp_A2" readonly></td></tr>
-          <tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" id="s1_ta_C" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s1_tk_C" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-green" type="text" id="s1_vol_C" readonly></td><td><input class="inp ro-green" type="text" id="s1_rp_C" readonly></td></tr>
-        </tbody>
-      </table>
+      <div class="card-header green"><span class="pip green"></span>Pertalite — A1, A2, C</div>
+      <div class="table-wrap">
+        <table class="nozzle-table">
+          <thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" id="s1_ta_A1" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s1_tk_A1" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-green" type="text" id="s1_vol_A1" readonly></td><td><input class="inp ro-green" type="text" id="s1_rp_A1" readonly></td></tr>
+            <tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" id="s1_ta_A2" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s1_tk_A2" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-green" type="text" id="s1_vol_A2" readonly></td><td><input class="inp ro-green" type="text" id="s1_rp_A2" readonly></td></tr>
+            <tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" id="s1_ta_C" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s1_tk_C" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-green" type="text" id="s1_vol_C" readonly></td><td><input class="inp ro-green" type="text" id="s1_rp_C" readonly></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="totalisator-strip">
+        <button class="lock-btn unlocked" id="s1_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s1','pertalite')">🔓 Kunci Totalisator</button>
+        <button class="reset-btn" onclick="resetTotalisator('s1','pertalite')">↺ Reset</button>
+        <span class="lock-pill unlocked" id="s1_tot_pt_status">Tidak Dikunci</span>
+      </div>
       <div class="stat-row">
         <div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s1_total_vol_pertalite">0 L</div></div>
         <div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s1_total_rp_pertalite">Rp 0</div></div>
       </div>
     </div>
-
-    <!-- PERTAMAX -->
     <div class="card">
-      <div class="card-header blue"><span class="pip blue"></span>Pertamax — Nozzle B1, B2, D</div>
-      <table class="nozzle-table">
-        <thead><tr><th>Nozzle</th><th>Tot. Awal (L)</th><th>Tot. Akhir (L)</th><th>Penjualan (L)</th><th>Penjualan (Rp)</th></tr></thead>
-        <tbody>
-          <tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" id="s1_ta_B1" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s1_tk_B1" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-blue" type="text" id="s1_vol_B1" readonly></td><td><input class="inp ro-blue" type="text" id="s1_rp_B1" readonly></td></tr>
-          <tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" id="s1_ta_B2" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s1_tk_B2" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-blue" type="text" id="s1_vol_B2" readonly></td><td><input class="inp ro-blue" type="text" id="s1_rp_B2" readonly></td></tr>
-          <tr><td><span class="badge blue">D</span></td><td><input class="inp" type="number" id="s1_ta_D" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s1_tk_D" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-blue" type="text" id="s1_vol_D" readonly></td><td><input class="inp ro-blue" type="text" id="s1_rp_D" readonly></td></tr>
-        </tbody>
-      </table>
+      <div class="card-header blue"><span class="pip blue"></span>Pertamax — B1, B2, D</div>
+      <div class="table-wrap">
+        <table class="nozzle-table">
+          <thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" id="s1_ta_B1" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s1_tk_B1" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-blue" type="text" id="s1_vol_B1" readonly></td><td><input class="inp ro-blue" type="text" id="s1_rp_B1" readonly></td></tr>
+            <tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" id="s1_ta_B2" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s1_tk_B2" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-blue" type="text" id="s1_vol_B2" readonly></td><td><input class="inp ro-blue" type="text" id="s1_rp_B2" readonly></td></tr>
+            <tr><td><span class="badge blue">D</span></td><td><input class="inp" type="number" id="s1_ta_D" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s1_tk_D" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-blue" type="text" id="s1_vol_D" readonly></td><td><input class="inp ro-blue" type="text" id="s1_rp_D" readonly></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="totalisator-strip">
+        <button class="lock-btn unlocked" id="s1_tot_px_lockBtn" onclick="toggleTotalisatorLock('s1','pertamax')">🔓 Kunci Totalisator</button>
+        <button class="reset-btn" onclick="resetTotalisator('s1','pertamax')">↺ Reset</button>
+        <span class="lock-pill unlocked" id="s1_tot_px_status">Tidak Dikunci</span>
+      </div>
       <div class="stat-row">
         <div class="stat-card blue"><div class="stat-label">Total Volume</div><div class="stat-value blue" id="s1_total_vol_pertamax">0 L</div></div>
         <div class="stat-card blue"><div class="stat-label">Total Penjualan</div><div class="stat-value blue" id="s1_total_rp_pertamax">Rp 0</div></div>
@@ -463,7 +312,6 @@
     </div>
   </div>
 
-  <!-- PENGELUARAN -->
   <div class="card">
     <div class="card-header red"><span class="pip red"></span>Pengeluaran Harian — Shift 1</div>
     <div class="pengeluaran-body">
@@ -477,25 +325,22 @@
     </div>
   </div>
 
-  <!-- STOK -->
   <div class="card">
     <div class="card-header slate"><span class="pip slate"></span>Stok BBM — Shift 1</div>
     <div class="stok-body">
-      <!-- Pertalite -->
-      <div class="stok-product-label green"><span class="dot green"></span><span style="color:var(--pt-green)">Pertalite</span></div>
+      <div class="stok-product-label"><span class="dot green"></span><span style="color:var(--pt-green)">Pertalite</span></div>
       <div class="stok-grid">
         <div><div class="field-label">Stok Awal (L)</div><input class="inp" type="number" id="s1_stok_awal_pertalite" placeholder="0" oninput="calcAll()"></div>
-        <div><div class="field-label">Penjualan Totalisator (L)</div><input class="inp ro-green" type="text" id="s1_stok_jual_pertalite" readonly></div>
+        <div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-green" type="text" id="s1_stok_jual_pertalite" readonly></div>
         <div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" id="s1_stok_akhir_pertalite" placeholder="0" oninput="calcAll()"></div>
         <div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="s1_selisih_pertalite" readonly></div>
         <div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s1_ket_pertalite">⊜ Seimbang</span></div>
       </div>
       <div class="prod-divider"></div>
-      <!-- Pertamax -->
-      <div class="stok-product-label blue"><span class="dot blue"></span><span style="color:var(--px-blue)">Pertamax</span></div>
+      <div class="stok-product-label"><span class="dot blue"></span><span style="color:var(--px-blue)">Pertamax</span></div>
       <div class="stok-grid">
         <div><div class="field-label">Stok Awal (L)</div><input class="inp" type="number" id="s1_stok_awal_pertamax" placeholder="0" oninput="calcAll()"></div>
-        <div><div class="field-label">Penjualan Totalisator (L)</div><input class="inp ro-blue" type="text" id="s1_stok_jual_pertamax" readonly></div>
+        <div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-blue" type="text" id="s1_stok_jual_pertamax" readonly></div>
         <div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" id="s1_stok_akhir_pertamax" placeholder="0" oninput="calcAll()"></div>
         <div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="s1_selisih_pertamax" readonly></div>
         <div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s1_ket_pertamax">⊜ Seimbang</span></div>
@@ -504,18 +349,17 @@
   </div>
 </div>
 
-<!-- ════════════════ SHIFT 2 ════════════════ -->
+<!-- ════ SHIFT 2 ════ -->
 <div id="shift2" class="tab-pane">
-
   <div class="card">
     <div class="card-header amber"><span class="pip amber"></span>Harga Per Liter</div>
     <div class="price-row">
       <div class="price-field">
-        <div class="field-label">Pertalite (Rp/Liter)</div>
+        <div class="field-label">Pertalite (Rp/L)</div>
         <input class="inp" type="number" id="s2_price_pertalite" value="10000" oninput="calcAll()">
       </div>
       <div class="price-field">
-        <div class="field-label">Pertamax (Rp/Liter)</div>
+        <div class="field-label">Pertamax (Rp/L)</div>
         <input class="inp" type="number" id="s2_price_pertamax" value="13900" oninput="calcAll()">
       </div>
       <button class="lock-btn unlocked" id="s2_lockBtn" onclick="toggleLock('s2')">🔓 Kunci Harga</button>
@@ -525,30 +369,44 @@
 
   <div class="grid-2">
     <div class="card">
-      <div class="card-header green"><span class="pip green"></span>Pertalite — Nozzle A1, A2, C</div>
-      <table class="nozzle-table">
-        <thead><tr><th>Nozzle</th><th>Tot. Awal (L)</th><th>Tot. Akhir (L)</th><th>Penjualan (L)</th><th>Penjualan (Rp)</th></tr></thead>
-        <tbody>
-          <tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" id="s2_ta_A1" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s2_tk_A1" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A1" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A1" readonly></td></tr>
-          <tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" id="s2_ta_A2" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s2_tk_A2" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A2" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A2" readonly></td></tr>
-          <tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" id="s2_ta_C" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s2_tk_C" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-green" type="text" id="s2_vol_C" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_C" readonly></td></tr>
-        </tbody>
-      </table>
+      <div class="card-header green"><span class="pip green"></span>Pertalite — A1, A2, C</div>
+      <div class="table-wrap">
+        <table class="nozzle-table">
+          <thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" id="s2_ta_A1" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s2_tk_A1" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A1" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A1" readonly></td></tr>
+            <tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" id="s2_ta_A2" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s2_tk_A2" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A2" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A2" readonly></td></tr>
+            <tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" id="s2_ta_C" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s2_tk_C" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-green" type="text" id="s2_vol_C" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_C" readonly></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="totalisator-strip">
+        <button class="lock-btn unlocked" id="s2_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s2','pertalite')">🔓 Kunci Totalisator</button>
+        <button class="reset-btn" onclick="resetTotalisator('s2','pertalite')">↺ Reset</button>
+        <span class="lock-pill unlocked" id="s2_tot_pt_status">Tidak Dikunci</span>
+      </div>
       <div class="stat-row">
         <div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s2_total_vol_pertalite">0 L</div></div>
         <div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s2_total_rp_pertalite">Rp 0</div></div>
       </div>
     </div>
     <div class="card">
-      <div class="card-header blue"><span class="pip blue"></span>Pertamax — Nozzle B1, B2, D</div>
-      <table class="nozzle-table">
-        <thead><tr><th>Nozzle</th><th>Tot. Awal (L)</th><th>Tot. Akhir (L)</th><th>Penjualan (L)</th><th>Penjualan (Rp)</th></tr></thead>
-        <tbody>
-          <tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" id="s2_ta_B1" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s2_tk_B1" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B1" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B1" readonly></td></tr>
-          <tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" id="s2_ta_B2" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s2_tk_B2" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B2" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B2" readonly></td></tr>
-          <tr><td><span class="badge blue">D</span></td><td><input class="inp" type="number" id="s2_ta_D" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s2_tk_D" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_D" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_D" readonly></td></tr>
-        </tbody>
-      </table>
+      <div class="card-header blue"><span class="pip blue"></span>Pertamax — B1, B2, D</div>
+      <div class="table-wrap">
+        <table class="nozzle-table">
+          <thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" id="s2_ta_B1" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s2_tk_B1" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B1" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B1" readonly></td></tr>
+            <tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" id="s2_ta_B2" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s2_tk_B2" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B2" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B2" readonly></td></tr>
+            <tr><td><span class="badge blue">D</span></td><td><input class="inp" type="number" id="s2_ta_D" placeholder="0" oninput="calcAll()"></td><td><input class="inp" type="number" id="s2_tk_D" placeholder="0" oninput="calcAll()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_D" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_D" readonly></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="totalisator-strip">
+        <button class="lock-btn unlocked" id="s2_tot_px_lockBtn" onclick="toggleTotalisatorLock('s2','pertamax')">🔓 Kunci Totalisator</button>
+        <button class="reset-btn" onclick="resetTotalisator('s2','pertamax')">↺ Reset</button>
+        <span class="lock-pill unlocked" id="s2_tot_px_status">Tidak Dikunci</span>
+      </div>
       <div class="stat-row">
         <div class="stat-card blue"><div class="stat-label">Total Volume</div><div class="stat-value blue" id="s2_total_vol_pertamax">0 L</div></div>
         <div class="stat-card blue"><div class="stat-label">Total Penjualan</div><div class="stat-value blue" id="s2_total_rp_pertamax">Rp 0</div></div>
@@ -574,8 +432,8 @@
     <div class="stok-body">
       <div class="stok-product-label"><span class="dot green"></span><span style="color:var(--pt-green)">Pertalite</span></div>
       <div class="stok-grid">
-        <div><div class="field-label">Stok Awal (L)</div><input class="inp" type="number" id="s2_stok_awal_pertalite" placeholder="0" oninput="calcAll()"></div>
-        <div><div class="field-label">Penjualan Totalisator (L)</div><input class="inp ro-green" type="text" id="s2_stok_jual_pertalite" readonly></div>
+        <div><div class="field-label">Stok Awal (L)</div><input class="inp ro-green" type="text" id="s2_stok_awal_pertalite" readonly placeholder="Otomatis"></div>
+        <div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-green" type="text" id="s2_stok_jual_pertalite" readonly></div>
         <div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" id="s2_stok_akhir_pertalite" placeholder="0" oninput="calcAll()"></div>
         <div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="s2_selisih_pertalite" readonly></div>
         <div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s2_ket_pertalite">⊜ Seimbang</span></div>
@@ -583,69 +441,90 @@
       <div class="prod-divider"></div>
       <div class="stok-product-label"><span class="dot blue"></span><span style="color:var(--px-blue)">Pertamax</span></div>
       <div class="stok-grid">
-        <div><div class="field-label">Stok Awal (L)</div><input class="inp" type="number" id="s2_stok_awal_pertamax" placeholder="0" oninput="calcAll()"></div>
-        <div><div class="field-label">Penjualan Totalisator (L)</div><input class="inp ro-blue" type="text" id="s2_stok_jual_pertamax" readonly></div>
+        <div><div class="field-label">Stok Awal (L)</div><input class="inp ro-blue" type="text" id="s2_stok_awal_pertamax" readonly placeholder="Otomatis"></div>
+        <div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-blue" type="text" id="s2_stok_jual_pertamax" readonly></div>
         <div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" id="s2_stok_akhir_pertamax" placeholder="0" oninput="calcAll()"></div>
         <div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="s2_selisih_pertamax" readonly></div>
         <div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s2_ket_pertamax">⊜ Seimbang</span></div>
       </div>
     </div>
   </div>
+
+  <!-- Totalisator Awal Shift 2 dari Shift 1 -->
+  <div class="card">
+    <div class="card-header slate"><span class="pip slate"></span>Totalisator Awal Shift 2 (dari Akhir Shift 1)</div>
+    <div class="stok-body">
+      <p style="font-size:12px;color:var(--text-mid);margin-bottom:12px">Nilai di bawah diisi otomatis dari Totalisator Akhir Shift 1. Kunci untuk mencegah perubahan, atau Reset untuk mengosongkan.</p>
+      <div class="stok-product-label"><span class="dot green"></span><span style="color:var(--pt-green)">Pertalite — Nozzle A1, A2, C</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+        <div><div class="field-label">A1 Totalisator Awal</div><input class="inp ro-green" type="text" id="s2_ta_A1_display" readonly></div>
+        <div><div class="field-label">A2 Totalisator Awal</div><input class="inp ro-green" type="text" id="s2_ta_A2_display" readonly></div>
+        <div><div class="field-label">C Totalisator Awal</div><input class="inp ro-green" type="text" id="s2_ta_C_display" readonly></div>
+      </div>
+      <div class="stok-product-label"><span class="dot blue"></span><span style="color:var(--px-blue)">Pertamax — Nozzle B1, B2, D</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+        <div><div class="field-label">B1 Totalisator Awal</div><input class="inp ro-blue" type="text" id="s2_ta_B1_display" readonly></div>
+        <div><div class="field-label">B2 Totalisator Awal</div><input class="inp ro-blue" type="text" id="s2_ta_B2_display" readonly></div>
+        <div><div class="field-label">D Totalisator Awal</div><input class="inp ro-blue" type="text" id="s2_ta_D_display" readonly></div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- ════════════════ GLOBAL ════════════════ -->
+<!-- ════ GLOBAL ════ -->
 <div id="global" class="tab-pane">
-
-  <!-- RINGKASAN VOLUME -->
   <div class="card">
     <div class="card-header amber"><span class="pip amber"></span>Rekapitulasi Global — SPBU 3417603</div>
-    <div class="stat-row" style="grid-template-columns:repeat(3,1fr) repeat(3,1fr)">
-      <div class="stat-card green"><div class="stat-label">Volume Pertalite Shift 1</div><div class="stat-value green" id="g_s1_vol_pertalite">0 L</div></div>
-      <div class="stat-card green"><div class="stat-label">Volume Pertalite Shift 2</div><div class="stat-value green" id="g_s2_vol_pertalite">0 L</div></div>
-      <div class="stat-card green"><div class="stat-label">Total Volume Pertalite</div><div class="stat-value green" id="g_total_vol_pertalite">0 L</div><div class="stat-sub">Shift 1 + Shift 2</div></div>
-      <div class="stat-card blue"><div class="stat-label">Volume Pertamax Shift 1</div><div class="stat-value blue" id="g_s1_vol_pertamax">0 L</div></div>
-      <div class="stat-card blue"><div class="stat-label">Volume Pertamax Shift 2</div><div class="stat-value blue" id="g_s2_vol_pertamax">0 L</div></div>
-      <div class="stat-card blue"><div class="stat-label">Total Volume Pertamax</div><div class="stat-value blue" id="g_total_vol_pertamax">0 L</div><div class="stat-sub">Shift 1 + Shift 2</div></div>
+    <div class="stat-row">
+      <div class="stat-card green"><div class="stat-label">Vol Pertalite S1</div><div class="stat-value green" id="g_s1_vol_pertalite">0 L</div></div>
+      <div class="stat-card green"><div class="stat-label">Vol Pertalite S2</div><div class="stat-value green" id="g_s2_vol_pertalite">0 L</div></div>
+      <div class="stat-card green"><div class="stat-label">Total Vol Pertalite</div><div class="stat-value green" id="g_total_vol_pertalite">0 L</div><div class="stat-sub">S1 + S2</div></div>
+      <div class="stat-card blue"><div class="stat-label">Vol Pertamax S1</div><div class="stat-value blue" id="g_s1_vol_pertamax">0 L</div></div>
+      <div class="stat-card blue"><div class="stat-label">Vol Pertamax S2</div><div class="stat-value blue" id="g_s2_vol_pertamax">0 L</div></div>
+      <div class="stat-card blue"><div class="stat-label">Total Vol Pertamax</div><div class="stat-value blue" id="g_total_vol_pertamax">0 L</div><div class="stat-sub">S1 + S2</div></div>
     </div>
   </div>
 
   <div class="grid-2">
     <div class="card">
       <div class="card-header slate"><span class="pip slate"></span>Penjualan Global</div>
-      <table class="sum-table">
-        <thead><tr><th>Produk / Shift</th><th>Volume (L)</th><th>Penjualan (Rp)</th></tr></thead>
-        <tbody>
-          <tr><td>Pertalite — Shift 1</td><td id="g_row_s1_vol_pt">0</td><td id="g_row_s1_rp_pt">Rp 0</td></tr>
-          <tr><td>Pertalite — Shift 2</td><td id="g_row_s2_vol_pt">0</td><td id="g_row_s2_rp_pt">Rp 0</td></tr>
-          <tr><td>Pertamax — Shift 1</td><td id="g_row_s1_vol_px">0</td><td id="g_row_s1_rp_px">Rp 0</td></tr>
-          <tr><td>Pertamax — Shift 2</td><td id="g_row_s2_vol_px">0</td><td id="g_row_s2_rp_px">Rp 0</td></tr>
-          <tr class="total-row"><td><strong>Total Global</strong></td><td id="g_total_vol_all">0</td><td id="g_total_rp_all">Rp 0</td></tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="sum-table">
+          <thead><tr><th>Produk / Shift</th><th>Volume (L)</th><th>Penjualan (Rp)</th></tr></thead>
+          <tbody>
+            <tr><td>Pertalite — S1</td><td id="g_row_s1_vol_pt">0</td><td id="g_row_s1_rp_pt">Rp 0</td></tr>
+            <tr><td>Pertalite — S2</td><td id="g_row_s2_vol_pt">0</td><td id="g_row_s2_rp_pt">Rp 0</td></tr>
+            <tr><td>Pertamax — S1</td><td id="g_row_s1_vol_px">0</td><td id="g_row_s1_rp_px">Rp 0</td></tr>
+            <tr><td>Pertamax — S2</td><td id="g_row_s2_vol_px">0</td><td id="g_row_s2_rp_px">Rp 0</td></tr>
+            <tr class="total-row"><td><strong>Total Global</strong></td><td id="g_total_vol_all">0</td><td id="g_total_rp_all">Rp 0</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="card">
       <div class="card-header red"><span class="pip red"></span>Pengeluaran &amp; Kas Global</div>
-      <table class="sum-table">
-        <thead><tr><th>Keterangan</th><th>Jumlah (Rp)</th></tr></thead>
-        <tbody>
-          <tr><td>Total Penjualan Kotor</td><td id="g_total_jual_kotor">Rp 0</td></tr>
-          <tr><td>Pengeluaran Shift 1</td><td id="g_peng_s1">Rp 0</td></tr>
-          <tr><td>Pengeluaran Shift 2</td><td id="g_peng_s2">Rp 0</td></tr>
-          <tr><td>Total Pengeluaran</td><td id="g_total_peng">Rp 0</td></tr>
-          <tr class="total-row"><td><strong>Sisa Kas Bersih</strong></td><td id="g_sisa_kas">Rp 0</td></tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="sum-table">
+          <thead><tr><th>Keterangan</th><th>Jumlah (Rp)</th></tr></thead>
+          <tbody>
+            <tr><td>Total Penjualan Kotor</td><td id="g_total_jual_kotor">Rp 0</td></tr>
+            <tr><td>Pengeluaran Shift 1</td><td id="g_peng_s1">Rp 0</td></tr>
+            <tr><td>Pengeluaran Shift 2</td><td id="g_peng_s2">Rp 0</td></tr>
+            <tr><td>Total Pengeluaran</td><td id="g_total_peng">Rp 0</td></tr>
+            <tr class="total-row"><td><strong>Sisa Kas Bersih</strong></td><td id="g_sisa_kas">Rp 0</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
-  <!-- STOK GLOBAL -->
   <div class="card">
     <div class="card-header slate"><span class="pip slate"></span>Stok Global BBM</div>
     <div class="stok-body">
       <div class="stok-product-label"><span class="dot green"></span><span style="color:var(--pt-green)">Pertalite (Global)</span></div>
       <div class="stok-grid">
         <div><div class="field-label">Stok Awal (L)</div><input class="inp" type="number" id="g_stok_awal_pertalite" placeholder="0" oninput="calcAll()"></div>
-        <div><div class="field-label">Total Penjualan (L)</div><input class="inp ro-green" type="text" id="g_stok_jual_pertalite" readonly></div>
+        <div><div class="field-label">Total Jual (L)</div><input class="inp ro-green" type="text" id="g_stok_jual_pertalite" readonly></div>
         <div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" id="g_stok_akhir_pertalite" placeholder="0" oninput="calcAll()"></div>
         <div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="g_selisih_pertalite" readonly></div>
         <div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="g_ket_pertalite">⊜ Seimbang</span></div>
@@ -654,7 +533,7 @@
       <div class="stok-product-label"><span class="dot blue"></span><span style="color:var(--px-blue)">Pertamax (Global)</span></div>
       <div class="stok-grid">
         <div><div class="field-label">Stok Awal (L)</div><input class="inp" type="number" id="g_stok_awal_pertamax" placeholder="0" oninput="calcAll()"></div>
-        <div><div class="field-label">Total Penjualan (L)</div><input class="inp ro-blue" type="text" id="g_stok_jual_pertamax" readonly></div>
+        <div><div class="field-label">Total Jual (L)</div><input class="inp ro-blue" type="text" id="g_stok_jual_pertamax" readonly></div>
         <div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" id="g_stok_akhir_pertamax" placeholder="0" oninput="calcAll()"></div>
         <div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="g_selisih_pertamax" readonly></div>
         <div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="g_ket_pertamax">⊜ Seimbang</span></div>
@@ -662,197 +541,597 @@
     </div>
   </div>
 
-  <!-- REKAP NOZZLE GLOBAL -->
   <div class="card">
     <div class="card-header slate"><span class="pip slate"></span>Rekap Per Nozzle Global</div>
-    <table class="sum-table">
-      <thead><tr><th>Nozzle</th><th>Produk</th><th>Vol Shift 1 (L)</th><th>Vol Shift 2 (L)</th><th>Total Vol (L)</th><th>Total (Rp)</th></tr></thead>
-      <tbody id="g_nozzle_table_body"></tbody>
-    </table>
+    <div class="table-wrap">
+      <table class="sum-table">
+        <thead><tr><th>Nozzle</th><th>Produk</th><th>Vol S1 (L)</th><th>Vol S2 (L)</th><th>Total Vol (L)</th><th>Total (Rp)</th></tr></thead>
+        <tbody id="g_nozzle_table_body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MODAL & LABA ════ -->
+<div id="modal" class="tab-pane">
+
+  <!-- MARGIN -->
+  <div class="card">
+    <div class="card-header purple"><span class="pip purple"></span>Keuntungan / Rugi — Margin BBM</div>
+    <div class="modal-section-body">
+      <div class="sub-section-title">Pengaturan Margin per Liter</div>
+      <div class="modal-grid-4" style="margin-bottom:14px">
+        <div><div class="field-label">Margin Pertalite (Rp/L)</div><input class="inp" type="number" id="m_margin_pertalite" value="150" oninput="calcModal()"></div>
+        <div><div class="field-label">Margin Pertamax (Rp/L)</div><input class="inp" type="number" id="m_margin_pertamax" value="200" oninput="calcModal()"></div>
+        <div style="display:flex;flex-direction:column;justify-content:flex-end;gap:5px">
+          <button class="lock-btn unlocked" id="m_margin_lockBtn" onclick="toggleLockMargin()">🔓 Kunci Margin</button>
+          <span class="lock-pill unlocked" id="m_margin_lockStatus">Tidak Dikunci</span>
+        </div>
+        <div></div>
+      </div>
+
+      <div class="sub-section-title">Rincian Perhitungan Margin</div>
+      <div class="grid-2" style="margin-bottom:0">
+        <div>
+          <div class="field-label" style="margin-bottom:6px;color:var(--pt-green)">Pertalite</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:8px">
+            <div><div class="field-label">Volume Global (L)</div><input class="inp ro-green" type="text" id="m_vol_pertalite" readonly></div>
+            <div><div class="field-label">× Margin (Rp/L)</div><input class="inp ro-slate" type="text" id="m_margin_pt_display" readonly></div>
+            <div><div class="field-label">= Keuntungan</div><input class="inp ro-green" type="text" id="m_keuntungan_pertalite" readonly></div>
+          </div>
+        </div>
+        <div>
+          <div class="field-label" style="margin-bottom:6px;color:var(--px-blue)">Pertamax</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:8px">
+            <div><div class="field-label">Volume Global (L)</div><input class="inp ro-blue" type="text" id="m_vol_pertamax" readonly></div>
+            <div><div class="field-label">× Margin (Rp/L)</div><input class="inp ro-slate" type="text" id="m_margin_px_display" readonly></div>
+            <div><div class="field-label">= Keuntungan</div><input class="inp ro-blue" type="text" id="m_keuntungan_pertamax" readonly></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Penguapan dari selisih stok global -->
+    <div class="modal-section-body" style="padding-top:0">
+      <div class="sub-section-title">Penguapan / Penyusutan (dari Selisih Stok Global)</div>
+      <div id="peng_info_box" class="peng-info-box">
+        <div class="peng-info-title">Rincian Penguapan per Produk</div>
+        <div class="peng-info-row">
+          <span class="peng-info-label">Pertalite — Selisih Stok</span>
+          <span class="peng-info-val zero" id="peng_pt_label">0 L → Rp 0</span>
+        </div>
+        <div class="peng-info-row">
+          <span class="peng-info-label">Pertamax — Selisih Stok</span>
+          <span class="peng-info-val zero" id="peng_px_label">0 L → Rp 0</span>
+        </div>
+        <div class="peng-info-row" style="border-top:2px solid var(--border);margin-top:4px;padding-top:8px">
+          <span class="peng-info-label" style="font-weight:700">Total Nilai Penguapan / Penyusutan</span>
+          <span class="peng-info-val zero" id="peng_total_label">Rp 0</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div><div class="field-label">Total Pengeluaran Global</div><input class="inp ro-red" type="text" id="m_total_pengeluaran_display" readonly></div>
+      </div>
+    </div>
+
+    <div id="margin_result_banner" class="result-banner neutral" style="margin-top:0">
+      <div>
+        <div class="result-banner-label neutral" id="margin_result_label">Laba Margin Bersih</div>
+        <div class="result-banner-value neutral" id="margin_result_value">Rp 0</div>
+        <div class="result-banner-formula" id="margin_result_formula">= (Margin PT + Margin PX) + Nilai Penguapan − Total Pengeluaran</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px">Status</div>
+        <span class="ket-badge zero" id="margin_status_badge">⊜ Impas</span>
+      </div>
+    </div>
   </div>
 
+  <!-- MODAL -->
+  <div class="card">
+    <div class="card-header amber"><span class="pip amber"></span>Modal Awal &amp; Sisa DO</div>
+    <div class="modal-section-body">
+      <div class="sub-section-title">Modal Awal</div>
+      <div class="modal-grid-2" style="margin-bottom:14px">
+        <div><div class="field-label">Modal Awal (Rp)</div><input class="inp" type="number" id="m_modal_awal" value="0" placeholder="0" oninput="calcModal()"></div>
+        <div style="display:flex;flex-direction:column;justify-content:flex-end;gap:5px">
+          <button class="lock-btn unlocked" id="m_modal_lockBtn" onclick="toggleLockModal()">🔓 Kunci Modal Awal</button>
+          <span class="lock-pill unlocked" id="m_modal_lockStatus">Tidak Dikunci</span>
+        </div>
+      </div>
+      <div class="prod-divider" style="margin:0 0 14px"></div>
+      <div class="sub-section-title">Sisa DO (Delivery Order)</div>
+      <div class="do-section">
+        <div><div class="field-label" style="color:var(--pt-green)">Sisa DO Pertalite (L)</div><input class="inp" type="number" id="m_sisa_do_pertalite" value="0" oninput="calcModal()"></div>
+        <div><div class="field-label">× Harga Beli/L (Rp)</div><input class="inp" type="number" id="m_harga_beli_pertalite" value="9850" oninput="calcModal()"></div>
+        <div><div class="field-label">= Nilai DO PT (Rp)</div><input class="inp ro-green" type="text" id="m_nilai_do_pertalite" readonly></div>
+        <div style="display:flex;flex-direction:column;justify-content:flex-end;gap:5px">
+          <button class="lock-btn unlocked" id="m_do_pt_lockBtn" onclick="toggleLockDoPt()">🔓 Kunci</button>
+          <span class="lock-pill unlocked" id="m_do_pt_lockStatus">Tidak Dikunci</span>
+        </div>
+        <div></div>
+      </div>
+      <div class="do-section">
+        <div><div class="field-label" style="color:var(--px-blue)">Sisa DO Pertamax (L)</div><input class="inp" type="number" id="m_sisa_do_pertamax" value="0" oninput="calcModal()"></div>
+        <div><div class="field-label">× Harga Beli/L (Rp)</div><input class="inp" type="number" id="m_harga_beli_pertamax" value="13700" oninput="calcModal()"></div>
+        <div><div class="field-label">= Nilai DO PX (Rp)</div><input class="inp ro-blue" type="text" id="m_nilai_do_pertamax" readonly></div>
+        <div style="display:flex;flex-direction:column;justify-content:flex-end;gap:5px">
+          <button class="lock-btn unlocked" id="m_do_px_lockBtn" onclick="toggleLockDoPx()">🔓 Kunci</button>
+          <span class="lock-pill unlocked" id="m_do_px_lockStatus">Tidak Dikunci</span>
+        </div>
+        <div></div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card green"><div class="stat-label">Nilai DO Pertalite</div><div class="stat-value green" id="m_stat_do_pertalite">Rp 0</div></div>
+      <div class="stat-card blue"><div class="stat-label">Nilai DO Pertamax</div><div class="stat-value blue" id="m_stat_do_pertamax">Rp 0</div></div>
+      <div class="stat-card amber"><div class="stat-label">Total Sisa DO</div><div class="stat-value amber" id="m_stat_total_do">Rp 0</div></div>
+      <div class="stat-card slate"><div class="stat-label">Modal Awal</div><div class="stat-value slate" id="m_stat_modal_awal">Rp 0</div></div>
+    </div>
+  </div>
+
+  <!-- STOK AKHIR & UANG KAS -->
+  <div class="card">
+    <div class="card-header slate"><span class="pip slate"></span>Nilai Stok Akhir Global &amp; Uang Kas</div>
+    <div class="modal-section-body">
+      <div class="sub-section-title">Harga Valuasi Stok Akhir</div>
+      <div class="modal-grid-4" style="margin-bottom:14px">
+        <div><div class="field-label" style="color:var(--pt-green)">Harga Valuasi PT (Rp/L)</div><input class="inp" type="number" id="m_harga_val_pertalite" value="10000" oninput="calcModal()"></div>
+        <div><div class="field-label" style="color:var(--px-blue)">Harga Valuasi PX (Rp/L)</div><input class="inp" type="number" id="m_harga_val_pertamax" value="13900" oninput="calcModal()"></div>
+        <div style="display:flex;flex-direction:column;justify-content:flex-end;gap:5px">
+          <button class="lock-btn unlocked" id="m_stok_val_lockBtn" onclick="toggleLockStokVal()">🔓 Kunci Valuasi</button>
+          <span class="lock-pill unlocked" id="m_stok_val_lockStatus">Tidak Dikunci</span>
+        </div>
+        <div></div>
+      </div>
+      <div class="sub-section-title">Perhitungan Nilai Stok</div>
+      <div class="modal-grid-3" style="margin-bottom:10px">
+        <div><div class="field-label">Stok Akhir PT Global (L)</div><input class="inp ro-green" type="text" id="m_stok_akhir_pt_display" readonly></div>
+        <div><div class="field-label">Stok Akhir PX Global (L)</div><input class="inp ro-blue" type="text" id="m_stok_akhir_px_display" readonly></div>
+        <div>
+          <div class="field-label">Uang Global Bersih (Rp)</div>
+          <input class="inp ro-amber" type="text" id="m_uang_global_display" readonly>
+          <div class="uang-note" id="m_uang_note">Dibulatkan ke bawah per juta untuk modal</div>
+        </div>
+      </div>
+      <div class="modal-grid-3">
+        <div><div class="field-label">Nilai Stok Pertalite (Rp)</div><input class="inp ro-green" type="text" id="m_nilai_stok_pertalite" readonly></div>
+        <div><div class="field-label">Nilai Stok Pertamax (Rp)</div><input class="inp ro-blue" type="text" id="m_nilai_stok_pertamax" readonly></div>
+        <div><div class="field-label">Total Nilai Stok (Rp)</div><input class="inp ro-purple" type="text" id="m_total_nilai_stok" readonly></div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card green"><div class="stat-label">Nilai Stok Pertalite</div><div class="stat-value green" id="m_stat_stok_pertalite">Rp 0</div></div>
+      <div class="stat-card blue"><div class="stat-label">Nilai Stok Pertamax</div><div class="stat-value blue" id="m_stat_stok_pertamax">Rp 0</div></div>
+      <div class="stat-card purple"><div class="stat-label">Total Nilai Stok</div><div class="stat-value purple" id="m_stat_total_stok">Rp 0</div></div>
+      <div class="stat-card amber"><div class="stat-label">Uang Global Bersih</div><div class="stat-value amber" id="m_stat_uang_global">Rp 0</div></div>
+    </div>
+  </div>
+
+  <!-- HASIL AKHIR -->
+  <div class="card">
+    <div class="card-header purple"><span class="pip purple"></span>Hasil Akhir — Kalkulasi Modal</div>
+    <div class="modal-section-body">
+      <div class="sub-section-title">Rincian Komponen</div>
+      <div class="modal-grid-4" style="margin-bottom:14px">
+        <div><div class="field-label">Sisa DO Total (Rp)</div><input class="inp ro-amber" type="text" id="m_komponen_do" readonly></div>
+        <div><div class="field-label">Total Nilai Stok (Rp)</div><input class="inp ro-purple" type="text" id="m_komponen_stok" readonly></div>
+        <div>
+          <div class="field-label">Uang Global Dibulatkan (Rp)</div>
+          <input class="inp ro-amber" type="text" id="m_komponen_uang" readonly>
+        </div>
+        <div><div class="field-label">Modal Awal (Rp)</div><input class="inp ro-slate" type="text" id="m_komponen_modal" readonly></div>
+      </div>
+    </div>
+    <div id="final_result_card" class="final-result-card">
+      <div>
+        <div class="label">Selisih Modal (DO + Stok + Uang Bulat − Modal Awal)</div>
+        <div class="value profit" id="m_final_value">Rp 0</div>
+        <div class="formula" id="m_final_formula">= Rp 0 + Rp 0 + Rp 0 − Rp 0</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:10px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px">Status Modal</div>
+        <span class="ket-badge zero" id="m_final_status">⊜ Impas</span>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card amber"><div class="stat-label">Total Sisa DO</div><div class="stat-value amber" id="m_sum_do">Rp 0</div></div>
+      <div class="stat-card purple"><div class="stat-label">Total Nilai Stok</div><div class="stat-value purple" id="m_sum_stok">Rp 0</div></div>
+      <div class="stat-card green"><div class="stat-label">Uang Global (Bulat)</div><div class="stat-value green" id="m_sum_uang">Rp 0</div></div>
+      <div class="stat-card slate"><div class="stat-label">Modal Awal</div><div class="stat-value slate" id="m_sum_modal">Rp 0</div></div>
+    </div>
+  </div>
 </div>
-</div>
+
+</div><!-- end content -->
 
 <script>
-const lockState = { s1: false, s2: false };
-const pengeluaranData = { s1: [], s2: [] };
+const lockState = {s1:false,s2:false};
+const totLockState = {s1_pertalite:false,s1_pertamax:false,s2_pertalite:false,s2_pertamax:false};
+const pengeluaranData = {s1:[],s2:[]};
+const modalLockState = {margin:false,modal:false,doPt:false,doPx:false,stokVal:false};
 
-document.addEventListener('DOMContentLoaded', () => {
-  const today = new Date().toISOString().slice(0,10);
-  document.getElementById('reportDate').value = today;
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('reportDate').value = new Date().toISOString().slice(0,10);
   addPengeluaran('s1');
   addPengeluaran('s2');
   calcAll();
 });
 
-function switchTab(id, btn) {
-  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
   calcAll();
+  if(id==='modal') calcModal();
 }
 
-function toggleLock(shift) {
-  lockState[shift] = !lockState[shift];
-  const locked = lockState[shift];
-  ['pertalite','pertamax'].forEach(p => {
-    const f = document.getElementById(`${shift}_price_${p}`);
-    f.readOnly = locked;
-    f.style.opacity = locked ? '0.55' : '1';
-    f.style.cursor = locked ? 'not-allowed' : '';
+// ── Harga lock ──
+function toggleLock(shift){
+  lockState[shift]=!lockState[shift];
+  const locked=lockState[shift];
+  ['pertalite','pertamax'].forEach(p=>{
+    const f=document.getElementById(`${shift}_price_${p}`);
+    f.readOnly=locked; f.style.opacity=locked?'.55':'1'; f.style.cursor=locked?'not-allowed':'';
   });
-  const btn = document.getElementById(`${shift}_lockBtn`);
-  const pill = document.getElementById(`${shift}_lockStatus`);
-  btn.className = `lock-btn ${locked ? 'locked' : 'unlocked'}`;
-  btn.textContent = locked ? '🔒 Buka Kunci' : '🔓 Kunci Harga';
-  pill.className = `lock-pill ${locked ? 'locked' : 'unlocked'}`;
-  pill.textContent = locked ? 'Harga Dikunci' : 'Tidak Dikunci';
+  const btn=document.getElementById(`${shift}_lockBtn`);
+  const pill=document.getElementById(`${shift}_lockStatus`);
+  btn.className=`lock-btn ${locked?'locked':'unlocked'}`;
+  btn.textContent=locked?'🔒 Buka Kunci':'🔓 Kunci Harga';
+  pill.className=`lock-pill ${locked?'locked':'unlocked'}`;
+  pill.textContent=locked?'Harga Dikunci':'Tidak Dikunci';
 }
 
-function addPengeluaran(shift) {
-  const id = Date.now() + Math.random();
-  pengeluaranData[shift].push({ id, keterangan: '', jumlah: 0 });
-  renderPengeluaran(shift);
+// ── Totalisator lock/reset ──
+// Map: pertalite -> A1,A2,C ; pertamax -> B1,B2,D
+const nozzleMap = {pertalite:['A1','A2','C'], pertamax:['B1','B2','D']};
+
+function toggleTotalisatorLock(shift, prod){
+  const key=`${shift}_${prod}`;
+  totLockState[key]=!totLockState[key];
+  const locked=totLockState[key];
+  nozzleMap[prod].forEach(n=>{
+    ['ta','tk'].forEach(p=>{
+      const f=document.getElementById(`${shift}_${p}_${n}`);
+      if(!f) return;
+      f.readOnly=locked; f.style.opacity=locked?'.55':'1'; f.style.cursor=locked?'not-allowed':'';
+    });
+  });
+  const btn=document.getElementById(`${shift}_tot_${prod==='pertalite'?'pt':'px'}_lockBtn`);
+  const stat=document.getElementById(`${shift}_tot_${prod==='pertalite'?'pt':'px'}_status`);
+  btn.className=`lock-btn ${locked?'locked':'unlocked'}`;
+  btn.textContent=locked?'🔒 Buka Kunci':'🔓 Kunci Totalisator';
+  stat.className=`lock-pill ${locked?'locked':'unlocked'}`;
+  stat.textContent=locked?'Dikunci':'Tidak Dikunci';
 }
 
-function deletePengeluaran(shift, id) {
-  pengeluaranData[shift] = pengeluaranData[shift].filter(x => x.id !== id);
-  renderPengeluaran(shift);
+function resetTotalisator(shift, prod){
+  if(totLockState[`${shift}_${prod}`]) return; // jangan reset kalau dikunci
+  nozzleMap[prod].forEach(n=>{
+    ['ta','tk'].forEach(p=>{
+      const f=document.getElementById(`${shift}_${p}_${n}`);
+      if(f){ f.value=''; }
+    });
+  });
   calcAll();
 }
 
-function renderPengeluaran(shift) {
-  const c = document.getElementById(`${shift}_pengeluaran_list`);
-  c.innerHTML = pengeluaranData[shift].map(item => `
+// ── Pengeluaran ──
+function addPengeluaran(shift){
+  const id=Date.now()+Math.random();
+  pengeluaranData[shift].push({id,keterangan:'',jumlah:0});
+  renderPengeluaran(shift);
+}
+function deletePengeluaran(shift,id){
+  pengeluaranData[shift]=pengeluaranData[shift].filter(x=>x.id!==id);
+  renderPengeluaran(shift); calcAll();
+}
+function renderPengeluaran(shift){
+  const c=document.getElementById(`${shift}_pengeluaran_list`);
+  c.innerHTML=pengeluaranData[shift].map(item=>`
     <div class="pengeluaran-item">
       <input class="inp" type="text" placeholder="Keterangan pengeluaran..." value="${item.keterangan}"
         onchange="updatePeng('${shift}',${item.id},'keterangan',this.value)">
-      <input class="inp" type="number" placeholder="Jumlah (Rp)" value="${item.jumlah || ''}"
-        onchange="updatePeng('${shift}',${item.id},'jumlah',parseFloat(this.value)||0);calcAll()">
-      <button class="del-btn" onclick="deletePengeluaran('${shift}',${item.id})">×</button>
+      <div class="peng-row">
+        <input class="inp" type="number" placeholder="Jumlah (Rp)" value="${item.jumlah||''}"
+          onchange="updatePeng('${shift}',${item.id},'jumlah',parseFloat(this.value)||0);calcAll()">
+        <button class="del-btn" onclick="deletePengeluaran('${shift}',${item.id})">×</button>
+      </div>
     </div>
   `).join('');
 }
-
-function updatePeng(shift, id, key, val) {
-  const item = pengeluaranData[shift].find(x => x.id === id);
-  if (item) item[key] = val;
+function updatePeng(shift,id,key,val){
+  const item=pengeluaranData[shift].find(x=>x.id===id);
+  if(item) item[key]=val;
 }
 
-const num = id => parseFloat(document.getElementById(id)?.value) || 0;
-const fmt = n => 'Rp ' + Math.round(n).toLocaleString('id-ID');
-const fmtL = n => (Math.round(n * 100) / 100).toLocaleString('id-ID') + ' L';
-const setVal = (id, v) => { const el = document.getElementById(id); if(el) el.value = v; };
-const setTxt = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
+// ── Helpers ──
+const num=id=>parseFloat(document.getElementById(id)?.value)||0;
+const fmt=n=>'Rp '+Math.round(n).toLocaleString('id-ID');
+const fmtL=n=>(Math.round(n*100)/100).toLocaleString('id-ID')+' L';
+const setVal=(id,v)=>{const el=document.getElementById(id);if(el) el.value=v};
+const setTxt=(id,v)=>{const el=document.getElementById(id);if(el) el.textContent=v};
 
-function calcStok(prefix, product, totalJual) {
-  const awal = num(`${prefix}_stok_awal_${product}`);
-  const akhir = num(`${prefix}_stok_akhir_${product}`);
-  const selisih = awal - totalJual - akhir;
+// Pembulatan ke bawah per juta
+function floorToMillion(n){
+  return Math.floor(n/1000000)*1000000;
+}
+
+// ── Stok keterangan — PERBAIKAN:
+// selisih = stok_awal - jual_totalisator - stok_akhir
+// Kalau stok minus (selisih < 0) artinya PLUS (stok lebih banyak dari yg tercatat)
+// Kalau stok plus (selisih > 0) artinya MINUS/berkurang
+function calcStok(prefix, product, totalJual){
+  const awal=num(`${prefix}_stok_awal_${product}`);
+  const akhir=num(`${prefix}_stok_akhir_${product}`);
+  const selisih=awal-totalJual-akhir;
   setVal(`${prefix}_stok_jual_${product}`, fmtL(totalJual));
   setVal(`${prefix}_selisih_${product}`, fmtL(selisih));
-  const badge = document.getElementById(`${prefix}_ket_${product}`);
-  if (!badge) return;
-  if (Math.abs(selisih) < 0.01) {
-    badge.className = 'ket-badge zero'; badge.textContent = '⊜ Seimbang';
-  } else if (selisih > 0) {
-    badge.className = 'ket-badge plus'; badge.textContent = '▲ Plus ' + fmtL(selisih);
+  const badge=document.getElementById(`${prefix}_ket_${product}`);
+  if(!badge) return;
+  if(Math.abs(selisih)<0.01){
+    badge.className='ket-badge zero'; badge.textContent='⊜ Seimbang';
+  } else if(selisih>0){
+    // selisih positif = stok plus → artinya stok berkurang (MINUS)
+    badge.className='ket-badge minus'; badge.textContent='▼ Minus (Susut) '+fmtL(selisih);
   } else {
-    badge.className = 'ket-badge minus'; badge.textContent = '▼ Minus ' + fmtL(Math.abs(selisih));
+    // selisih negatif = stok minus → artinya stok lebih (PLUS)
+    badge.className='ket-badge plus'; badge.textContent='▲ Plus (Lebih) '+fmtL(Math.abs(selisih));
   }
 }
 
-function calcAll() {
-  const res = {};
-  ['s1','s2'].forEach(shift => {
-    const pp = num(`${shift}_price_pertalite`);
-    const px = num(`${shift}_price_pertamax`);
-    let vPt=0, rPt=0, vPx=0, rPx=0;
-    ['A1','A2','C'].forEach(n => {
-      const v = Math.max(0, num(`${shift}_tk_${n}`) - num(`${shift}_ta_${n}`));
-      const r = v * pp;
-      setVal(`${shift}_vol_${n}`, fmtL(v));
-      setVal(`${shift}_rp_${n}`, fmt(r));
-      vPt += v; rPt += r;
+// ── Modal lock helpers ──
+function _toggleLockField(key,ids,btnId,statusId,lockLabel,unlockLabel){
+  modalLockState[key]=!modalLockState[key];
+  const locked=modalLockState[key];
+  ids.forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    el.readOnly=locked; el.style.opacity=locked?'.55':'1'; el.style.cursor=locked?'not-allowed':'';
+  });
+  const btn=document.getElementById(btnId);
+  const pill=document.getElementById(statusId);
+  btn.className=`lock-btn ${locked?'locked':'unlocked'}`;
+  btn.textContent=locked?`🔒 ${lockLabel}`:`🔓 ${unlockLabel}`;
+  pill.className=`lock-pill ${locked?'locked':'unlocked'}`;
+  pill.textContent=locked?'Dikunci':'Tidak Dikunci';
+}
+function toggleLockMargin(){_toggleLockField('margin',['m_margin_pertalite','m_margin_pertamax'],'m_margin_lockBtn','m_margin_lockStatus','Buka Kunci','Kunci Margin');calcModal();}
+function toggleLockModal(){_toggleLockField('modal',['m_modal_awal'],'m_modal_lockBtn','m_modal_lockStatus','Buka Kunci','Kunci Modal Awal');calcModal();}
+function toggleLockDoPt(){_toggleLockField('doPt',['m_sisa_do_pertalite','m_harga_beli_pertalite'],'m_do_pt_lockBtn','m_do_pt_lockStatus','Buka','Kunci');calcModal();}
+function toggleLockDoPx(){_toggleLockField('doPx',['m_sisa_do_pertamax','m_harga_beli_pertamax'],'m_do_px_lockBtn','m_do_px_lockStatus','Buka','Kunci');calcModal();}
+function toggleLockStokVal(){_toggleLockField('stokVal',['m_harga_val_pertalite','m_harga_val_pertamax'],'m_stok_val_lockBtn','m_stok_val_lockStatus','Buka Kunci','Kunci Harga Valuasi');calcModal();}
+
+// Global store
+let _global={vPt:0,vPx:0,rPt:0,rPx:0,totalPeng:0,gSisa:0,stokAkhirPt:0,stokAkhirPx:0,
+             selisihPt:0,selisihPx:0,pricePt:0,pricePx:0};
+
+function calcAll(){
+  const res={};
+  ['s1','s2'].forEach(shift=>{
+    const pp=num(`${shift}_price_pertalite`);
+    const px=num(`${shift}_price_pertamax`);
+    let vPt=0,rPt=0,vPx=0,rPx=0;
+    ['A1','A2','C'].forEach(n=>{
+      const v=Math.max(0,num(`${shift}_tk_${n}`)-num(`${shift}_ta_${n}`));
+      const r=v*pp;
+      setVal(`${shift}_vol_${n}`,fmtL(v)); setVal(`${shift}_rp_${n}`,fmt(r));
+      vPt+=v; rPt+=r;
     });
-    ['B1','B2','D'].forEach(n => {
-      const v = Math.max(0, num(`${shift}_tk_${n}`) - num(`${shift}_ta_${n}`));
-      const r = v * px;
-      setVal(`${shift}_vol_${n}`, fmtL(v));
-      setVal(`${shift}_rp_${n}`, fmt(r));
-      vPx += v; rPx += r;
+    ['B1','B2','D'].forEach(n=>{
+      const v=Math.max(0,num(`${shift}_tk_${n}`)-num(`${shift}_ta_${n}`));
+      const r=v*px;
+      setVal(`${shift}_vol_${n}`,fmtL(v)); setVal(`${shift}_rp_${n}`,fmt(r));
+      vPx+=v; rPx+=r;
     });
-    setTxt(`${shift}_total_vol_pertalite`, fmtL(vPt));
-    setTxt(`${shift}_total_rp_pertalite`, fmt(rPt));
-    setTxt(`${shift}_total_vol_pertamax`, fmtL(vPx));
-    setTxt(`${shift}_total_rp_pertamax`, fmt(rPx));
-
-    const totalPeng = pengeluaranData[shift].reduce((a,x)=>a+(parseFloat(x.jumlah)||0),0);
-    const totalJual = rPt + rPx;
-    const sisa = totalJual - totalPeng;
-    setTxt(`${shift}_total_pengeluaran`, fmt(totalPeng));
-    setTxt(`${shift}_total_penjualan`, fmt(totalJual));
-    setTxt(`${shift}_sisa_kas`, fmt(sisa));
-
-    calcStok(shift, 'pertalite', vPt);
-    calcStok(shift, 'pertamax', vPx);
-
-    res[shift] = { vPt, rPt, vPx, rPx, totalJual, totalPeng };
+    setTxt(`${shift}_total_vol_pertalite`,fmtL(vPt)); setTxt(`${shift}_total_rp_pertalite`,fmt(rPt));
+    setTxt(`${shift}_total_vol_pertamax`,fmtL(vPx)); setTxt(`${shift}_total_rp_pertamax`,fmt(rPx));
+    const totalPeng=pengeluaranData[shift].reduce((a,x)=>a+(parseFloat(x.jumlah)||0),0);
+    const totalJual=rPt+rPx;
+    setTxt(`${shift}_total_pengeluaran`,fmt(totalPeng)); setTxt(`${shift}_total_penjualan`,fmt(totalJual));
+    setTxt(`${shift}_sisa_kas`,fmt(totalJual-totalPeng));
+    calcStok(shift,'pertalite',vPt); calcStok(shift,'pertamax',vPx);
+    res[shift]={vPt,rPt,vPx,rPx,totalJual,totalPeng,pricePt:pp,pricePx:px};
   });
 
-  // GLOBAL
-  const s1=res.s1, s2=res.s2;
-  const gVPt=s1.vPt+s2.vPt, gRPt=s1.rPt+s2.rPt;
-  const gVPx=s1.vPx+s2.vPx, gRPx=s1.rPx+s2.rPx;
-  const gVAll=gVPt+gVPx, gRAll=gRPt+gRPx;
+  // ── Sync Shift 2 totalisator awal dari Shift 1 akhir ──
+  ['A1','A2','C'].forEach(n=>{
+    const val=num(`s1_tk_${n}`);
+    const el=document.getElementById(`s2_ta_${n}`);
+    if(el && !totLockState['s2_pertalite']){
+      el.value=val||'';
+    }
+    // display card
+    const d=document.getElementById(`s2_ta_${n}_display`);
+    if(d) d.value=val?fmtL(val):'—';
+  });
+  ['B1','B2','D'].forEach(n=>{
+    const val=num(`s1_tk_${n}`);
+    const el=document.getElementById(`s2_ta_${n}`);
+    if(el && !totLockState['s2_pertamax']){
+      el.value=val||'';
+    }
+    const d=document.getElementById(`s2_ta_${n}_display`);
+    if(d) d.value=val?fmtL(val):'—';
+  });
+  // Stok awal shift 2 = stok akhir shift 1
+  const s1AkhirPt=num('s1_stok_akhir_pertalite');
+  const s1AkhirPx=num('s1_stok_akhir_pertamax');
+  const s2AwalPt=document.getElementById('s2_stok_awal_pertalite');
+  const s2AwalPx=document.getElementById('s2_stok_awal_pertamax');
+  if(s2AwalPt) s2AwalPt.value=s1AkhirPt||'';
+  if(s2AwalPx) s2AwalPx.value=s1AkhirPx||'';
+  // Recalc stok shift2 after sync
+  const s1=res.s1,s2=res.s2;
+  calcStok('s2','pertalite',s2.vPt); calcStok('s2','pertamax',s2.vPx);
+
+  const gVPt=s1.vPt+s2.vPt,gRPt=s1.rPt+s2.rPt;
+  const gVPx=s1.vPx+s2.vPx,gRPx=s1.rPx+s2.rPx;
+  const gVAll=gVPt+gVPx,gRAll=gRPt+gRPx;
   const gPeng=s1.totalPeng+s2.totalPeng;
   const gSisa=gRAll-gPeng;
 
-  setTxt('g_s1_vol_pertalite', fmtL(s1.vPt));
-  setTxt('g_s2_vol_pertalite', fmtL(s2.vPt));
-  setTxt('g_total_vol_pertalite', fmtL(gVPt));
-  setTxt('g_s1_vol_pertamax', fmtL(s1.vPx));
-  setTxt('g_s2_vol_pertamax', fmtL(s2.vPx));
-  setTxt('g_total_vol_pertamax', fmtL(gVPx));
+  setTxt('g_s1_vol_pertalite',fmtL(s1.vPt)); setTxt('g_s2_vol_pertalite',fmtL(s2.vPt)); setTxt('g_total_vol_pertalite',fmtL(gVPt));
+  setTxt('g_s1_vol_pertamax',fmtL(s1.vPx)); setTxt('g_s2_vol_pertamax',fmtL(s2.vPx)); setTxt('g_total_vol_pertamax',fmtL(gVPx));
+  setTxt('g_row_s1_vol_pt',fmtL(s1.vPt)); setTxt('g_row_s1_rp_pt',fmt(s1.rPt));
+  setTxt('g_row_s2_vol_pt',fmtL(s2.vPt)); setTxt('g_row_s2_rp_pt',fmt(s2.rPt));
+  setTxt('g_row_s1_vol_px',fmtL(s1.vPx)); setTxt('g_row_s1_rp_px',fmt(s1.rPx));
+  setTxt('g_row_s2_vol_px',fmtL(s2.vPx)); setTxt('g_row_s2_rp_px',fmt(s2.rPx));
+  setTxt('g_total_vol_all',fmtL(gVAll)); setTxt('g_total_rp_all',fmt(gRAll));
+  setTxt('g_total_jual_kotor',fmt(gRAll)); setTxt('g_peng_s1',fmt(s1.totalPeng));
+  setTxt('g_peng_s2',fmt(s2.totalPeng)); setTxt('g_total_peng',fmt(gPeng));
+  setTxt('g_sisa_kas',fmt(gSisa));
+  calcStok('g','pertalite',gVPt); calcStok('g','pertamax',gVPx);
 
-  setTxt('g_row_s1_vol_pt', fmtL(s1.vPt)); setTxt('g_row_s1_rp_pt', fmt(s1.rPt));
-  setTxt('g_row_s2_vol_pt', fmtL(s2.vPt)); setTxt('g_row_s2_rp_pt', fmt(s2.rPt));
-  setTxt('g_row_s1_vol_px', fmtL(s1.vPx)); setTxt('g_row_s1_rp_px', fmt(s1.rPx));
-  setTxt('g_row_s2_vol_px', fmtL(s2.vPx)); setTxt('g_row_s2_rp_px', fmt(s2.rPx));
-  setTxt('g_total_vol_all', fmtL(gVAll)); setTxt('g_total_rp_all', fmt(gRAll));
+  const stokAkhirPt=num('g_stok_akhir_pertalite');
+  const stokAkhirPx=num('g_stok_akhir_pertamax');
+  const gStokAwalPt=num('g_stok_awal_pertalite');
+  const gStokAwalPx=num('g_stok_awal_pertamax');
+  // selisih: stok_awal - jual - stok_akhir (positif = minus/susut, negatif = plus/lebih)
+  const selisihPt=gStokAwalPt-gVPt-stokAkhirPt;
+  const selisihPx=gStokAwalPx-gVPx-stokAkhirPx;
 
-  setTxt('g_total_jual_kotor', fmt(gRAll));
-  setTxt('g_peng_s1', fmt(s1.totalPeng));
-  setTxt('g_peng_s2', fmt(s2.totalPeng));
-  setTxt('g_total_peng', fmt(gPeng));
-  setTxt('g_sisa_kas', fmt(gSisa));
+  // Harga rata-rata per produk (global price s1 as reference, or average)
+  const avgPricePt=(s1.pricePt+s2.pricePt)/2;
+  const avgPricePx=(s1.pricePx+s2.pricePx)/2;
 
-  calcStok('g','pertalite',gVPt);
-  calcStok('g','pertamax',gVPx);
+  _global={vPt:gVPt,vPx:gVPx,rPt:gRPt,rPx:gRPx,totalPeng:gPeng,gSisa,
+           stokAkhirPt,stokAkhirPx,selisihPt,selisihPx,avgPricePt,avgPricePx};
 
-  // Rekap nozzle global
   const nozzles=[
-    {id:'A1',prod:'Pertalite',cls:'green',p1:num('s1_price_pertalite'),p2:num('s2_price_pertalite')},
-    {id:'A2',prod:'Pertalite',cls:'green',p1:num('s1_price_pertalite'),p2:num('s2_price_pertalite')},
-    {id:'C', prod:'Pertalite',cls:'green',p1:num('s1_price_pertalite'),p2:num('s2_price_pertalite')},
-    {id:'B1',prod:'Pertamax',cls:'blue', p1:num('s1_price_pertamax'), p2:num('s2_price_pertamax')},
-    {id:'B2',prod:'Pertamax',cls:'blue', p1:num('s1_price_pertamax'), p2:num('s2_price_pertamax')},
-    {id:'D', prod:'Pertamax',cls:'blue', p1:num('s1_price_pertamax'), p2:num('s2_price_pertamax')},
+    {id:'A1',prod:'Pertalite',cls:'green',p1:s1.pricePt,p2:s2.pricePt},
+    {id:'A2',prod:'Pertalite',cls:'green',p1:s1.pricePt,p2:s2.pricePt},
+    {id:'C', prod:'Pertalite',cls:'green',p1:s1.pricePt,p2:s2.pricePt},
+    {id:'B1',prod:'Pertamax', cls:'blue', p1:s1.pricePx,p2:s2.pricePx},
+    {id:'B2',prod:'Pertamax', cls:'blue', p1:s1.pricePx,p2:s2.pricePx},
+    {id:'D', prod:'Pertamax', cls:'blue', p1:s1.pricePx,p2:s2.pricePx},
   ];
-  document.getElementById('g_nozzle_table_body').innerHTML = nozzles.map(n => {
+  document.getElementById('g_nozzle_table_body').innerHTML=nozzles.map(n=>{
     const v1=Math.max(0,num(`s1_tk_${n.id}`)-num(`s1_ta_${n.id}`));
     const v2=Math.max(0,num(`s2_tk_${n.id}`)-num(`s2_ta_${n.id}`));
-    const vT=v1+v2, rT=v1*n.p1+v2*n.p2;
-    return `<tr>
-      <td><span class="badge ${n.cls}">${n.id}</span></td>
-      <td>${n.prod}</td>
-      <td>${fmtL(v1)}</td><td>${fmtL(v2)}</td>
-      <td><strong>${fmtL(vT)}</strong></td>
-      <td><strong>${fmt(rT)}</strong></td>
-    </tr>`;
+    const vT=v1+v2,rT=v1*n.p1+v2*n.p2;
+    return `<tr><td><span class="badge ${n.cls}">${n.id}</span></td><td>${n.prod}</td><td>${fmtL(v1)}</td><td>${fmtL(v2)}</td><td><strong>${fmtL(vT)}</strong></td><td><strong>${fmt(rT)}</strong></td></tr>`;
   }).join('');
+
+  calcModal();
+}
+
+function calcModal(){
+  const gVPt=_global.vPt, gVPx=_global.vPx;
+  const gSisa=_global.gSisa, gPeng=_global.totalPeng;
+  const stokAkhirPt=_global.stokAkhirPt, stokAkhirPx=_global.stokAkhirPx;
+  const selisihPt=_global.selisihPt, selisihPx=_global.selisihPx;
+  const avgPricePt=_global.avgPricePt||0, avgPricePx=_global.avgPricePx||0;
+
+  // ── MARGIN ──
+  const marginPt=num('m_margin_pertalite');
+  const marginPx=num('m_margin_pertamax');
+  const keuntunganPt=gVPt*marginPt;
+  const keuntunganPx=gVPx*marginPx;
+
+  // ── PENGUAPAN dari selisih stok global ──
+  // selisihPt > 0 → stok susut (minus), nilainya rugi
+  // selisihPt < 0 → stok lebih (plus), nilainya untung
+  // Untuk laba: selisih minus (positif) mengurangi laba, selisih plus (negatif) menambah laba
+  // Nilai penguapan = -selisihPt * harga (negatif kalau susut)
+  const nilaiPengPt = -selisihPt * avgPricePt;
+  const nilaiPengPx = -selisihPx * avgPricePx;
+  const nilaiPengTotal = nilaiPengPt + nilaiPengPx;
+
+  // Display penguapan info box
+  function pengLabel(selisih, nilai){
+    if(Math.abs(selisih)<0.001) return {text:'0 L → Rp 0',cls:'zero'};
+    const susut=selisih>0; // positif = susut/minus
+    const absL=Math.abs(selisih), absRp=Math.abs(nilai);
+    const sign=susut?'▼ Minus (Susut)':'▲ Plus (Lebih)';
+    return {text:`${sign} ${fmtL(absL)} → ${susut?'-':'+'}${fmt(absRp)}`, cls:susut?'minus':'plus'};
+  }
+  const lPt=pengLabel(selisihPt, nilaiPengPt);
+  const lPx=pengLabel(selisihPx, nilaiPengPx);
+  const elPt=document.getElementById('peng_pt_label');
+  const elPx=document.getElementById('peng_px_label');
+  const elTotal=document.getElementById('peng_total_label');
+  if(elPt){elPt.className=`peng-info-val ${lPt.cls}`;elPt.textContent=lPt.text;}
+  if(elPx){elPx.className=`peng-info-val ${lPx.cls}`;elPx.textContent=lPx.text;}
+  if(elTotal){
+    const absTotal=Math.abs(nilaiPengTotal);
+    const cls=nilaiPengTotal>0?'plus':nilaiPengTotal<0?'minus':'zero';
+    const sign=nilaiPengTotal>0?'+':nilaiPengTotal<0?'-':'';
+    elTotal.className=`peng-info-val ${cls}`;
+    elTotal.textContent=`${sign}${fmt(absTotal)} (${nilaiPengTotal>=0?'Menguntungkan':'Merugikan'})`;
+  }
+
+  const labaMarginBersih=keuntunganPt+keuntunganPx+nilaiPengTotal-gPeng;
+
+  setVal('m_vol_pertalite',fmtL(gVPt)); setVal('m_vol_pertamax',fmtL(gVPx));
+  setVal('m_margin_pt_display',fmt(marginPt)); setVal('m_margin_px_display',fmt(marginPx));
+  setVal('m_keuntungan_pertalite',fmt(keuntunganPt)); setVal('m_keuntungan_pertamax',fmt(keuntunganPx));
+  setVal('m_total_pengeluaran_display',fmt(gPeng));
+
+  const mb=document.getElementById('margin_result_banner');
+  const ml=document.getElementById('margin_result_label');
+  const mv=document.getElementById('margin_result_value');
+  const mf=document.getElementById('margin_result_formula');
+  const ms=document.getElementById('margin_status_badge');
+  const absMargin=Math.abs(labaMarginBersih);
+  mv.textContent=(labaMarginBersih<0?'−':'')+fmt(absMargin);
+  mf.textContent=`= (${fmt(keuntunganPt)} + ${fmt(keuntunganPx)}) + ${fmt(nilaiPengTotal)} − ${fmt(gPeng)}`;
+  if(Math.abs(labaMarginBersih)<1){
+    mb.className='result-banner neutral';ml.className='result-banner-label neutral';mv.className='result-banner-value neutral';ms.className='ket-badge zero';ms.textContent='⊜ Impas';ml.textContent='Laba Margin Bersih';
+  } else if(labaMarginBersih>0){
+    mb.className='result-banner profit';ml.className='result-banner-label profit';mv.className='result-banner-value profit';ms.className='ket-badge plus';ms.textContent='▲ Untung';ml.textContent='Laba Margin Bersih';
+  } else {
+    mb.className='result-banner loss';ml.className='result-banner-label loss';mv.className='result-banner-value loss';ms.className='ket-badge minus';ms.textContent='▼ Rugi';ml.textContent='Laba Margin Bersih';
+  }
+
+  // ── MODAL & DO ──
+  const modalAwal=num('m_modal_awal');
+  const nilaiDoPt=num('m_sisa_do_pertalite')*num('m_harga_beli_pertalite');
+  const nilaiDoPx=num('m_sisa_do_pertamax')*num('m_harga_beli_pertamax');
+  const totalDo=nilaiDoPt+nilaiDoPx;
+  setVal('m_nilai_do_pertalite',fmt(nilaiDoPt)); setVal('m_nilai_do_pertamax',fmt(nilaiDoPx));
+  setTxt('m_stat_do_pertalite',fmt(nilaiDoPt)); setTxt('m_stat_do_pertamax',fmt(nilaiDoPx));
+  setTxt('m_stat_total_do',fmt(totalDo)); setTxt('m_stat_modal_awal',fmt(modalAwal));
+
+  // ── STOK AKHIR & UANG ──
+  const hargaValPt=num('m_harga_val_pertalite');
+  const hargaValPx=num('m_harga_val_pertamax');
+  const nilaiStokPt=stokAkhirPt*hargaValPt;
+  const nilaiStokPx=stokAkhirPx*hargaValPx;
+  const totalNilaiStok=nilaiStokPt+nilaiStokPx;
+
+  // Uang global dibulatkan ke bawah per juta
+  const uangBulat=floorToMillion(gSisa);
+  const note=document.getElementById('m_uang_note');
+  if(note) note.textContent=`Asli: ${fmt(gSisa)} → Dibulatkan ke bawah per juta: ${fmt(uangBulat)}`;
+
+  setVal('m_stok_akhir_pt_display',fmtL(stokAkhirPt)); setVal('m_stok_akhir_px_display',fmtL(stokAkhirPx));
+  setVal('m_uang_global_display',fmt(uangBulat));
+  setVal('m_nilai_stok_pertalite',fmt(nilaiStokPt)); setVal('m_nilai_stok_pertamax',fmt(nilaiStokPx));
+  setVal('m_total_nilai_stok',fmt(totalNilaiStok));
+  setTxt('m_stat_stok_pertalite',fmt(nilaiStokPt)); setTxt('m_stat_stok_pertamax',fmt(nilaiStokPx));
+  setTxt('m_stat_total_stok',fmt(totalNilaiStok)); setTxt('m_stat_uang_global',fmt(uangBulat));
+
+  // ── HASIL AKHIR ──
+  const hasilAkhir=totalDo+totalNilaiStok+uangBulat-modalAwal;
+  setVal('m_komponen_do',fmt(totalDo)); setVal('m_komponen_stok',fmt(totalNilaiStok));
+  setVal('m_komponen_uang',fmt(uangBulat)); setVal('m_komponen_modal',fmt(modalAwal));
+
+  const fv=document.getElementById('m_final_value');
+  const ff=document.getElementById('m_final_formula');
+  const fs=document.getElementById('m_final_status');
+  const absHasil=Math.abs(hasilAkhir);
+  ff.textContent=`= ${fmt(totalDo)} + ${fmt(totalNilaiStok)} + ${fmt(uangBulat)} − ${fmt(modalAwal)}`;
+  if(Math.abs(hasilAkhir)<1){
+    fv.className='value';fv.textContent=fmt(0);fs.className='ket-badge zero';fs.textContent='⊜ Impas';
+  } else if(hasilAkhir>0){
+    fv.className='value profit';fv.textContent=fmt(hasilAkhir);fs.className='ket-badge plus';fs.textContent='▲ Surplus';
+  } else {
+    fv.className='value loss';fv.textContent='−'+fmt(absHasil);fs.className='ket-badge minus';fs.textContent='▼ Defisit';
+  }
+  setTxt('m_sum_do',fmt(totalDo)); setTxt('m_sum_stok',fmt(totalNilaiStok));
+  setTxt('m_sum_uang',fmt(uangBulat)); setTxt('m_sum_modal',fmt(modalAwal));
 }
 </script>
 </body>
