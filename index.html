@@ -240,7 +240,7 @@
 
 <header class="header">
   <div class="header-left">
-    <div class="logo-icon">SP</div>
+    <!-- Logo SP dihapus -->
     <div class="header-title">
       <h1>SPBU 3417603</h1>
       <p>Sistem Laporan Harian &amp; Modal</p>
@@ -1065,21 +1065,28 @@ function calcAll(){
 ════════════════════════════════════════════ */
 function calcModal(){
   const {vPt:gVPt,vPx:gVPx,gSisa,totalPeng:gPeng,stokAkhirPt,stokAkhirPx,selisihPt,selisihPx,avgPricePt,avgPricePx}=_global;
+
+  // KEUNTUNGAN MARGIN (pakai Math.trunc supaya tanpa desimal)
   const marginPt=num('m_margin_pertalite');
   const marginPx=num('m_margin_pertamax');
-  const keuntunganPt=gVPt*marginPt;
-  const keuntunganPx=gVPx*marginPx;
+  const keuntunganPt=Math.trunc(gVPt*marginPt);
+  const keuntunganPx=Math.trunc(gVPx*marginPx);
 
-  const nilaiPengPt=-selisihPt*avgPricePt;
-  const nilaiPengPx=-selisihPx*avgPricePx;
+  // PENGUAPAN — selisih liter ditampilkan tanpa desimal, nilai rupiah di-trunc
+  const rawPengPt=-selisihPt*avgPricePt;
+  const rawPengPx=-selisihPx*avgPricePx;
+  const nilaiPengPt=Math.trunc(rawPengPt);
+  const nilaiPengPx=Math.trunc(rawPengPx);
   const nilaiPengTotal=nilaiPengPt+nilaiPengPx;
 
+  // Fungsi label penguapan (liter tanpa desimal)
   function pengLabel(selisih,nilai){
     if(Math.abs(selisih)<0.001) return{text:'0 L → Rp 0',cls:'zero'};
     const susut=selisih>0;
-    const absL=Math.abs(selisih),absRp=Math.abs(nilai);
+    const absL=Math.trunc(Math.abs(selisih));  // hanya liter depan
+    const absRp=Math.abs(nilai);
     const sign=susut?'▼ Minus (Susut)':'▲ Plus (Lebih)';
-    return{text:`${sign} ${fmtL(absL)} → ${susut?'-':'+'}${fmt(absRp)}`,cls:susut?'minus':'plus'};
+    return{text:`${sign} ${absL} L → ${susut?'-':'+'}${fmt(absRp)}`,cls:susut?'minus':'plus'};
   }
   const lPt=pengLabel(selisihPt,nilaiPengPt);
   const lPx=pengLabel(selisihPx,nilaiPengPx);
@@ -1096,7 +1103,8 @@ function calcModal(){
     elTotal.textContent=`${sign}${fmt(absTotal)} (${nilaiPengTotal>=0?'Menguntungkan':'Merugikan'})`;
   }
 
-  const labaMarginBersih=keuntunganPt+keuntunganPx+nilaiPengTotal-gPeng;
+  // LABA MARGIN BERSIH (trunc)
+  const labaMarginBersih=Math.trunc(keuntunganPt+keuntunganPx+nilaiPengTotal-gPeng);
   setVal('m_vol_pertalite',fmtL(gVPt)); setVal('m_vol_pertamax',fmtL(gVPx));
   setVal('m_margin_pt_display',fmt(marginPt)); setVal('m_margin_px_display',fmt(marginPx));
   setVal('m_keuntungan_pertalite',fmt(keuntunganPt)); setVal('m_keuntungan_pertamax',fmt(keuntunganPx));
@@ -1118,18 +1126,20 @@ function calcModal(){
     mb.className='result-banner loss';ml.className='result-banner-label loss';mv.className='result-banner-value loss';ms.className='ket-badge minus';ms.textContent='▼ Rugi';ml.textContent='Laba Margin Bersih';
   }
 
+  // MODAL AWAL & SISA DO (semua nilai rupiah di-trunc)
   const modalAwal=num('m_modal_awal');
-  const nilaiDoPt=num('m_sisa_do_pertalite')*num('m_harga_beli_pertalite');
-  const nilaiDoPx=num('m_sisa_do_pertamax')*num('m_harga_beli_pertamax');
+  const nilaiDoPt=Math.trunc(num('m_sisa_do_pertalite')*num('m_harga_beli_pertalite'));
+  const nilaiDoPx=Math.trunc(num('m_sisa_do_pertamax')*num('m_harga_beli_pertamax'));
   const totalDo=nilaiDoPt+nilaiDoPx;
   setVal('m_nilai_do_pertalite',fmt(nilaiDoPt)); setVal('m_nilai_do_pertamax',fmt(nilaiDoPx));
   setTxt('m_stat_do_pertalite',fmt(nilaiDoPt)); setTxt('m_stat_do_pertamax',fmt(nilaiDoPx));
   setTxt('m_stat_total_do',fmt(totalDo)); setTxt('m_stat_modal_awal',fmt(modalAwal));
 
+  // NILAI STOK AKHIR (trunc)
   const hargaValPt=num('m_harga_val_pertalite');
   const hargaValPx=num('m_harga_val_pertamax');
-  const nilaiStokPt=stokAkhirPt*hargaValPt;
-  const nilaiStokPx=stokAkhirPx*hargaValPx;
+  const nilaiStokPt=Math.trunc(stokAkhirPt*hargaValPt);
+  const nilaiStokPx=Math.trunc(stokAkhirPx*hargaValPx);
   const totalNilaiStok=nilaiStokPt+nilaiStokPx;
   const uangBulat=floorToMillion(gSisa);
 
@@ -1143,6 +1153,7 @@ function calcModal(){
   setTxt('m_stat_stok_pertalite',fmt(nilaiStokPt)); setTxt('m_stat_stok_pertamax',fmt(nilaiStokPx));
   setTxt('m_stat_total_stok',fmt(totalNilaiStok)); setTxt('m_stat_uang_global',fmt(uangBulat));
 
+  // HASIL AKHIR
   const hasilAkhir=totalDo+totalNilaiStok+uangBulat-modalAwal;
   setVal('m_komponen_do',fmt(totalDo)); setVal('m_komponen_stok',fmt(totalNilaiStok));
   setVal('m_komponen_uang',fmt(uangBulat)); setVal('m_komponen_modal',fmt(modalAwal));
@@ -1265,7 +1276,6 @@ function generatePDFWindow(){
   /* HEADER */
   .doc-header{display:flex;justify-content:space-between;align-items:center;border-bottom:2.5px solid #0057b8;padding-bottom:10px;margin-bottom:16px}
   .doc-header-left{display:flex;align-items:center;gap:12px}
-  .logo-box{width:38px;height:38px;background:linear-gradient(135deg,#0057b8,#1da462);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:800;letter-spacing:-.5px;flex-shrink:0}
   .doc-title{font-size:16pt;font-weight:800;color:#1a2332;letter-spacing:-.5px}
   .doc-subtitle{font-size:8pt;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-top:1px}
   .doc-meta{text-align:right;font-size:8pt;color:#64748b}
@@ -1339,7 +1349,7 @@ function generatePDFWindow(){
 <!-- ═══ HEADER ═══ -->
 <div class="doc-header">
   <div class="doc-header-left">
-    <div class="logo-box">SP</div>
+    <!-- Logo dihilangkan -->
     <div>
       <div class="doc-title">SPBU 3417603</div>
       <div class="doc-subtitle">Laporan Harian Penjualan BBM &amp; Kalkulasi Modal</div>
@@ -1496,8 +1506,8 @@ ${pengS2.length?`
   <table style="margin-bottom:10px">
     <thead><tr><th>Penguapan / Penyusutan Stok</th><th class="r">Nilai (Rp)</th></tr></thead>
     <tbody>
-      <tr><td>Pertalite: ${m.lPt||'0 L → Rp 0'}</td><td class="r">${rpFmt(-(selPt*(g.avgPricePt||0)))}</td></tr>
-      <tr><td>Pertamax: ${m.lPx||'0 L → Rp 0'}</td><td class="r">${rpFmt(-(selPx*(g.avgPricePx||0)))}</td></tr>
+      <tr><td>Pertalite: ${m.lPt||'0 L → Rp 0'}</td><td class="r">${rpFmt(m.nilaiPengPt||0)}</td></tr>
+      <tr><td>Pertamax: ${m.lPx||'0 L → Rp 0'}</td><td class="r">${rpFmt(m.nilaiPengPx||0)}</td></tr>
     </tbody>
     <tfoot><tr class="total-row"><td><strong>Total Nilai Penguapan</strong></td><td class="r"><strong>${rpFmt(m.nilaiPengTotal||0)}</strong></td></tr></tfoot>
   </table>
