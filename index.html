@@ -167,16 +167,16 @@
 <div class="content">
   <!-- SHIFT 1 (konten lengkap, sama seperti sebelumnya) -->
   <div id="shift1" class="tab-pane active">
-    <div class="card"><div class="card-header amber"><span class="pip amber"></span>Harga Per Liter</div><div class="price-row"><div class="price-field"><div class="field-label">Pertalite (Rp/L)</div><input class="inp" type="number" id="s1_price_pertalite" value="10000" oninput="calcAll();saveAllToStorage()"></div><div class="price-field"><div class="field-label">Pertamax (Rp/L)</div><input class="inp" type="number" id="s1_price_pertamax" value="13900" oninput="calcAll();saveAllToStorage()"></div><button class="lock-btn unlocked" id="s1_lockBtn" onclick="toggleLock('s1')">🔓 Kunci Harga</button><span class="lock-pill unlocked" id="s1_lockStatus">Tidak Dikunci</span></div></div>
+    <div class="card"><div class="card-header amber"><span class="pip amber"></span>Harga Per Liter</div><div class="price-row"><div class="price-field"><div class="field-label">Pertalite (Rp/L)</div><input class="inp" type="number" id="s1_price_pertalite" value="10000" oninput="calcAll();saveAllToStorage()"></div><div class="price-field"><div class="field-label">Pertamax (Rp/L)</div><input class="inp" type="number" id="s1_price_pertamax" value="13900" oninput="calcAll();saveAllToStorage()"></div><button class="lock-btn unlocked" id="s1_lockBtn" onclick="toggleLock()">🔓 Kunci Harga</button><span class="lock-pill unlocked" id="s1_lockStatus">Tidak Dikunci</span></div></div>
     <div class="grid-2"><div class="card"><div class="card-header green"><span class="pip green"></span>Pertalite — A1, A2, C</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" id="s1_ta_A1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s1_tk_A1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s1_vol_A1" readonly></td><td><input class="inp ro-green" type="text" id="s1_rp_A1" readonly></td></tr><tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" id="s1_ta_A2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s1_tk_A2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s1_vol_A2" readonly></td><td><input class="inp ro-green" type="text" id="s1_rp_A2" readonly></td></tr><tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" id="s1_ta_C" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s1_tk_C" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s1_vol_C" readonly></td><td><input class="inp ro-green" type="text" id="s1_rp_C" readonly></td></tr></tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s1_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s1','pertalite')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s1','pertalite')">↺ Reset</button><span class="lock-pill unlocked" id="s1_tot_pt_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s1_total_vol_pertalite">0 L</div></div><div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s1_total_rp_pertalite">Rp 0</div></div></div></div>
       <div class="card"><div class="card-header blue"><span class="pip blue"></span>Pertamax — B1, B2, D</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" id="s1_ta_B1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s1_tk_B1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s1_vol_B1" readonly></td><td><input class="inp ro-blue" type="text" id="s1_rp_B1" readonly></td></tr><tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" id="s1_ta_B2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s1_tk_B2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s1_vol_B2" readonly></td><td><input class="inp ro-blue" type="text" id="s1_rp_B2" readonly></td></tr><tr><td><span class="badge blue">D</span></td><td><input class="inp" type="number" id="s1_ta_D" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s1_tk_D" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s1_vol_D" readonly></td><td><input class="inp ro-blue" type="text" id="s1_rp_D" readonly></td></tr></tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s1_tot_px_lockBtn" onclick="toggleTotalisatorLock('s1','pertamax')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s1','pertamax')">↺ Reset</button><span class="lock-pill unlocked" id="s1_tot_px_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card blue"><div class="stat-label">Total Volume</div><div class="stat-value blue" id="s1_total_vol_pertamax">0 L</div></div><div class="stat-card blue"><div class="stat-label">Total Penjualan</div><div class="stat-value blue" id="s1_total_rp_pertamax">Rp 0</div></div></div></div></div>
     <div class="card"><div class="card-header red"><span class="pip red"></span>Pengeluaran Harian — Shift 1</div><div class="pengeluaran-body"><div id="s1_pengeluaran_list"></div><button class="add-btn" onclick="addPengeluaran('s1')">+ Tambah Pengeluaran</button></div><div class="stat-row"><div class="stat-card red"><div class="stat-label">Total Pengeluaran</div><div class="stat-value red" id="s1_total_pengeluaran">Rp 0</div></div><div class="stat-card slate"><div class="stat-label">Total Penjualan Kotor</div><div class="stat-value slate" id="s1_total_penjualan">Rp 0</div></div><div class="stat-card amber"><div class="stat-label">Sisa Kas Bersih</div><div class="stat-value amber" id="s1_sisa_kas">Rp 0</div></div></div></div>
     <div class="card"><div class="card-header slate"><span class="pip slate"></span>Stok BBM — Shift 1</div><div class="stok-body"><div class="stok-product-label"><span class="dot green"></span><span>Pertalite</span></div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp" type="number" id="s1_stok_awal_pertalite" placeholder="0" oninput="calcAll();saveAllToStorage()"></div><div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-green" type="text" id="s1_stok_jual_pertalite" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" id="s1_stok_akhir_pertalite" placeholder="0" oninput="calcAll();saveAllToStorage()"></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="s1_selisih_pertalite" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s1_ket_pertalite">⊜ Seimbang</span></div></div><div class="prod-divider"></div><div class="stok-product-label"><span class="dot blue"></span><span>Pertamax</span></div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp" type="number" id="s1_stok_awal_pertamax" placeholder="0" oninput="calcAll();saveAllToStorage()"></div><div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-blue" type="text" id="s1_stok_jual_pertamax" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" id="s1_stok_akhir_pertamax" placeholder="0" oninput="calcAll();saveAllToStorage()"></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="s1_selisih_pertamax" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s1_ket_pertamax">⊜ Seimbang</span></div></div></div></div>
   </div>
 
-  <!-- SHIFT 2 (DIPERBAIKI: baris D sekarang rapi) -->
+  <!-- SHIFT 2 (DIPERBAIKI: baris D sekarang rapi, TOMBOL KUNCI HARGA DIHAPUS) -->
   <div id="shift2" class="tab-pane">
-    <div class="card"><div class="card-header amber"><span class="pip amber"></span>Harga Per Liter</div><div class="price-row"><div class="price-field"><div class="field-label">Pertalite (Rp/L)</div><input class="inp" type="number" id="s2_price_pertalite" value="10000" oninput="calcAll();saveAllToStorage()"></div><div class="price-field"><div class="field-label">Pertamax (Rp/L)</div><input class="inp" type="number" id="s2_price_pertamax" value="13900" oninput="calcAll();saveAllToStorage()"></div><button class="lock-btn unlocked" id="s2_lockBtn" onclick="toggleLock('s2')">🔓 Kunci Harga</button><span class="lock-pill unlocked" id="s2_lockStatus">Tidak Dikunci</span></div></div>
+    <div class="card"><div class="card-header amber"><span class="pip amber"></span>Harga Per Liter</div><div class="price-row"><div class="price-field"><div class="field-label">Pertalite (Rp/L)</div><input class="inp" type="number" id="s2_price_pertalite" value="10000" oninput="calcAll();saveAllToStorage()"></div><div class="price-field"><div class="field-label">Pertamax (Rp/L)</div><input class="inp" type="number" id="s2_price_pertamax" value="13900" oninput="calcAll();saveAllToStorage()"></div><!-- TOMBOL KUNCI SHIFT 2 DIHAPUS --></div></div>
     <div class="grid-2"><div class="card"><div class="card-header green"><span class="pip green"></span>Pertalite — A1, A2, C</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" id="s2_ta_A1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_A1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A1" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A1" readonly></td></tr><tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" id="s2_ta_A2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_A2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A2" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A2" readonly></td></tr><tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" id="s2_ta_C" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_C" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_C" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_C" readonly></td></tr></tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s2','pertalite')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertalite')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_pt_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s2_total_vol_pertalite">0 L</div></div><div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s2_total_rp_pertalite">Rp 0</div></div></div></div>
       <div class="card"><div class="card-header blue"><span class="pip blue"></span>Pertamax — B1, B2, D</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" id="s2_ta_B1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_B1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B1" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B1" readonly></td></tr><tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" id="s2_ta_B2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_B2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B2" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B2" readonly></td></tr><tr><td><span class="badge blue">D</span></td><td><input class="inp" type="number" id="s2_ta_D" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_D" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_D" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_D" readonly></td></tr></tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_px_lockBtn" onclick="toggleTotalisatorLock('s2','pertamax')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertamax')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_px_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card blue"><div class="stat-label">Total Volume</div><div class="stat-value blue" id="s2_total_vol_pertamax">0 L</div></div><div class="stat-card blue"><div class="stat-label">Total Penjualan</div><div class="stat-value blue" id="s2_total_rp_pertamax">Rp 0</div></div></div></div></div>
     <div class="card"><div class="card-header red"><span class="pip red"></span>Pengeluaran Harian — Shift 2</div><div class="pengeluaran-body"><div id="s2_pengeluaran_list"></div><button class="add-btn" onclick="addPengeluaran('s2')">+ Tambah Pengeluaran</button></div><div class="stat-row"><div class="stat-card red"><div class="stat-label">Total Pengeluaran</div><div class="stat-value red" id="s2_total_pengeluaran">Rp 0</div></div><div class="stat-card slate"><div class="stat-label">Total Penjualan Kotor</div><div class="stat-value slate" id="s2_total_penjualan">Rp 0</div></div><div class="stat-card amber"><div class="stat-label">Sisa Kas Bersih</div><div class="stat-value amber" id="s2_sisa_kas">Rp 0</div></div></div></div>
@@ -192,37 +192,179 @@
     <div class="card"><div class="card-header slate"><span class="pip slate"></span>Stok Global BBM</div><div class="stok-body"><div class="stok-product-label"><span class="dot green"></span><span>Pertalite (Global)</span></div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-green" type="text" id="g_stok_awal_pertalite" readonly></div><div><div class="field-label">Total Jual (L)</div><input class="inp ro-green" type="text" id="g_stok_jual_pertalite" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp ro-blue" type="text" id="g_stok_akhir_pertalite" readonly></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="g_selisih_pertalite" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="g_ket_pertalite">⊜ Seimbang</span></div></div><div class="prod-divider"></div><div class="stok-product-label"><span class="dot blue"></span><span>Pertamax (Global)</span></div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-green" type="text" id="g_stok_awal_pertamax" readonly></div><div><div class="field-label">Total Jual (L)</div><input class="inp ro-blue" type="text" id="g_stok_jual_pertamax" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp ro-blue" type="text" id="g_stok_akhir_pertamax" readonly></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="g_selisih_pertamax" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="g_ket_pertamax">⊜ Seimbang</span></div></div></div></div>
   </div>
 
-  <!-- MODAL (ringkas) -->
+  <!-- MODAL (ringkas) - TOMBOL KUNCI VALUASI SUDAH DIHAPUS -->
   <div id="modal" class="tab-pane">
     <div class="card"><div class="card-header purple"><span class="pip purple"></span>Keuntungan / Rugi — Margin BBM</div><div class="modal-section-body"><div class="sub-section-title" style="font-size:11px;font-weight:700;margin-bottom:10px">Pengaturan Margin</div><div class="modal-grid-4"><div><div class="field-label">Margin Pertalite (Rp/L)</div><input class="inp" type="number" id="m_margin_pertalite" value="150" oninput="calcModal();saveAllToStorage()"></div><div><div class="field-label">Margin Pertamax (Rp/L)</div><input class="inp" type="number" id="m_margin_pertamax" value="200" oninput="calcModal();saveAllToStorage()"></div><div><button class="lock-btn unlocked" id="m_margin_lockBtn" onclick="toggleLockMargin()">🔓 Kunci Margin</button><span class="lock-pill unlocked" id="m_margin_lockStatus">Tidak Dikunci</span></div><div></div></div><div class="sub-section-title" style="font-size:11px;font-weight:700;margin:10px 0">Rincian Margin</div><div class="grid-2"><div><div class="field-label">Pertalite</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px"><div><div class="field-label">Volume (L)</div><input class="inp ro-green" type="text" id="m_vol_pertalite" readonly></div><div><div class="field-label">Margin (Rp)</div><input class="inp ro-slate" type="text" id="m_margin_pt_display" readonly></div><div><div class="field-label">Keuntungan</div><input class="inp ro-green" type="text" id="m_keuntungan_pertalite" readonly></div></div></div><div><div class="field-label">Pertamax</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px"><div><div class="field-label">Volume (L)</div><input class="inp ro-blue" type="text" id="m_vol_pertamax" readonly></div><div><div class="field-label">Margin (Rp)</div><input class="inp ro-slate" type="text" id="m_margin_px_display" readonly></div><div><div class="field-label">Keuntungan</div><input class="inp ro-blue" type="text" id="m_keuntungan_pertamax" readonly></div></div></div></div><div class="sub-section-title" style="font-size:11px;font-weight:700;margin:10px 0">Penguapan / Penyusutan</div><div class="peng-info-box"><div class="peng-info-row"><span>Pertalite — Selisih Stok</span><span class="peng-info-val zero" id="peng_pt_label">0 L → Rp 0</span></div><div class="peng-info-row"><span>Pertamax — Selisih Stok</span><span class="peng-info-val zero" id="peng_px_label">0 L → Rp 0</span></div><div class="peng-info-row"><span>Total Nilai Penguapan</span><span class="peng-info-val zero" id="peng_total_label">Rp 0</span></div></div><div><div class="field-label">Total Pengeluaran Global</div><input class="inp ro-red" type="text" id="m_total_pengeluaran_display" readonly></div><div id="margin_result_banner" class="result-banner neutral" style="margin-top:12px"><div><div class="result-banner-label neutral" id="margin_result_label">Laba Margin Bersih</div><div class="result-banner-value neutral" id="margin_result_value">Rp 0</div><div class="result-banner-formula" id="margin_result_formula">= (Margin PT + Margin PX) + Nilai Penguapan − Total Pengeluaran</div></div><div><span class="ket-badge zero" id="margin_status_badge">⊜ Impas</span></div></div></div></div>
     <div class="card"><div class="card-header amber"><span class="pip amber"></span>Modal Awal &amp; Sisa DO</div><div class="modal-section-body"><div class="sub-section-title" style="font-size:11px;font-weight:700;margin-bottom:10px">Modal Awal</div><div class="modal-grid-4"><div><div class="field-label">Modal Awal (Rp)</div><input class="inp" type="number" id="m_modal_awal" value="0" oninput="calcModal();saveAllToStorage()"></div><div><button class="lock-btn unlocked" id="m_modal_lockBtn" onclick="toggleLockModal()">🔓 Kunci Modal Awal</button><span class="lock-pill unlocked" id="m_modal_lockStatus">Tidak Dikunci</span></div><div></div><div></div></div><div class="prod-divider"></div><div class="sub-section-title" style="font-size:11px;font-weight:700;margin:10px 0">Sisa DO (Delivery Order)</div><div class="do-section"><div><div class="field-label">Sisa DO Pertalite (L)</div><input class="inp" type="number" id="m_sisa_do_pertalite" value="0" oninput="calcModal();saveAllToStorage()"></div><div><div class="field-label">× Harga Beli (Rp/L)</div><input class="inp" type="number" id="m_harga_beli_pertalite" value="9850" oninput="calcModal();saveAllToStorage()"></div><div><div class="field-label">= Nilai DO PT</div><input class="inp ro-green" type="text" id="m_nilai_do_pertalite" readonly></div><div><button class="lock-btn unlocked" id="m_do_pt_lockBtn" onclick="toggleLockDoPt()">🔓 Kunci</button><span class="lock-pill unlocked" id="m_do_pt_lockStatus">Tidak Dikunci</span></div></div><div class="do-section"><div><div class="field-label">Sisa DO Pertamax (L)</div><input class="inp" type="number" id="m_sisa_do_pertamax" value="0" oninput="calcModal();saveAllToStorage()"></div><div><div class="field-label">× Harga Beli (Rp/L)</div><input class="inp" type="number" id="m_harga_beli_pertamax" value="13700" oninput="calcModal();saveAllToStorage()"></div><div><div class="field-label">= Nilai DO PX</div><input class="inp ro-blue" type="text" id="m_nilai_do_pertamax" readonly></div><div><button class="lock-btn unlocked" id="m_do_px_lockBtn" onclick="toggleLockDoPx()">🔓 Kunci</button><span class="lock-pill unlocked" id="m_do_px_lockStatus">Tidak Dikunci</span></div></div></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Nilai DO Pertalite</div><div class="stat-value green" id="m_stat_do_pertalite">Rp 0</div></div><div class="stat-card blue"><div class="stat-label">Nilai DO Pertamax</div><div class="stat-value blue" id="m_stat_do_pertamax">Rp 0</div></div><div class="stat-card amber"><div class="stat-label">Total Sisa DO</div><div class="stat-value amber" id="m_stat_total_do">Rp 0</div></div><div class="stat-card slate"><div class="stat-label">Modal Awal</div><div class="stat-value slate" id="m_stat_modal_awal">Rp 0</div></div></div></div>
-    <div class="card"><div class="card-header slate"><span class="pip slate"></span>Nilai Stok Akhir &amp; Uang Kas</div><div class="modal-section-body"><div class="sub-section-title" style="font-size:11px;font-weight:700;margin-bottom:10px">Harga Valuasi Stok Akhir</div><div class="modal-grid-4"><div><div class="field-label">Harga Valuasi PT (Rp/L)</div><input class="inp" type="number" id="m_harga_val_pertalite" value="10000" oninput="calcModal();saveAllToStorage()"></div><div><div class="field-label">Harga Valuasi PX (Rp/L)</div><input class="inp" type="number" id="m_harga_val_pertamax" value="13900" oninput="calcModal();saveAllToStorage()"></div><div><button class="lock-btn unlocked" id="m_stok_val_lockBtn" onclick="toggleLockStokVal()">🔓 Kunci Valuasi</button><span class="lock-pill unlocked" id="m_stok_val_lockStatus">Tidak Dikunci</span></div><div></div></div><div class="sub-section-title" style="font-size:11px;font-weight:700;margin:10px 0">Nilai Stok</div><div class="grid-2"><div><div class="field-label">Stok Akhir PT (L)</div><input class="inp ro-green" type="text" id="m_stok_akhir_pt_display" readonly></div><div><div class="field-label">Stok Akhir PX (L)</div><input class="inp ro-blue" type="text" id="m_stok_akhir_px_display" readonly></div><div><div class="field-label">Uang Global Bersih (Rp)</div><input class="inp ro-amber" type="text" id="m_uang_global_display" readonly><div class="uang-note" id="m_uang_note">Dibulatkan ke bawah per juta</div></div></div><div class="grid-2"><div><div class="field-label">Nilai Stok Pertalite</div><input class="inp ro-green" type="text" id="m_nilai_stok_pertalite" readonly></div><div><div class="field-label">Nilai Stok Pertamax</div><input class="inp ro-blue" type="text" id="m_nilai_stok_pertamax" readonly></div><div><div class="field-label">Total Nilai Stok</div><input class="inp ro-purple" type="text" id="m_total_nilai_stok" readonly></div></div></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Nilai Stok Pertalite</div><div class="stat-value green" id="m_stat_stok_pertalite">Rp 0</div></div><div class="stat-card blue"><div class="stat-label">Nilai Stok Pertamax</div><div class="stat-value blue" id="m_stat_stok_pertamax">Rp 0</div></div><div class="stat-card purple"><div class="stat-label">Total Nilai Stok</div><div class="stat-value purple" id="m_stat_total_stok">Rp 0</div></div><div class="stat-card amber"><div class="stat-label">Uang Global Bersih</div><div class="stat-value amber" id="m_stat_uang_global">Rp 0</div></div></div></div>
+    <div class="card"><div class="card-header slate"><span class="pip slate"></span>Nilai Stok Akhir &amp; Uang Kas</div><div class="modal-section-body">
+      <!-- TOMBOL KUNCI VALUASI DIHAPUS, VALUASI OTOMATIS DARI DO -->
+      <div class="sub-section-title" style="font-size:11px;font-weight:700;margin-bottom:10px">Harga Valuasi Stok Akhir</div>
+      <div class="modal-grid-4">
+        <div><div class="field-label">Harga Valuasi PT (Rp/L)</div><input class="inp" type="number" id="m_harga_val_pertalite" value="10000" oninput="calcModal();saveAllToStorage()"></div>
+        <div><div class="field-label">Harga Valuasi PX (Rp/L)</div><input class="inp" type="number" id="m_harga_val_pertamax" value="13900" oninput="calcModal();saveAllToStorage()"></div>
+        <div></div><div></div>
+      </div>
+      <div class="sub-section-title" style="font-size:11px;font-weight:700;margin:10px 0">Nilai Stok</div><div class="grid-2"><div><div class="field-label">Stok Akhir PT (L)</div><input class="inp ro-green" type="text" id="m_stok_akhir_pt_display" readonly></div><div><div class="field-label">Stok Akhir PX (L)</div><input class="inp ro-blue" type="text" id="m_stok_akhir_px_display" readonly></div><div><div class="field-label">Uang Global Bersih (Rp)</div><input class="inp ro-amber" type="text" id="m_uang_global_display" readonly><div class="uang-note" id="m_uang_note">Dibulatkan ke bawah per juta</div></div></div><div class="grid-2"><div><div class="field-label">Nilai Stok Pertalite</div><input class="inp ro-green" type="text" id="m_nilai_stok_pertalite" readonly></div><div><div class="field-label">Nilai Stok Pertamax</div><input class="inp ro-blue" type="text" id="m_nilai_stok_pertamax" readonly></div><div><div class="field-label">Total Nilai Stok</div><input class="inp ro-purple" type="text" id="m_total_nilai_stok" readonly></div></div></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Nilai Stok Pertalite</div><div class="stat-value green" id="m_stat_stok_pertalite">Rp 0</div></div><div class="stat-card blue"><div class="stat-label">Nilai Stok Pertamax</div><div class="stat-value blue" id="m_stat_stok_pertamax">Rp 0</div></div><div class="stat-card purple"><div class="stat-label">Total Nilai Stok</div><div class="stat-value purple" id="m_stat_total_stok">Rp 0</div></div><div class="stat-card amber"><div class="stat-label">Uang Global Bersih</div><div class="stat-value amber" id="m_stat_uang_global">Rp 0</div></div></div></div>
     <div class="card"><div class="card-header purple"><span class="pip purple"></span>Hasil Akhir — Selisih Modal</div><div class="modal-section-body"><div class="sub-section-title" style="font-size:11px;font-weight:700;margin-bottom:10px">Komponen</div><div class="grid-2"><div><div class="field-label">Sisa DO Total</div><input class="inp ro-amber" type="text" id="m_komponen_do" readonly></div><div><div class="field-label">Total Nilai Stok</div><input class="inp ro-purple" type="text" id="m_komponen_stok" readonly></div><div><div class="field-label">Uang Global Dibulatkan</div><input class="inp ro-amber" type="text" id="m_komponen_uang" readonly></div><div><div class="field-label">Modal Awal</div><input class="inp ro-slate" type="text" id="m_komponen_modal" readonly></div></div></div><div id="final_result_card" class="final-result-card"><div><div class="label">Selisih Modal (DO + Stok + Uang Bulat − Modal Awal)</div><div class="value profit" id="m_final_value">Rp 0</div><div class="formula" id="m_final_formula">= Rp 0 + Rp 0 + Rp 0 − Rp 0</div></div><div><span class="ket-badge zero" id="m_final_status">⊜ Impas</span></div></div><div class="stat-row"><div class="stat-card amber"><div class="stat-label">Total Sisa DO</div><div class="stat-value amber" id="m_sum_do">Rp 0</div></div><div class="stat-card purple"><div class="stat-label">Total Nilai Stok</div><div class="stat-value purple" id="m_sum_stok">Rp 0</div></div><div class="stat-card green"><div class="stat-label">Uang Global (Bulat)</div><div class="stat-value green" id="m_sum_uang">Rp 0</div></div><div class="stat-card slate"><div class="stat-label">Modal Awal</div><div class="stat-value slate" id="m_sum_modal">Rp 0</div></div></div></div>
   </div>
 </div>
 
 <script>
-  // ======================== SCRIPT LENGKAP (fungsi penyimpanan, kalkulasi, export ringkasan) ========================
+  // ======================== SCRIPT LENGKAP DENGAN PENYIMPANAN & KUNCI ========================
   const STORAGE_KEY = 'spbu3417603_data_final';
-  let lockState={s1:false,s2:false};
+  let lockState={s1:false};
   let totLockState={s1_pertalite:false,s1_pertamax:false,s2_pertalite:false,s2_pertamax:false};
   let pengeluaranData={s1:[],s2:[]};
-  let modalLockState={margin:false,modal:false,doPt:false,doPx:false,stokVal:false};
+  // stokVal dihapus, valuasi otomatis dari DO
+  let modalLockState={margin:false,modal:false,doPt:false,doPx:false};
   const nozzleMap={pertalite:['A1','A2','C'],pertamax:['B1','B2','D']};
   let _global={}, _shiftRes={};
 
-  function saveAllToStorage(){ /* sama seperti versi sebelumnya */ }
-  function loadAllFromStorage(){ /* sama */ }
-  function updateLockUI(shift){ /* sama */ }
-  function updateTotLockUI(shift,prod){ /* sama */ }
-  function updateModalLockUI(){ /* sama */ }
-  function toggleLock(shift){ lockState[shift]=!lockState[shift]; updateLockUI(shift); saveAllToStorage(); }
-  function toggleTotalisatorLock(shift,prod){ const key=`${shift}_${prod}`; totLockState[key]=!totLockState[key]; updateTotLockUI(shift,prod); saveAllToStorage(); }
+  // ========== FUNGSI PENYIMPANAN & PEMULIHAN ==========
+  function saveAllToStorage(){
+    const inputs = {};
+    document.querySelectorAll('input[id]:not([type=button]):not([type=submit])').forEach(el=>{
+      if(el.type==='number' || el.type==='text' || el.type==='date'){
+        inputs[el.id] = el.value;
+      }
+    });
+    const data = {
+      inputs,
+      pengeluaranData,
+      lockState,
+      totLockState,
+      modalLockState
+    };
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }catch(e){}
+  }
+  function loadAllFromStorage(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return;
+      const data = JSON.parse(raw);
+      if(data.inputs) Object.entries(data.inputs).forEach(([id,val])=>{
+        const el = document.getElementById(id);
+        if(el) el.value = val;
+      });
+      if(data.pengeluaranData) pengeluaranData = data.pengeluaranData;
+      if(data.lockState) lockState = data.lockState;
+      if(data.totLockState) totLockState = data.totLockState;
+      if(data.modalLockState) modalLockState = data.modalLockState;
+    }catch(e){}
+  }
+
+  // ========== UI UPDATE UNTUK KUNCI ==========
+  function updateLockUI(){
+    const btn = document.getElementById('s1_lockBtn');
+    const pill = document.getElementById('s1_lockStatus');
+    if(lockState.s1){
+      btn.classList.add('locked'); btn.classList.remove('unlocked');
+      btn.textContent = '🔒 Harga Terkunci';
+      pill.classList.add('locked'); pill.classList.remove('unlocked');
+      pill.textContent = 'Dikunci';
+    } else {
+      btn.classList.add('unlocked'); btn.classList.remove('locked');
+      btn.textContent = '🔓 Kunci Harga';
+      pill.classList.add('unlocked'); pill.classList.remove('locked');
+      pill.textContent = 'Tidak Dikunci';
+    }
+    syncShift2Prices();
+  }
+  function updateTotLockUI(shift,prod){
+    const key = `${shift}_${prod}`;
+    const btn = document.getElementById(`${shift}_tot_${prod==='pertalite'?'pt':'px'}_lockBtn`);
+    const status = document.getElementById(`${shift}_tot_${prod==='pertalite'?'pt':'px'}_status`);
+    if(totLockState[key]){
+      btn.classList.add('locked'); btn.classList.remove('unlocked');
+      btn.textContent = '🔒 Totalisator Terkunci';
+      status.classList.add('locked'); status.classList.remove('unlocked');
+      status.textContent = 'Dikunci';
+    } else {
+      btn.classList.add('unlocked'); btn.classList.remove('locked');
+      btn.textContent = '🔓 Kunci Totalisator';
+      status.classList.add('unlocked'); status.classList.remove('locked');
+      status.textContent = 'Tidak Dikunci';
+    }
+  }
+  function updateModalLockUI(){
+    function setLock(lockKey, btnId, pillId){
+      const btn = document.getElementById(btnId);
+      const pill = document.getElementById(pillId);
+      if(modalLockState[lockKey]){
+        btn.classList.add('locked'); btn.classList.remove('unlocked');
+        btn.textContent = '🔒 Terkunci';
+        pill.classList.add('locked'); pill.classList.remove('unlocked');
+        pill.textContent = 'Dikunci';
+      } else {
+        btn.classList.add('unlocked'); btn.classList.remove('locked');
+        btn.textContent = '🔓 Kunci';
+        pill.classList.add('unlocked'); pill.classList.remove('locked');
+        pill.textContent = 'Tidak Dikunci';
+      }
+    }
+    setLock('margin','m_margin_lockBtn','m_margin_lockStatus');
+    setLock('modal','m_modal_lockBtn','m_modal_lockStatus');
+    setLock('doPt','m_do_pt_lockBtn','m_do_pt_lockStatus');
+    setLock('doPx','m_do_px_lockBtn','m_do_px_lockStatus');
+  }
+
+  // ========== SINKRONISASI HARGA & VALUASI ==========
+  function syncShift2Prices(){
+    const s2pt = document.getElementById('s2_price_pertalite');
+    const s2px = document.getElementById('s2_price_pertamax');
+    if(lockState.s1){
+      s2pt.value = document.getElementById('s1_price_pertalite').value;
+      s2pt.readOnly = true;
+      s2px.value = document.getElementById('s1_price_pertamax').value;
+      s2px.readOnly = true;
+    } else {
+      s2pt.readOnly = false;
+      s2px.readOnly = false;
+    }
+  }
+  function syncValuationFromDO(){
+    const valPt = document.getElementById('m_harga_val_pertalite');
+    const valPx = document.getElementById('m_harga_val_pertamax');
+    if(modalLockState.doPt){
+      valPt.value = document.getElementById('m_harga_beli_pertalite').value;
+      valPt.readOnly = true;
+    } else {
+      valPt.readOnly = false;
+    }
+    if(modalLockState.doPx){
+      valPx.value = document.getElementById('m_harga_beli_pertamax').value;
+      valPx.readOnly = true;
+    } else {
+      valPx.readOnly = false;
+    }
+  }
+
+  // ========== TOGGLE FUNGSI KUNCI ==========
+  function toggleLock(){
+    lockState.s1 = !lockState.s1;
+    updateLockUI();
+    saveAllToStorage();
+    calcAll();
+  }
+  function toggleTotalisatorLock(shift,prod){
+    const key = `${shift}_${prod}`;
+    totLockState[key] = !totLockState[key];
+    updateTotLockUI(shift,prod);
+    saveAllToStorage();
+  }
+  function toggleLockMargin(){ modalLockState.margin=!modalLockState.margin; updateModalLockUI(); saveAllToStorage(); calcModal(); }
+  function toggleLockModal(){ modalLockState.modal=!modalLockState.modal; updateModalLockUI(); saveAllToStorage(); calcModal(); }
+  function toggleLockDoPt(){ modalLockState.doPt=!modalLockState.doPt; syncValuationFromDO(); updateModalLockUI(); saveAllToStorage(); calcModal(); }
+  function toggleLockDoPx(){ modalLockState.doPx=!modalLockState.doPx; syncValuationFromDO(); updateModalLockUI(); saveAllToStorage(); calcModal(); }
+
+  // ========== RESET & PENGELUARAN ==========
   function resetTotalisator(shift,prod){ if(totLockState[`${shift}_${prod}`]) return; nozzleMap[prod].forEach(n=>{['ta','tk'].forEach(p=>{const f=document.getElementById(`${shift}_${p}_${n}`);if(f) f.value='';});}); calcAll(); saveAllToStorage(); }
   function addPengeluaran(shift, save=true){ const id=Date.now()+Math.random(); pengeluaranData[shift].push({id,keterangan:'',jumlah:0}); renderPengeluaran(shift); if(save) saveAllToStorage(); }
   function deletePengeluaran(shift,id){ pengeluaranData[shift]=pengeluaranData[shift].filter(x=>x.id!==id); renderPengeluaran(shift); calcAll(); saveAllToStorage(); }
   function renderPengeluaran(shift){ const c=document.getElementById(`${shift}_pengeluaran_list`); if(!c) return; c.innerHTML=pengeluaranData[shift].map(item=>`<div class="pengeluaran-item"><input class="inp" type="text" placeholder="Keterangan..." value="${item.keterangan}" onchange="updatePeng('${shift}',${item.id},'keterangan',this.value)"><div class="peng-row"><input class="inp" type="number" placeholder="Jumlah (Rp)" value="${item.jumlah||''}" onchange="updatePeng('${shift}',${item.id},'jumlah',parseFloat(this.value)||0);calcAll();saveAllToStorage()"><button class="del-btn" onclick="deletePengeluaran('${shift}',${item.id})">×</button></div></div>`).join(''); }
   function updatePeng(shift,id,key,val){ const item=pengeluaranData[shift].find(x=>x.id===id); if(item) item[key]=val; saveAllToStorage(); }
+
+  // ========== HELPER ==========
   const num=id=>parseFloat(document.getElementById(id)?.value)||0;
   const fmt=n=>'Rp '+Math.round(n).toLocaleString('id-ID');
   const fmtL=n=>(Math.round(n*100)/100).toLocaleString('id-ID')+' L';
@@ -233,6 +375,8 @@
   function validateStokAkhirS2(){ const s1_akhir_pt=num('s1_stok_akhir_pertalite'); const s1_akhir_px=num('s1_stok_akhir_pertamax'); const s2_pt=document.getElementById('s2_stok_akhir_pertalite'); const s2_px=document.getElementById('s2_stok_akhir_pertamax'); const warn_pt=document.getElementById('s2_warning_pertalite'); const warn_px=document.getElementById('s2_warning_pertamax'); if(s1_akhir_pt===0){ if(s2_pt){s2_pt.readOnly=true; s2_pt.classList.add('disabled-input'); s2_pt.placeholder='Harap isi Stok Akhir Shift 1 dahulu'; if(warn_pt) warn_pt.style.display='block'; s2_pt.value='';} } else { if(s2_pt){s2_pt.readOnly=false; s2_pt.classList.remove('disabled-input'); s2_pt.placeholder='0'; if(warn_pt) warn_pt.style.display='none';} } if(s1_akhir_px===0){ if(s2_px){s2_px.readOnly=true; s2_px.classList.add('disabled-input'); s2_px.placeholder='Harap isi Stok Akhir Shift 1 dahulu'; if(warn_px) warn_px.style.display='block'; s2_px.value='';} } else { if(s2_px){s2_px.readOnly=false; s2_px.classList.remove('disabled-input'); s2_px.placeholder='0'; if(warn_px) warn_px.style.display='none';} } }
 
   function calcAll(){
+    syncShift2Prices();
+    syncValuationFromDO();
     validateStokAkhirS2();
     let res={};
     ['s1','s2'].forEach(shift=>{
@@ -286,6 +430,7 @@
     calcModal();
   }
   function calcModal(){
+    syncValuationFromDO();
     const {vPt:gVPt, vPx:gVPx, gSisa, totalPeng:gPeng, stokAkhirPt, stokAkhirPx, selisihPt, selisihPx, avgPricePt, avgPricePx} = _global;
     const volFloorPt = Math.floor(gVPt); const volFloorPx = Math.floor(gVPx);
     const marginPt = num('m_margin_pertalite'); const marginPx = num('m_margin_pertamax');
@@ -326,7 +471,7 @@
     setTxt('m_sum_do',fmt(totalDo)); setTxt('m_sum_stok',fmt(totalNilaiStok)); setTxt('m_sum_uang',fmt(uangBulat)); setTxt('m_sum_modal',fmt(modalAwal));
   }
 
-  // === FUNGSI EXPORT RINGKASAN (hanya 1 lembar) ===
+  // ========== EXPORT RINGKASAN ==========
   function getSummaryHTML(){
     const date = document.getElementById('reportDate').value || new Date().toISOString().slice(0,10);
     const s1 = _shiftRes.s1 || {}, s2 = _shiftRes.s2 || {};
@@ -392,12 +537,24 @@
   function exportSummaryExcel(){ const blob=new Blob([getSummaryHTML()],{type:'application/vnd.ms-excel'}); const link=document.createElement('a'); link.href=URL.createObjectURL(blob); link.download='ringkasan_spbu.xls'; link.click(); URL.revokeObjectURL(link.href); }
   function exportSummaryImage(){ const div=document.createElement('div'); div.innerHTML=getSummaryHTML(); document.body.appendChild(div); html2canvas(div,{scale:2}).then(canvas=>{ const link=document.createElement('a'); link.download='ringkasan_spbu.png'; link.href=canvas.toDataURL(); link.click(); document.body.removeChild(div); }).catch(err=>alert('Gagal membuat gambar')); }
   function switchTab(id,btn){ document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); document.getElementById(id).classList.add('active'); btn.classList.add('active'); calcAll(); if(id==='modal') calcModal(); }
-  function toggleLockMargin(){ modalLockState.margin=!modalLockState.margin; updateModalLockUI(); saveAllToStorage(); calcModal(); }
-  function toggleLockModal(){ modalLockState.modal=!modalLockState.modal; updateModalLockUI(); saveAllToStorage(); calcModal(); }
-  function toggleLockDoPt(){ modalLockState.doPt=!modalLockState.doPt; updateModalLockUI(); saveAllToStorage(); calcModal(); }
-  function toggleLockDoPx(){ modalLockState.doPx=!modalLockState.doPx; updateModalLockUI(); saveAllToStorage(); calcModal(); }
-  function toggleLockStokVal(){ modalLockState.stokVal=!modalLockState.stokVal; updateModalLockUI(); saveAllToStorage(); calcModal(); }
-  document.addEventListener('DOMContentLoaded',()=>{ loadAllFromStorage(); renderPengeluaran('s1'); renderPengeluaran('s2'); if(pengeluaranData.s1.length===0) addPengeluaran('s1', false); if(pengeluaranData.s2.length===0) addPengeluaran('s2', false); calcAll(); });
+
+  // ========== INISIALISASI ==========
+  document.addEventListener('DOMContentLoaded',()=>{
+    loadAllFromStorage();
+    renderPengeluaran('s1');
+    renderPengeluaran('s2');
+    if(pengeluaranData.s1.length===0) addPengeluaran('s1', false);
+    if(pengeluaranData.s2.length===0) addPengeluaran('s2', false);
+    updateLockUI();
+    Object.entries(totLockState).forEach(([key,val])=>{
+      const [shift,prod] = key.split('_');
+      updateTotLockUI(shift,prod);
+    });
+    updateModalLockUI();
+    syncShift2Prices();
+    syncValuationFromDO();
+    calcAll();
+  });
 </script>
 </body>
 </html>
