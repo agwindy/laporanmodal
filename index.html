@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-  /* ========== GAYA SEPERTI SEBELUMNYA (header diperbaiki) ========== */
+  /* ========== GAYA SEBELUMNYA (tidak diubah) ========== */
   :root {
     --bg:#f0f4f8;--surface:#ffffff;--surface2:#f7fafc;--border:#dde3ec;--border2:#c8d3e0;
     --text:#1a2332;--text-mid:#4a5e72;--text-dim:#8fa3b8;
@@ -191,8 +191,8 @@
   <!-- SHIFT 2 -->
   <div id="shift2" class="tab-pane">
     <div class="card"><div class="card-header amber"><span class="pip amber"></span>Harga Per Liter</div><div class="price-row"><div class="price-field"><div class="field-label">Pertalite (Rp/L)</div><input class="inp" type="number" id="s2_price_pertalite" value="10000" oninput="calcAll();saveAllToStorage()"></div><div class="price-field"><div class="field-label">Pertamax (Rp/L)</div><input class="inp" type="number" id="s2_price_pertamax" value="13900" oninput="calcAll();saveAllToStorage()"></div></div></div>
-    <div class="grid-2"><div class="card"><div class="card-header green"><span class="pip green"></span>Pertalite — A1, A2, C</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" id="s2_ta_A1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_A1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A1" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A1" readonly></td></tr><tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" id="s2_ta_A2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_A2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A2" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A2" readonly></td></tr><tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" id="s2_ta_C" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_C" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_C" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_C" readonly></td></tr></tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s2','pertalite')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertalite')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_pt_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s2_total_vol_pertalite">0 L</div></div><div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s2_total_rp_pertalite">Rp 0</div></div></div></div>
-      <div class="card"><div class="card-header blue"><span class="pip blue"></span>Pertamax — B1, B2, D</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" id="s2_ta_B1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_B1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B1" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B1" readonly></td></tr><tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" id="s2_ta_B2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_B2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B2" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B2" readonly></td></tr><tr><td><span class="badge blue">D</span></td><td><input class="inp" type="number" id="s2_ta_D" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_D" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_D" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_D" readonly></td></tr></tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_px_lockBtn" onclick="toggleTotalisatorLock('s2','pertamax')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertamax')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_px_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card blue"><div class="stat-label">Total Volume</div><div class="stat-value blue" id="s2_total_vol_pertamax">0 L</div></div><div class="stat-card blue"><div class="stat-label">Total Penjualan</div><div class="stat-value blue" id="s2_total_rp_pertamax">Rp 0</div></div></div></div></div>
+    <div class="grid-2"><div class="card"><div class="card-header green"><span class="pip green"></span>Pertalite — A1, A2, C</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" id="s2_ta_A1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_A1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A1" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A1" readonly></td></tr><tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" id="s2_ta_A2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_A2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A2" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A2" readonly></td></tr><tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" id="s2_ta_C" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_C" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_C" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_C" readonly></td></tr></tbody></td></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s2','pertalite')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertalite')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_pt_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s2_total_vol_pertalite">0 L</div></div><div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s2_total_rp_pertalite">Rp 0</div></div></div></div>
+      <div class="card"><div class="card-header blue"><span class="pip blue"></span>Pertamax — B1, B2, D</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" id="s2_ta_B1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_B1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B1" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B1" readonly></td></tr><tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" id="s2_ta_B2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_B2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B2" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B2" readonly></td></tr><tr><td><span class="badge blue">D</span></td><td><input class="inp" type="number" id="s2_ta_D" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_D" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_D" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_D" readonly></td></tr></tbody><tr></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_px_lockBtn" onclick="toggleTotalisatorLock('s2','pertamax')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertamax')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_px_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card blue"><div class="stat-label">Total Volume</div><div class="stat-value blue" id="s2_total_vol_pertamax">0 L</div></div><div class="stat-card blue"><div class="stat-label">Total Penjualan</div><div class="stat-value blue" id="s2_total_rp_pertamax">Rp 0</div></div></div></div></div>
     <div class="card"><div class="card-header red"><span class="pip red"></span>Pengeluaran Harian — Shift 2</div><div class="pengeluaran-body"><div id="s2_pengeluaran_list"></div><button class="add-btn" onclick="addPengeluaran('s2')">+ Tambah Pengeluaran</button></div><div class="stat-row"><div class="stat-card red"><div class="stat-label">Total Pengeluaran</div><div class="stat-value red" id="s2_total_pengeluaran">Rp 0</div></div><div class="stat-card slate"><div class="stat-label">Total Penjualan Kotor</div><div class="stat-value slate" id="s2_total_penjualan">Rp 0</div></div><div class="stat-card amber"><div class="stat-label">Sisa Kas Bersih</div><div class="stat-value amber" id="s2_sisa_kas">Rp 0</div></div></div></div>
     <div class="card"><div class="card-header slate"><span class="pip slate"></span>Stok BBM — Shift 2</div><div class="stok-body"><div class="stok-product-label"><span class="dot green"></span><span>Pertalite</span></div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-green" type="text" id="s2_stok_awal_pertalite" readonly placeholder="Otomatis"></div><div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-green" type="text" id="s2_stok_jual_pertalite" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" id="s2_stok_akhir_pertalite" placeholder="0" oninput="calcAll();saveAllToStorage()"><div class="placeholder-warning" id="s2_warning_pertalite">Harap isi Stok Akhir Shift 1 dahulu</div></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="s2_selisih_pertalite" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s2_ket_pertalite">⊜ Seimbang</span></div></div><div class="prod-divider"></div><div class="stok-product-label"><span class="dot blue"></span><span>Pertamax</span></div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-blue" type="text" id="s2_stok_awal_pertamax" readonly placeholder="Otomatis"></div><div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-blue" type="text" id="s2_stok_jual_pertamax" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" id="s2_stok_akhir_pertamax" placeholder="0" oninput="calcAll();saveAllToStorage()"><div class="placeholder-warning" id="s2_warning_pertamax">Harap isi Stok Akhir Shift 1 dahulu</div></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="s2_selisih_pertamax" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s2_ket_pertamax">⊜ Seimbang</span></div></div></div></div>
     <div class="card"><div class="card-header slate"><span class="pip slate"></span>Totalisator Awal Shift 2</div><div class="stok-body"><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px"><div><div class="field-label">A1</div><input class="inp ro-green" type="text" id="s2_ta_A1_display" readonly></div><div><div class="field-label">A2</div><input class="inp ro-green" type="text" id="s2_ta_A2_display" readonly></div><div><div class="field-label">C</div><input class="inp ro-green" type="text" id="s2_ta_C_display" readonly></div></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px"><div><div class="field-label">B1</div><input class="inp ro-blue" type="text" id="s2_ta_B1_display" readonly></div><div><div class="field-label">B2</div><input class="inp ro-blue" type="text" id="s2_ta_B2_display" readonly></div><div><div class="field-label">D</div><input class="inp ro-blue" type="text" id="s2_ta_D_display" readonly></div></div></div></div>
@@ -223,7 +223,7 @@
 </div>
 
 <script>
-  // ======================== SCRIPT DENGAN PERBAIKAN KUNCI & TOTAL PENGUAPAN ========================
+  // ======================== SCRIPT DENGAN PEMBULATAN KE BAWAH (FLOOR) UNTUK PENJUALAN & PENYUAPAN ========================
   const STORAGE_KEY = 'spbu3417603_data_final';
   let lockState={s1:false};
   let totLockState={s1_pertalite:false,s1_pertamax:false,s2_pertalite:false,s2_pertamax:false};
@@ -415,13 +415,50 @@
 
   // ========== HELPER ==========
   const num=id=>parseFloat(document.getElementById(id)?.value)||0;
-  const fmt=n=>'Rp '+Math.round(n).toLocaleString('id-ID');
-  const fmtL=n=>(Math.round(n*100)/100).toLocaleString('id-ID')+' L';
+  const fmt=n=>'Rp '+Math.floor(Math.abs(n)).toLocaleString('id-ID')+(n<0?' (defisit)':'');
+  const fmtL=n=>Math.floor(Math.abs(n)).toLocaleString('id-ID')+' L';
   const setVal=(id,v)=>{const el=document.getElementById(id);if(el) el.value=v};
   const setTxt=(id,v)=>{const el=document.getElementById(id);if(el) el.textContent=v};
-  function floorToMillion(n){return Math.floor(n/1000000)*1000000;}
-  function calcStokDisplay(prefix,product,stokAwal,totalJual,stokAkhir){ const selisih=stokAwal-totalJual-stokAkhir; setVal(`${prefix}_stok_jual_${product}`,fmtL(totalJual)); const selEl=document.getElementById(`${prefix}_selisih_${product}`); if(selEl) selEl.value=fmtL(selisih); const badge=document.getElementById(`${prefix}_ket_${product}`); if(badge){ if(Math.abs(selisih)<0.01){ badge.className='ket-badge zero'; badge.textContent='⊜ Seimbang'; } else if(selisih>0){ badge.className='ket-badge minus'; badge.textContent='▼ Minus (Susut) '+fmtL(selisih); } else { badge.className='ket-badge plus'; badge.textContent='▲ Plus (Lebih) '+fmtL(Math.abs(selisih)); } } return selisih; }
-  function validateStokAkhirS2(){ const s1_akhir_pt=num('s1_stok_akhir_pertalite'); const s1_akhir_px=num('s1_stok_akhir_pertamax'); const s2_pt=document.getElementById('s2_stok_akhir_pertalite'); const s2_px=document.getElementById('s2_stok_akhir_pertamax'); const warn_pt=document.getElementById('s2_warning_pertalite'); const warn_px=document.getElementById('s2_warning_pertamax'); if(s1_akhir_pt===0){ if(s2_pt){s2_pt.readOnly=true; s2_pt.classList.add('disabled-input'); s2_pt.placeholder='Harap isi Stok Akhir Shift 1 dahulu'; if(warn_pt) warn_pt.style.display='block'; s2_pt.value='';} } else { if(s2_pt){s2_pt.readOnly=false; s2_pt.classList.remove('disabled-input'); s2_pt.placeholder='0'; if(warn_pt) warn_pt.style.display='none';} } if(s1_akhir_px===0){ if(s2_px){s2_px.readOnly=true; s2_px.classList.add('disabled-input'); s2_px.placeholder='Harap isi Stok Akhir Shift 1 dahulu'; if(warn_px) warn_px.style.display='block'; s2_px.value='';} } else { if(s2_px){s2_px.readOnly=false; s2_px.classList.remove('disabled-input'); s2_px.placeholder='0'; if(warn_px) warn_px.style.display='none';} } }
+  function floorToMillion(n){return Math.floor(Math.abs(n)/1000000)*1000000 * (n<0 ? -1 : 1);}
+  
+  // Fungsi perhitungan stok dengan pembulatan ke bawah (floor) untuk selisih liter
+  function calcStokDisplay(prefix,product,stokAwal,totalJual,stokAkhir){ 
+    const selisihRaw = stokAwal - totalJual - stokAkhir;
+    const selisih = Math.floor(selisihRaw); // dibulatkan ke bawah
+    setVal(`${prefix}_stok_jual_${product}`,fmtL(totalJual)); 
+    const selEl=document.getElementById(`${prefix}_selisih_${product}`); 
+    if(selEl) selEl.value=fmtL(selisih); 
+    const badge=document.getElementById(`${prefix}_ket_${product}`); 
+    if(badge){ 
+      if(Math.abs(selisih)<1){ 
+        badge.className='ket-badge zero'; badge.textContent='⊜ Seimbang'; 
+      } else if(selisih>0){ 
+        badge.className='ket-badge minus'; badge.textContent='▼ Minus (Susut) '+fmtL(selisih); 
+      } else { 
+        badge.className='ket-badge plus'; badge.textContent='▲ Plus (Lebih) '+fmtL(Math.abs(selisih)); 
+      } 
+    } 
+    return selisih; 
+  }
+  
+  function validateStokAkhirS2(){ 
+    const s1_akhir_pt=num('s1_stok_akhir_pertalite'); 
+    const s1_akhir_px=num('s1_stok_akhir_pertamax'); 
+    const s2_pt=document.getElementById('s2_stok_akhir_pertalite'); 
+    const s2_px=document.getElementById('s2_stok_akhir_pertamax'); 
+    const warn_pt=document.getElementById('s2_warning_pertalite'); 
+    const warn_px=document.getElementById('s2_warning_pertamax'); 
+    if(s1_akhir_pt===0){ 
+      if(s2_pt){s2_pt.readOnly=true; s2_pt.classList.add('disabled-input'); s2_pt.placeholder='Harap isi Stok Akhir Shift 1 dahulu'; if(warn_pt) warn_pt.style.display='block'; s2_pt.value='';} 
+    } else { 
+      if(s2_pt){s2_pt.readOnly=false; s2_pt.classList.remove('disabled-input'); s2_pt.placeholder='0'; if(warn_pt) warn_pt.style.display='none';} 
+    } 
+    if(s1_akhir_px===0){ 
+      if(s2_px){s2_px.readOnly=true; s2_px.classList.add('disabled-input'); s2_px.placeholder='Harap isi Stok Akhir Shift 1 dahulu'; if(warn_px) warn_px.style.display='block'; s2_px.value='';} 
+    } else { 
+      if(s2_px){s2_px.readOnly=false; s2_px.classList.remove('disabled-input'); s2_px.placeholder='0'; if(warn_px) warn_px.style.display='none';} 
+    } 
+  }
 
   function calcAll(){
     syncShift2Prices();
@@ -431,27 +468,70 @@
     ['s1','s2'].forEach(shift=>{
       const pp=num(`${shift}_price_pertalite`); const px=num(`${shift}_price_pertamax`);
       let vPt=0,rPt=0,vPx=0,rPx=0;
-      ['A1','A2','C'].forEach(n=>{const v=Math.max(0,num(`${shift}_tk_${n}`)-num(`${shift}_ta_${n}`)); const r=v*pp; setVal(`${shift}_vol_${n}`,fmtL(v)); setVal(`${shift}_rp_${n}`,fmt(r)); vPt+=v; rPt+=r;});
-      ['B1','B2','D'].forEach(n=>{const v=Math.max(0,num(`${shift}_tk_${n}`)-num(`${shift}_ta_${n}`)); const r=v*px; setVal(`${shift}_vol_${n}`,fmtL(v)); setVal(`${shift}_rp_${n}`,fmt(r)); vPx+=v; rPx+=r;});
-      setTxt(`${shift}_total_vol_pertalite`,fmtL(vPt)); setTxt(`${shift}_total_rp_pertalite`,fmt(rPt));
-      setTxt(`${shift}_total_vol_pertamax`,fmtL(vPx)); setTxt(`${shift}_total_rp_pertamax`,fmt(rPx));
+      // Pertalite nozzles: A1, A2, C
+      ['A1','A2','C'].forEach(n=>{
+        let vRaw = num(`${shift}_tk_${n}`) - num(`${shift}_ta_${n}`);
+        let v = Math.max(0, Math.floor(vRaw));          // volume dibulatkan ke bawah
+        let r = Math.floor(v * pp);                     // rupiah dibulatkan ke bawah
+        setVal(`${shift}_vol_${n}`,fmtL(v)); 
+        setVal(`${shift}_rp_${n}`,fmt(r));
+        vPt += v; 
+        rPt += r;
+      });
+      // Pertamax nozzles: B1, B2, D
+      ['B1','B2','D'].forEach(n=>{
+        let vRaw = num(`${shift}_tk_${n}`) - num(`${shift}_ta_${n}`);
+        let v = Math.max(0, Math.floor(vRaw));
+        let r = Math.floor(v * px);
+        setVal(`${shift}_vol_${n}`,fmtL(v)); 
+        setVal(`${shift}_rp_${n}`,fmt(r));
+        vPx += v; 
+        rPx += r;
+      });
+      setTxt(`${shift}_total_vol_pertalite`,fmtL(vPt)); 
+      setTxt(`${shift}_total_rp_pertalite`,fmt(rPt));
+      setTxt(`${shift}_total_vol_pertamax`,fmtL(vPx)); 
+      setTxt(`${shift}_total_rp_pertamax`,fmt(rPx));
       const totalPeng=pengeluaranData[shift].reduce((a,x)=>a+(parseFloat(x.jumlah)||0),0);
       const totalJual=rPt+rPx;
-      setTxt(`${shift}_total_pengeluaran`,fmt(totalPeng)); setTxt(`${shift}_total_penjualan`,fmt(totalJual));
+      setTxt(`${shift}_total_pengeluaran`,fmt(totalPeng)); 
+      setTxt(`${shift}_total_penjualan`,fmt(totalJual));
       setTxt(`${shift}_sisa_kas`,fmt(totalJual-totalPeng));
       res[shift]={vPt,rPt,vPx,rPx,totalJual,totalPeng,pricePt:pp,pricePx:px};
     });
-    const s1StokAwalPt=num('s1_stok_awal_pertalite'); const s1StokAwalPx=num('s1_stok_awal_pertamax');
-    const s1StokAkhirPt=num('s1_stok_akhir_pertalite'); const s1StokAkhirPx=num('s1_stok_akhir_pertamax');
+    // Stok Shift 1
+    const s1StokAwalPt=num('s1_stok_awal_pertalite'); 
+    const s1StokAwalPx=num('s1_stok_awal_pertamax');
+    const s1StokAkhirPt=num('s1_stok_akhir_pertalite'); 
+    const s1StokAkhirPx=num('s1_stok_akhir_pertamax');
     calcStokDisplay('s1','pertalite',s1StokAwalPt,res.s1.vPt,s1StokAkhirPt);
     calcStokDisplay('s1','pertamax',s1StokAwalPx,res.s1.vPx,s1StokAkhirPx);
-    ['A1','A2','C'].forEach(n=>{const val=num(`s1_tk_${n}`); const el=document.getElementById(`s2_ta_${n}`); if(el&&!totLockState['s2_pertalite']) el.value=val||''; const d=document.getElementById(`s2_ta_${n}_display`); if(d) d.value=val?fmtL(val):'—';});
-    ['B1','B2','D'].forEach(n=>{const val=num(`s1_tk_${n}`); const el=document.getElementById(`s2_ta_${n}`); if(el&&!totLockState['s2_pertamax']) el.value=val||''; const d=document.getElementById(`s2_ta_${n}_display`); if(d) d.value=val?fmtL(val):'—';});
-    if(document.getElementById('s2_stok_awal_pertalite')) document.getElementById('s2_stok_awal_pertalite').value=s1StokAkhirPt||'';
-    if(document.getElementById('s2_stok_awal_pertamax')) document.getElementById('s2_stok_awal_pertamax').value=s1StokAkhirPx||'';
-    const s2StokAkhirPt=num('s2_stok_akhir_pertalite'); const s2StokAkhirPx=num('s2_stok_akhir_pertamax');
+    
+    // Transfer totalisator akhir shift 1 ke awal shift 2
+    ['A1','A2','C'].forEach(n=>{
+      const val=num(`s1_tk_${n}`);
+      const el=document.getElementById(`s2_ta_${n}`);
+      if(el && !totLockState['s2_pertalite']) el.value=val||'';
+      const d=document.getElementById(`s2_ta_${n}_display`);
+      if(d) d.value=val?fmtL(val):'—';
+    });
+    ['B1','B2','D'].forEach(n=>{
+      const val=num(`s1_tk_${n}`);
+      const el=document.getElementById(`s2_ta_${n}`);
+      if(el && !totLockState['s2_pertamax']) el.value=val||'';
+      const d=document.getElementById(`s2_ta_${n}_display`);
+      if(d) d.value=val?fmtL(val):'—';
+    });
+    // Stok awal shift 2 = stok akhir shift 1
+    if(document.getElementById('s2_stok_awal_pertalite')) document.getElementById('s2_stok_awal_pertalite').value = s1StokAkhirPt || '';
+    if(document.getElementById('s2_stok_awal_pertamax')) document.getElementById('s2_stok_awal_pertamax').value = s1StokAkhirPx || '';
+    
+    const s2StokAkhirPt=num('s2_stok_akhir_pertalite'); 
+    const s2StokAkhirPx=num('s2_stok_akhir_pertamax');
     calcStokDisplay('s2','pertalite',s1StokAkhirPt,res.s2.vPt,s2StokAkhirPt);
     calcStokDisplay('s2','pertamax',s1StokAkhirPx,res.s2.vPx,s2StokAkhirPx);
+    
+    // Global rekapitulasi
     const s1=res.s1, s2=res.s2;
     const gVPt=s1.vPt+s2.vPt, gRPt=s1.rPt+s2.rPt, gVPx=s1.vPx+s2.vPx, gRPx=s1.rPx+s2.rPx, gPeng=s1.totalPeng+s2.totalPeng, gSisa=gRPt+gRPx-gPeng;
     setTxt('g_s1_vol_pertalite',fmtL(s1.vPt)); setTxt('g_s2_vol_pertalite',fmtL(s2.vPt)); setTxt('g_total_vol_pertalite',fmtL(gVPt));
@@ -466,33 +546,54 @@
     setTxt('g_total_jual_kotor',fmt(gRPt+gRPx)); setTxt('g_peng_s1',fmt(s1.totalPeng)); setTxt('g_peng_s2',fmt(s2.totalPeng)); setTxt('g_total_peng',fmt(gPeng)); setTxt('g_sisa_kas',fmt(gSisa));
     setTxt('sum_s1_vol_pt',fmtL(s1.vPt)); setTxt('sum_s1_vol_px',fmtL(s1.vPx)); setTxt('sum_s1_jual',fmt(s1.totalJual)); setTxt('sum_s1_peng',fmt(s1.totalPeng)); setTxt('sum_s1_sisa',fmt(s1.totalJual-s1.totalPeng));
     setTxt('sum_s2_vol_pt',fmtL(s2.vPt)); setTxt('sum_s2_vol_px',fmtL(s2.vPx)); setTxt('sum_s2_jual',fmt(s2.totalJual)); setTxt('sum_s2_peng',fmt(s2.totalPeng)); setTxt('sum_s2_sisa',fmt(s2.totalJual-s2.totalPeng));
+    
+    // Global stok
     const gStokAwalPt=s1StokAwalPt, gStokAwalPx=s1StokAwalPx, gStokAkhirPt=s2StokAkhirPt, gStokAkhirPx=s2StokAkhirPx;
     if(document.getElementById('g_stok_awal_pertalite')) document.getElementById('g_stok_awal_pertalite').value=gStokAwalPt?fmtL(gStokAwalPt):'0 L';
     if(document.getElementById('g_stok_awal_pertamax')) document.getElementById('g_stok_awal_pertamax').value=gStokAwalPx?fmtL(gStokAwalPx):'0 L';
     if(document.getElementById('g_stok_akhir_pertalite')) document.getElementById('g_stok_akhir_pertalite').value=gStokAkhirPt?fmtL(gStokAkhirPt):'0 L';
     if(document.getElementById('g_stok_akhir_pertamax')) document.getElementById('g_stok_akhir_pertamax').value=gStokAkhirPx?fmtL(gStokAkhirPx):'0 L';
-    const selisihPt=calcStokDisplay('g','pertalite',gStokAwalPt,gVPt,gStokAkhirPt);
-    const selisihPx=calcStokDisplay('g','pertamax',gStokAwalPx,gVPx,gStokAkhirPx);
-    const avgPricePt=(s1.pricePt+s2.pricePt)/2; const avgPricePx=(s1.pricePx+s2.pricePx)/2;
+    const selisihPt = calcStokDisplay('g','pertalite',gStokAwalPt,gVPt,gStokAkhirPt);
+    const selisihPx = calcStokDisplay('g','pertamax',gStokAwalPx,gVPx,gStokAkhirPx);
+    const avgPricePt=(s1.pricePt+s2.pricePt)/2; 
+    const avgPricePx=(s1.pricePx+s2.pricePx)/2;
     _global={vPt:gVPt,vPx:gVPx,rPt:gRPt,rPx:gRPx,totalPeng:gPeng,gSisa,stokAkhirPt:gStokAkhirPt,stokAkhirPx:gStokAkhirPx,stokAwalPt:gStokAwalPt,stokAwalPx:gStokAwalPx,selisihPt,selisihPx,avgPricePt,avgPricePx};
     _shiftRes={s1,s2};
     calcModal();
   }
+  
   function calcModal(){
     syncValuationFromDO();
     const {vPt:gVPt, vPx:gVPx, gSisa, totalPeng:gPeng, stokAkhirPt, stokAkhirPx, selisihPt, selisihPx, avgPricePt, avgPricePx} = _global;
-    const volFloorPt = Math.floor(gVPt); const volFloorPx = Math.floor(gVPx);
-    const marginPt = num('m_margin_pertalite'); const marginPx = num('m_margin_pertamax');
-    const keuntunganPt = volFloorPt * marginPt; const keuntunganPx = volFloorPx * marginPx;
-    const selisihTruncPt = Math.trunc(selisihPt); const selisihTruncPx = Math.trunc(selisihPx);
-    const nilaiPengPt = Math.trunc(selisihTruncPt * avgPricePt); const nilaiPengPx = Math.trunc(selisihTruncPx * avgPricePx);
+    // Volume sudah dalam bentuk integer (hasil floor dari penjualan)
+    const volFloorPt = gVPt;
+    const volFloorPx = gVPx;
+    const marginPt = num('m_margin_pertalite'); 
+    const marginPx = num('m_margin_pertamax');
+    const keuntunganPt = Math.floor(volFloorPt * marginPt); 
+    const keuntunganPx = Math.floor(volFloorPx * marginPx);
+    // Selisih stok sudah dibulatkan ke bawah (floor) di calcStokDisplay, gunakan langsung
+    const selisihTruncPt = selisihPt;
+    const selisihTruncPx = selisihPx;
+    const nilaiPengPt = Math.floor(selisihTruncPt * avgPricePt);
+    const nilaiPengPx = Math.floor(selisihTruncPx * avgPricePx);
     const nilaiPengTotal = nilaiPengPt + nilaiPengPx;
-    function pengLabel(selisihTrunc, nilai){ if(selisihTrunc===0) return {text:'0 L → Rp 0', cls:'zero'}; const susut=selisihTrunc>0; const absL=Math.abs(selisihTrunc); const absRp=Math.abs(nilai); const sign=susut?'▼ Minus (Susut)':'▲ Plus (Lebih)'; return {text:`${sign} ${absL} L → ${susut?'-':'+'}${fmt(absRp)}`, cls:susut?'minus':'plus'}; }
-    const lPt = pengLabel(selisihTruncPt, nilaiPengPt); const lPx = pengLabel(selisihTruncPx, nilaiPengPx);
-    document.getElementById('peng_pt_label').innerHTML = lPt.text; document.getElementById('peng_pt_label').className = `peng-info-val ${lPt.cls}`;
-    document.getElementById('peng_px_label').innerHTML = lPx.text; document.getElementById('peng_px_label').className = `peng-info-val ${lPx.cls}`;
+    
+    function pengLabel(selisihTrunc, nilai){ 
+      if(selisihTrunc===0) return {text:'0 L → Rp 0', cls:'zero'}; 
+      const susut=selisihTrunc>0; 
+      const absL=Math.abs(selisihTrunc); 
+      const absRp=Math.abs(nilai); 
+      const sign=susut?'▼ Minus (Susut)':'▲ Plus (Lebih)'; 
+      return {text:`${sign} ${absL} L → ${susut?'-':'+'}${fmt(absRp)}`, cls:susut?'minus':'plus'}; 
+    }
+    const lPt = pengLabel(selisihTruncPt, nilaiPengPt); 
+    const lPx = pengLabel(selisihTruncPx, nilaiPengPx);
+    document.getElementById('peng_pt_label').innerHTML = lPt.text; 
+    document.getElementById('peng_pt_label').className = `peng-info-val ${lPt.cls}`;
+    document.getElementById('peng_px_label').innerHTML = lPx.text; 
+    document.getElementById('peng_px_label').className = `peng-info-val ${lPx.cls}`;
 
-    // Total Nilai Penguapan dengan keterangan plus/minus
     const pengTotalEl = document.getElementById('peng_total_label');
     const absTotal = Math.abs(nilaiPengTotal);
     if (Math.abs(nilaiPengTotal) < 1) {
@@ -506,33 +607,100 @@
       pengTotalEl.className = 'peng-info-val plus';
     }
 
-    const labaMarginBersih = Math.trunc(keuntunganPt + keuntunganPx + nilaiPengTotal - gPeng);
-    setVal('m_vol_pertalite', fmtL(gVPt)); setVal('m_vol_pertamax', fmtL(gVPx));
-    setVal('m_margin_pt_display', fmt(marginPt)); setVal('m_margin_px_display', fmt(marginPx));
-    setVal('m_keuntungan_pertalite', fmt(keuntunganPt)); setVal('m_keuntungan_pertamax', fmt(keuntunganPx));
+    const labaMarginBersih = Math.floor(keuntunganPt + keuntunganPx + nilaiPengTotal - gPeng);
+    setVal('m_vol_pertalite', fmtL(gVPt)); 
+    setVal('m_vol_pertamax', fmtL(gVPx));
+    setVal('m_margin_pt_display', fmt(marginPt)); 
+    setVal('m_margin_px_display', fmt(marginPx));
+    setVal('m_keuntungan_pertalite', fmt(keuntunganPt)); 
+    setVal('m_keuntungan_pertamax', fmt(keuntunganPx));
     setVal('m_total_pengeluaran_display', fmt(gPeng));
-    const mb = document.getElementById('margin_result_banner'); const ml = document.getElementById('margin_result_label'); const mv = document.getElementById('margin_result_value'); const mf = document.getElementById('margin_result_formula'); const ms = document.getElementById('margin_status_badge');
+    const mb = document.getElementById('margin_result_banner'); 
+    const ml = document.getElementById('margin_result_label'); 
+    const mv = document.getElementById('margin_result_value'); 
+    const mf = document.getElementById('margin_result_formula'); 
+    const ms = document.getElementById('margin_status_badge');
     mv.textContent = (labaMarginBersih<0 ? '−' : '') + fmt(Math.abs(labaMarginBersih));
     mf.textContent = `= (${fmt(keuntunganPt)} + ${fmt(keuntunganPx)}) + ${fmt(nilaiPengTotal)} − ${fmt(gPeng)}`;
-    if(Math.abs(labaMarginBersih)<1){ mb.className='result-banner neutral'; ml.className='result-banner-label neutral'; mv.className='result-banner-value neutral'; ms.className='ket-badge zero'; ms.textContent='⊜ Impas'; ml.textContent='Laba Margin Bersih'; }
-    else if(labaMarginBersih>0){ mb.className='result-banner profit'; ml.className='result-banner-label profit'; mv.className='result-banner-value profit'; ms.className='ket-badge plus'; ms.textContent='▲ Untung'; ml.textContent='Laba Margin Bersih'; }
-    else { mb.className='result-banner loss'; ml.className='result-banner-label loss'; mv.className='result-banner-value loss'; ms.className='ket-badge minus'; ms.textContent='▼ Rugi'; ml.textContent='Laba Margin Bersih'; }
-    const modalAwal=num('m_modal_awal'); const nilaiDoPt=Math.trunc(num('m_sisa_do_pertalite')*num('m_harga_beli_pertalite')); const nilaiDoPx=Math.trunc(num('m_sisa_do_pertamax')*num('m_harga_beli_pertamax')); const totalDo=nilaiDoPt+nilaiDoPx;
-    setVal('m_nilai_do_pertalite',fmt(nilaiDoPt)); setVal('m_nilai_do_pertamax',fmt(nilaiDoPx));
-    setTxt('m_stat_do_pertalite',fmt(nilaiDoPt)); setTxt('m_stat_do_pertamax',fmt(nilaiDoPx)); setTxt('m_stat_total_do',fmt(totalDo)); setTxt('m_stat_modal_awal',fmt(modalAwal));
-    const hargaValPt=num('m_harga_val_pertalite'); const hargaValPx=num('m_harga_val_pertamax'); const nilaiStokPt=Math.trunc(stokAkhirPt*hargaValPt); const nilaiStokPx=Math.trunc(stokAkhirPx*hargaValPx); const totalNilaiStok=nilaiStokPt+nilaiStokPx; const uangBulat=floorToMillion(gSisa);
+    if(Math.abs(labaMarginBersih)<1){ 
+      mb.className='result-banner neutral'; 
+      ml.className='result-banner-label neutral'; 
+      mv.className='result-banner-value neutral'; 
+      ms.className='ket-badge zero'; 
+      ms.textContent='⊜ Impas'; 
+      ml.textContent='Laba Margin Bersih'; 
+    } else if(labaMarginBersih>0){ 
+      mb.className='result-banner profit'; 
+      ml.className='result-banner-label profit'; 
+      mv.className='result-banner-value profit'; 
+      ms.className='ket-badge plus'; 
+      ms.textContent='▲ Untung'; 
+      ml.textContent='Laba Margin Bersih'; 
+    } else { 
+      mb.className='result-banner loss'; 
+      ml.className='result-banner-label loss'; 
+      mv.className='result-banner-value loss'; 
+      ms.className='ket-badge minus'; 
+      ms.textContent='▼ Rugi'; 
+      ml.textContent='Laba Margin Bersih'; 
+    }
+    
+    const modalAwal=num('m_modal_awal'); 
+    const nilaiDoPt=Math.floor(num('m_sisa_do_pertalite')*num('m_harga_beli_pertalite')); 
+    const nilaiDoPx=Math.floor(num('m_sisa_do_pertamax')*num('m_harga_beli_pertamax')); 
+    const totalDo=nilaiDoPt+nilaiDoPx;
+    setVal('m_nilai_do_pertalite',fmt(nilaiDoPt)); 
+    setVal('m_nilai_do_pertamax',fmt(nilaiDoPx));
+    setTxt('m_stat_do_pertalite',fmt(nilaiDoPt)); 
+    setTxt('m_stat_do_pertamax',fmt(nilaiDoPx)); 
+    setTxt('m_stat_total_do',fmt(totalDo)); 
+    setTxt('m_stat_modal_awal',fmt(modalAwal));
+    const hargaValPt=num('m_harga_val_pertalite'); 
+    const hargaValPx=num('m_harga_val_pertamax'); 
+    const nilaiStokPt=Math.floor(stokAkhirPt*hargaValPt); 
+    const nilaiStokPx=Math.floor(stokAkhirPx*hargaValPx); 
+    const totalNilaiStok=nilaiStokPt+nilaiStokPx; 
+    const uangBulat=floorToMillion(gSisa);
     document.getElementById('m_uang_note').innerHTML = `Asli: ${fmt(gSisa)} → Dibulatkan ke bawah per juta: ${fmt(uangBulat)}`;
-    setVal('m_stok_akhir_pt_display',fmtL(stokAkhirPt)); setVal('m_stok_akhir_px_display',fmtL(stokAkhirPx)); setVal('m_uang_global_display',fmt(uangBulat));
-    setVal('m_nilai_stok_pertalite',fmt(nilaiStokPt)); setVal('m_nilai_stok_pertamax',fmt(nilaiStokPx)); setVal('m_total_nilai_stok',fmt(totalNilaiStok));
-    setTxt('m_stat_stok_pertalite',fmt(nilaiStokPt)); setTxt('m_stat_stok_pertamax',fmt(nilaiStokPx)); setTxt('m_stat_total_stok',fmt(totalNilaiStok)); setTxt('m_stat_uang_global',fmt(uangBulat));
+    setVal('m_stok_akhir_pt_display',fmtL(stokAkhirPt)); 
+    setVal('m_stok_akhir_px_display',fmtL(stokAkhirPx)); 
+    setVal('m_uang_global_display',fmt(uangBulat));
+    setVal('m_nilai_stok_pertalite',fmt(nilaiStokPt)); 
+    setVal('m_nilai_stok_pertamax',fmt(nilaiStokPx)); 
+    setVal('m_total_nilai_stok',fmt(totalNilaiStok));
+    setTxt('m_stat_stok_pertalite',fmt(nilaiStokPt)); 
+    setTxt('m_stat_stok_pertamax',fmt(nilaiStokPx)); 
+    setTxt('m_stat_total_stok',fmt(totalNilaiStok)); 
+    setTxt('m_stat_uang_global',fmt(uangBulat));
     const hasilAkhir=totalDo+totalNilaiStok+uangBulat-modalAwal;
-    setVal('m_komponen_do',fmt(totalDo)); setVal('m_komponen_stok',fmt(totalNilaiStok)); setVal('m_komponen_uang',fmt(uangBulat)); setVal('m_komponen_modal',fmt(modalAwal));
-    const fv=document.getElementById('m_final_value'); const ff=document.getElementById('m_final_formula'); const fs=document.getElementById('m_final_status');
+    setVal('m_komponen_do',fmt(totalDo)); 
+    setVal('m_komponen_stok',fmt(totalNilaiStok)); 
+    setVal('m_komponen_uang',fmt(uangBulat)); 
+    setVal('m_komponen_modal',fmt(modalAwal));
+    const fv=document.getElementById('m_final_value'); 
+    const ff=document.getElementById('m_final_formula'); 
+    const fs=document.getElementById('m_final_status');
     ff.textContent=`= ${fmt(totalDo)} + ${fmt(totalNilaiStok)} + ${fmt(uangBulat)} − ${fmt(modalAwal)}`;
-    if(Math.abs(hasilAkhir)<1){ fv.className='value'; fv.textContent=fmt(0); fs.className='ket-badge zero'; fs.textContent='⊜ Impas'; }
-    else if(hasilAkhir>0){ fv.className='value profit'; fv.textContent=fmt(hasilAkhir); fs.className='ket-badge plus'; fs.textContent='▲ Surplus'; }
-    else { fv.className='value loss'; fv.textContent='−'+fmt(Math.abs(hasilAkhir)); fs.className='ket-badge minus'; fs.textContent='▼ Defisit'; }
-    setTxt('m_sum_do',fmt(totalDo)); setTxt('m_sum_stok',fmt(totalNilaiStok)); setTxt('m_sum_uang',fmt(uangBulat)); setTxt('m_sum_modal',fmt(modalAwal));
+    if(Math.abs(hasilAkhir)<1){ 
+      fv.className='value'; 
+      fv.textContent=fmt(0); 
+      fs.className='ket-badge zero'; 
+      fs.textContent='⊜ Impas'; 
+    } else if(hasilAkhir>0){ 
+      fv.className='value profit'; 
+      fv.textContent=fmt(hasilAkhir); 
+      fs.className='ket-badge plus'; 
+      fs.textContent='▲ Surplus'; 
+    } else { 
+      fv.className='value loss'; 
+      fv.textContent='−'+fmt(Math.abs(hasilAkhir)); 
+      fs.className='ket-badge minus'; 
+      fs.textContent='▼ Defisit'; 
+    }
+    setTxt('m_sum_do',fmt(totalDo)); 
+    setTxt('m_sum_stok',fmt(totalNilaiStok)); 
+    setTxt('m_sum_uang',fmt(uangBulat)); 
+    setTxt('m_sum_modal',fmt(modalAwal));
   }
 
   // ========== EXPORT RINGKASAN ==========
