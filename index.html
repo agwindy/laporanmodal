@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SPBU 3417603 - Laporan Harian & Modal (Desimal Penuh)</title>
+<title>SPBU 3417603 - Laporan Harian & Modal (1 Desimal)</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
@@ -121,7 +121,7 @@
 <body>
 
 <header class="header">
-  <div class="header-left"><div class="header-title"><h1>SPBU 3417603</h1><p>Sistem Laporan Harian & Modal (Desimal)</p></div></div>
+  <div class="header-left"><div class="header-title"><h1>SPBU 3417603</h1><p>Sistem Laporan Harian & Modal (1 Desimal)</p></div></div>
   <div class="header-right">
     <div><div class="field-label">Tanggal</div><input type="date" id="reportDate" onchange="saveAllToStorage()"></div>
     <button class="export-btn pdf" onclick="exportSummaryPDF()">📄 PDF</button>
@@ -205,7 +205,7 @@
 
 <script>
   // ======================== KONSTANTA & GLOBAL ========================
-  const STORAGE_KEY = 'spbu3417603_data_final_desimal';
+  const STORAGE_KEY = 'spbu3417603_data_final_1des';
   let lockState = { s1: false };
   let totLockState = { s1_pertalite: false, s1_pertamax: false, s2_pertalite: false, s2_pertamax: false };
   let pengeluaranData = { s1: [], s2: [] };
@@ -216,7 +216,10 @@
   // ======================== FUNGSI BANTU ========================
   function num(id) { let el = document.getElementById(id); if (!el) return 0; let v = parseFloat(el.value); return isNaN(v) ? 0 : v; }
   function fmtRp(n) { return 'Rp ' + Math.floor(Math.abs(n)).toLocaleString('id-ID') + (n < 0 ? ' (defisit)' : ''); }
-  function fmtL(n) { return n.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' L'; }
+  // Format liter dengan 1 desimal
+  function fmtL(n) { return n.toLocaleString('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' L'; }
+  // Membulatkan volume ke 1 desimal (0.1)
+  function round1(n) { return Math.round(n * 10) / 10; }
   function setVal(id, v) { let el = document.getElementById(id); if (el) el.value = v; }
   function setTxt(id, v) { let el = document.getElementById(id); if (el) el.textContent = v; }
   function floorToMillion(n) { return Math.floor(Math.abs(n) / 1000000) * 1000000 * (n < 0 ? -1 : 1); }
@@ -296,7 +299,7 @@
       } else {
         btn.classList.add('unlocked'); btn.classList.remove('locked');
         btn.textContent = '🔓 Kunci';
-        pill.classList.add('unlocked'); pill.classList.remove('locked');
+        pill.classList.add('unlocked'); pill.classList.remove('unlocked');
         pill.textContent = 'Tidak Dikunci';
       }
     };
@@ -395,7 +398,7 @@
     setVal(`${prefix}_selisih_${product}`, fmtL(selisih));
     const badge = document.getElementById(`${prefix}_ket_${product}`);
     if (badge) {
-      if (Math.abs(selisih) < 0.001) {
+      if (Math.abs(selisih) < 0.01) {
         badge.className = 'ket-badge zero'; badge.textContent = '⊜ Seimbang';
       } else if (selisih > 0) {
         badge.className = 'ket-badge minus'; badge.textContent = '▼ Minus (Susut) ' + fmtL(selisih);
@@ -415,19 +418,23 @@
       let vPt = 0, rPt = 0, vPx = 0, rPx = 0;
       for (let n of ['A1','A2','C']) {
         let vRaw = num(`${shift}_tk_${n}`) - num(`${shift}_ta_${n}`);
-        let v = Math.max(0, vRaw);
+        if (vRaw < 0) vRaw = 0;
+        let v = round1(vRaw);   // bulatkan ke 1 desimal
         let r = v * pricePt;
+        let rFloor = Math.floor(r);
         setVal(`${shift}_vol_${n}`, fmtL(v));
-        setVal(`${shift}_rp_${n}`, fmtRp(r));
-        vPt += v; rPt += r;
+        setVal(`${shift}_rp_${n}`, fmtRp(rFloor));
+        vPt += v; rPt += rFloor;
       }
       for (let n of ['B1','B2','D']) {
         let vRaw = num(`${shift}_tk_${n}`) - num(`${shift}_ta_${n}`);
-        let v = Math.max(0, vRaw);
+        if (vRaw < 0) vRaw = 0;
+        let v = round1(vRaw);
         let r = v * pricePx;
+        let rFloor = Math.floor(r);
         setVal(`${shift}_vol_${n}`, fmtL(v));
-        setVal(`${shift}_rp_${n}`, fmtRp(r));
-        vPx += v; rPx += r;
+        setVal(`${shift}_rp_${n}`, fmtRp(rFloor));
+        vPx += v; rPx += rFloor;
       }
       const totalPeng = pengeluaranData[shift].reduce((a, x) => a + (Math.floor(parseFloat(x.jumlah) || 0)), 0);
       const totalJual = rPt + rPx;
@@ -448,7 +455,7 @@
     const s1StokAkhirPx = num('s1_stok_akhir_pertamax');
     calcStokDisplay('s1', 'pertalite', s1StokAwalPt, s1.vPt, s1StokAkhirPt);
     calcStokDisplay('s1', 'pertamax', s1StokAwalPx, s1.vPx, s1StokAkhirPx);
-    // Transfer totalisator akhir shift 1 ke awal shift 2 (display & set input jika tidak dikunci)
+    // Transfer totalisator akhir shift 1 ke awal shift 2
     for (let n of ['A1','A2','C']) {
       const val = num(`s1_tk_${n}`);
       const input = document.getElementById(`s2_ta_${n}`);
@@ -539,7 +546,7 @@
     const pengPxLabel = document.getElementById('peng_px_label');
     const pengTotal = document.getElementById('peng_total_label');
     const makePengLabel = (selisih, nilai) => {
-      if (Math.abs(selisih) < 0.001) return { html: '0 L → Rp 0', cls: 'zero' };
+      if (Math.abs(selisih) < 0.01) return { html: '0 L → Rp 0', cls: 'zero' };
       const susut = selisih > 0;
       const absL = Math.abs(selisih);
       const absRp = Math.abs(nilai);
@@ -632,7 +639,7 @@
     <p><strong>Tanggal:</strong> ${date} &nbsp;|&nbsp; <strong>Dicetak:</strong> ${new Date().toLocaleString('id-ID')}</p>
     <div class="recap-box"><div class="box green"><strong>⛽ PERTALITE</strong><br>Volume S1: ${fmtL(s1.vPt||0)}<br>Penjualan S1: ${fmtRp(s1.rPt||0)}<br>Volume S2: ${fmtL(s2.vPt||0)}<br>Penjualan S2: ${fmtRp(s2.rPt||0)}<br><strong>Total Volume: ${fmtL(g.vPt||0)}</strong><br><strong>Total Penjualan: ${fmtRp(g.rPt||0)}</strong></div>
     <div class="box blue"><strong>⛽ PERTAMAX</strong><br>Volume S1: ${fmtL(s1.vPx||0)}<br>Penjualan S1: ${fmtRp(s1.rPx||0)}<br>Volume S2: ${fmtL(s2.vPx||0)}<br>Penjualan S2: ${fmtRp(s2.rPx||0)}<br><strong>Total Volume: ${fmtL(g.vPx||0)}</strong><br><strong>Total Penjualan: ${fmtRp(g.rPx||0)}</strong></div></div>
-    <table><thead><tr><th>Shift</th><th>Vol Pertalite</th><th>Vol Pertamax</th><th>Penjualan Kotor</th><th>Pengeluaran</th><th>Sisa Kas</th></tr></thead><tbody>
+    </table><thead><tr><th>Shift</th><th>Vol Pertalite</th><th>Vol Pertamax</th><th>Penjualan Kotor</th><th>Pengeluaran</th><th>Sisa Kas</th></tr></thead><tbody>
     <tr><td>Shift 1</td><td>${fmtL(s1.vPt||0)}</td><td>${fmtL(s1.vPx||0)}</td><td>${fmtRp((s1.rPt||0)+(s1.rPx||0))}</td><td>${fmtRp(s1.totalPeng||0)}</td><td>${fmtRp((s1.totalJual||0)-(s1.totalPeng||0))}</td></tr>
     <tr><td>Shift 2</td><td>${fmtL(s2.vPt||0)}</td><td>${fmtL(s2.vPx||0)}</td><td>${fmtRp((s2.rPt||0)+(s2.rPx||0))}</td><td>${fmtRp(s2.totalPeng||0)}</td><td>${fmtRp((s2.totalJual||0)-(s2.totalPeng||0))}</td></tr>
     <tr class="total-row"><td><strong>GLOBAL</strong></td><td><strong>${fmtL(g.vPt||0)}</strong></td><td><strong>${fmtL(g.vPx||0)}</strong></td><td><strong>${fmtRp((g.rPt||0)+(g.rPx||0))}</strong></td><td><strong>${fmtRp(g.totalPeng||0)}</strong></td><td><strong>${fmtRp(g.gSisa||0)}</strong></td></tr>
@@ -644,14 +651,14 @@
     <tr><td>Total Pengeluaran Global</td><td>${fmtRp(g.totalPeng||0)}</td></tr>
     <tr class="total-row"><td><strong>Laba Margin Bersih</strong></td><td class="${m.labaMargin>0?'profit':m.labaMargin<0?'loss':''}">${(m.labaMargin||0)<0?'−':''}${fmtRp(Math.abs(m.labaMargin||0))}</td></tr>
     </tbody></table>
-    </table><thead><tr><th colspan="2">Kalkulasi Selisih Modal</th></tr></thead><tbody>
+    <table><thead><tr><th colspan="2">Kalkulasi Selisih Modal</th></tr></thead><tbody>
     <tr><td>Sisa DO Total</td><td>${fmtRp(m.totalDo||0)}</td></tr>
     <tr><td>Total Nilai Stok Akhir</td><td>${fmtRp(m.totalStok||0)}</td></tr>
     <tr><td>Uang Global (dibulatkan per juta)</td><td>${fmtRp(m.uangBulat||0)}</td></tr>
     <tr><td>Modal Awal</td><td>- ${fmtRp(m.modalAwal||0)}</td></tr>
     <tr class="total-row"><td><strong>Selisih Modal Akhir</strong></td><td class="${m.hasilAkhir>0?'profit':m.hasilAkhir<0?'loss':''}">${(m.hasilAkhir||0)<0?'−':''}${fmtRp(Math.abs(m.hasilAkhir||0))}</td></tr>
     </tbody></table>
-    <div class="footer">Dihasilkan oleh Sistem Laporan SPBU 3417603 (Desimal Penuh)</div>
+    <div class="footer">Dihasilkan oleh Sistem Laporan SPBU 3417603 (1 Desimal)</div>
     </body></html>`;
   }
   function exportSummaryPDF() { const w = window.open(); w.document.write(getSummaryHTML()); w.document.close(); w.print(); }
