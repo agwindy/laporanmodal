@@ -191,8 +191,8 @@
   <!-- SHIFT 2 -->
   <div id="shift2" class="tab-pane">
     <div class="card"><div class="card-header amber"><span class="pip amber"></span>Harga Per Liter</div><div class="price-row"><div class="price-field"><div class="field-label">Pertalite (Rp/L)</div><input class="inp" type="number" id="s2_price_pertalite" value="10000" oninput="calcAll();saveAllToStorage()"></div><div class="price-field"><div class="field-label">Pertamax (Rp/L)</div><input class="inp" type="number" id="s2_price_pertamax" value="13900" oninput="calcAll();saveAllToStorage()"></div></div></div>
-    <div class="grid-2"><div class="card"><div class="card-header green"><span class="pip green"></span>Pertalite — A1, A2, C</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" id="s2_ta_A1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_A1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A1" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A1" readonly></td></tr><tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" id="s2_ta_A2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_A2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A2" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A2" readonly></td></tr><tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" id="s2_ta_C" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_C" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_C" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_C" readonly></td></tr></tbody></td></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s2','pertalite')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertalite')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_pt_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s2_total_vol_pertalite">0 L</div></div><div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s2_total_rp_pertalite">Rp 0</div></div></div></div>
-      <div class="card"><div class="card-header blue"><span class="pip blue"></span>Pertamax — B1, B2, D</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" id="s2_ta_B1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_B1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B1" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B1" readonly></td></tr><tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" id="s2_ta_B2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_B2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B2" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B2" readonly></td></tr><tr><td><span class="badge blue">D</span></td><td><input class="inp" type="number" id="s2_ta_D" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_D" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_D" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_D" readonly></td></tr></tbody><tr></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_px_lockBtn" onclick="toggleTotalisatorLock('s2','pertamax')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertamax')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_px_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card blue"><div class="stat-label">Total Volume</div><div class="stat-value blue" id="s2_total_vol_pertamax">0 L</div></div><div class="stat-card blue"><div class="stat-label">Total Penjualan</div><div class="stat-value blue" id="s2_total_rp_pertamax">Rp 0</div></div></div></div></div>
+    <div class="grid-2"><div class="card"><div class="card-header green"><span class="pip green"></span>Pertalite — A1, A2, C</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" id="s2_ta_A1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_A1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A1" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A1" readonly></td></tr><tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" id="s2_ta_A2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_A2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_A2" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_A2" readonly></td></tr><tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" id="s2_ta_C" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_C" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" type="text" id="s2_vol_C" readonly></td><td><input class="inp ro-green" type="text" id="s2_rp_C" readonly></td></tr></tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s2','pertalite')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertalite')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_pt_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s2_total_vol_pertalite">0 L</div></div><div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s2_total_rp_pertalite">Rp 0</div></div></div></div>
+      <div class="card"><div class="card-header blue"><span class="pip blue"></span>Pertamax — B1, B2, D</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" id="s2_ta_B1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_B1" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B1" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B1" readonly></td></tr><tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" id="s2_ta_B2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_B2" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_B2" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_B2" readonly></td></tr><tr><td><span class="badge blue">D</span></td><td><input class="inp" type="number" id="s2_ta_D" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" id="s2_tk_D" placeholder="0" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" type="text" id="s2_vol_D" readonly></td><td><input class="inp ro-blue" type="text" id="s2_rp_D" readonly></td></tr></tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_px_lockBtn" onclick="toggleTotalisatorLock('s2','pertamax')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertamax')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_px_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card blue"><div class="stat-label">Total Volume</div><div class="stat-value blue" id="s2_total_vol_pertamax">0 L</div></div><div class="stat-card blue"><div class="stat-label">Total Penjualan</div><div class="stat-value blue" id="s2_total_rp_pertamax">Rp 0</div></div></div></div></div>
     <div class="card"><div class="card-header red"><span class="pip red"></span>Pengeluaran Harian — Shift 2</div><div class="pengeluaran-body"><div id="s2_pengeluaran_list"></div><button class="add-btn" onclick="addPengeluaran('s2')">+ Tambah Pengeluaran</button></div><div class="stat-row"><div class="stat-card red"><div class="stat-label">Total Pengeluaran</div><div class="stat-value red" id="s2_total_pengeluaran">Rp 0</div></div><div class="stat-card slate"><div class="stat-label">Total Penjualan Kotor</div><div class="stat-value slate" id="s2_total_penjualan">Rp 0</div></div><div class="stat-card amber"><div class="stat-label">Sisa Kas Bersih</div><div class="stat-value amber" id="s2_sisa_kas">Rp 0</div></div></div></div>
     <div class="card"><div class="card-header slate"><span class="pip slate"></span>Stok BBM — Shift 2</div><div class="stok-body"><div class="stok-product-label"><span class="dot green"></span><span>Pertalite</span></div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-green" type="text" id="s2_stok_awal_pertalite" readonly placeholder="Otomatis"></div><div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-green" type="text" id="s2_stok_jual_pertalite" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" id="s2_stok_akhir_pertalite" placeholder="0" oninput="calcAll();saveAllToStorage()"><div class="placeholder-warning" id="s2_warning_pertalite">Harap isi Stok Akhir Shift 1 dahulu</div></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="s2_selisih_pertalite" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s2_ket_pertalite">⊜ Seimbang</span></div></div><div class="prod-divider"></div><div class="stok-product-label"><span class="dot blue"></span><span>Pertamax</span></div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-blue" type="text" id="s2_stok_awal_pertamax" readonly placeholder="Otomatis"></div><div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-blue" type="text" id="s2_stok_jual_pertamax" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" id="s2_stok_akhir_pertamax" placeholder="0" oninput="calcAll();saveAllToStorage()"><div class="placeholder-warning" id="s2_warning_pertamax">Harap isi Stok Akhir Shift 1 dahulu</div></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="s2_selisih_pertamax" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s2_ket_pertamax">⊜ Seimbang</span></div></div></div></div>
     <div class="card"><div class="card-header slate"><span class="pip slate"></span>Totalisator Awal Shift 2</div><div class="stok-body"><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px"><div><div class="field-label">A1</div><input class="inp ro-green" type="text" id="s2_ta_A1_display" readonly></div><div><div class="field-label">A2</div><input class="inp ro-green" type="text" id="s2_ta_A2_display" readonly></div><div><div class="field-label">C</div><input class="inp ro-green" type="text" id="s2_ta_C_display" readonly></div></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px"><div><div class="field-label">B1</div><input class="inp ro-blue" type="text" id="s2_ta_B1_display" readonly></div><div><div class="field-label">B2</div><input class="inp ro-blue" type="text" id="s2_ta_B2_display" readonly></div><div><div class="field-label">D</div><input class="inp ro-blue" type="text" id="s2_ta_D_display" readonly></div></div></div></div>
@@ -201,8 +201,20 @@
   <!-- GLOBAL -->
   <div id="global" class="tab-pane">
     <div class="card"><div class="card-header amber"><span class="pip amber"></span>Rekapitulasi Global</div><div class="recap-dua-kolom"><div class="recap-produk"><div class="recap-header pertalite">⛽ Pertalite</div><div class="recap-body"><div class="recap-item"><span class="recap-label">Volume Shift 1</span><span class="recap-value green" id="g_s1_vol_pertalite">0 L</span></div><div class="recap-item"><span class="recap-label">Penjualan Shift 1</span><span class="recap-value green" id="g_s1_rp_pertalite">Rp 0</span></div><div class="recap-item"><span class="recap-label">Volume Shift 2</span><span class="recap-value green" id="g_s2_vol_pertalite">0 L</span></div><div class="recap-item"><span class="recap-label">Penjualan Shift 2</span><span class="recap-value green" id="g_s2_rp_pertalite">Rp 0</span></div><div class="recap-item"><span class="recap-label" style="font-weight:800">Total Volume</span><span class="recap-value green" style="font-weight:800" id="g_total_vol_pertalite">0 L</span></div><div class="recap-item"><span class="recap-label" style="font-weight:800">Total Penjualan</span><span class="recap-value green" style="font-weight:800" id="g_total_rp_pertalite">Rp 0</span></div></div></div><div class="recap-produk"><div class="recap-header pertamax">⛽ Pertamax</div><div class="recap-body"><div class="recap-item"><span class="recap-label">Volume Shift 1</span><span class="recap-value blue" id="g_s1_vol_pertamax">0 L</span></div><div class="recap-item"><span class="recap-label">Penjualan Shift 1</span><span class="recap-value blue" id="g_s1_rp_pertamax">Rp 0</span></div><div class="recap-item"><span class="recap-label">Volume Shift 2</span><span class="recap-value blue" id="g_s2_vol_pertamax">0 L</span></div><div class="recap-item"><span class="recap-label">Penjualan Shift 2</span><span class="recap-value blue" id="g_s2_rp_pertamax">Rp 0</span></div><div class="recap-item"><span class="recap-label" style="font-weight:800">Total Volume</span><span class="recap-value blue" style="font-weight:800" id="g_total_vol_pertamax">0 L</span></div><div class="recap-item"><span class="recap-label" style="font-weight:800">Total Penjualan</span><span class="recap-value blue" style="font-weight:800" id="g_total_rp_pertamax">Rp 0</span></div></div></div></div></div>
-    <div class="card"><div class="card-header slate"><span class="pip slate"></span>Ringkasan Per Shift</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Shift</th><th>Vol Pertalite</th><th>Vol Pertamax</th><th>Penjualan Kotor</th><th>Pengeluaran</th><th>Sisa Kas</th></tr></thead><tbody><tr><td><strong>Shift 1</strong></td><td id="sum_s1_vol_pt">0 L</td><td id="sum_s1_vol_px">0 L</td><td id="sum_s1_jual">Rp 0</td><td id="sum_s1_peng">Rp 0</td><td id="sum_s1_sisa">Rp 0</td></tr><tr><td><strong>Shift 2</strong></td><td id="sum_s2_vol_pt">0 L</td><td id="sum_s2_vol_px">0 L</td><td id="sum_s2_jual">Rp 0</td><td id="sum_s2_peng">Rp 0</td><td id="sum_s2_sisa">Rp 0</td></tr></tbody></table></div></div>
-    <div class="grid-2"><div class="card"><div class="card-header slate"><span class="pip slate"></span>Penjualan Global</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Produk / Shift</th><th>Volume (L)</th><th>Harga/L</th><th>Penjualan (Rp)</th></tr></thead><tbody><tr><td>Pertalite — S1</td><td id="g_row_s1_vol_pt">0</td><td id="g_row_s1_harga_pt">Rp 0</td><td id="g_row_s1_rp_pt">Rp 0</td></tr><tr><td>Pertalite — S2</td><td id="g_row_s2_vol_pt">0</td><td id="g_row_s2_harga_pt">Rp 0</td><td id="g_row_s2_rp_pt">Rp 0</td></tr><tr><td>Pertamax — S1</td><td id="g_row_s1_vol_px">0</td><td id="g_row_s1_harga_px">Rp 0</td><td id="g_row_s1_rp_px">Rp 0</td></tr><tr><td>Pertamax — S2</td><td id="g_row_s2_vol_px">0</td><td id="g_row_s2_harga_px">Rp 0</td><td id="g_row_s2_rp_px">Rp 0</td></tr><tr class="total-row"><td><strong>Total Global</strong></td><td id="g_total_vol_all">0</td><td>—</td><td id="g_total_rp_all">Rp 0</td></tr></tbody></table></div></div><div class="card"><div class="card-header red"><span class="pip red"></span>Pengeluaran &amp; Kas Global</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Keterangan</th><th>Jumlah (Rp)</th></tr></thead><tbody><tr><td>Total Penjualan Kotor</td><td id="g_total_jual_kotor">Rp 0</td></tr><tr><td>Pengeluaran Shift 1</td><td id="g_peng_s1">Rp 0</td></tr><tr><td>Pengeluaran Shift 2</td><td id="g_peng_s2">Rp 0</td></tr><tr><td>Total Pengeluaran</td><td id="g_total_peng">Rp 0</td></tr><tr class="total-row"><td><strong>Sisa Kas Bersih</strong></td><td id="g_sisa_kas">Rp 0</td></tr></tbody></table></div></div></div>
+    <div class="card"><div class="card-header slate"><span class="pip slate"></span>Ringkasan Per Shift</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Shift</th><th>Vol Pertalite</th><th>Vol Pertamax</th><th>Penjualan Kotor</th><th>Pengeluaran</th><th>Sisa Kas</th></tr></thead><tbody><tr><td><strong>Shift 1</strong></td><td id="sum_s1_vol_pt">0 L</td><td id="sum_s1_vol_px">0 L</td><td id="sum_s1_jual">Rp 0</td><td id="sum_s1_peng">Rp 0</td><td id="sum_s1_sisa">Rp 0</td></tr>
+    <tr><td><strong>Shift 2</strong></td><td id="sum_s2_vol_pt">0 L</td><td id="sum_s2_vol_px">0 L</td><td id="sum_s2_jual">Rp 0</td><td id="sum_s2_peng">Rp 0</td><td id="sum_s2_sisa">Rp 0</td></tr>
+    </tbody></table></div></div>
+    <div class="grid-2"><div class="card"><div class="card-header slate"><span class="pip slate"></span>Penjualan Global</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Produk / Shift</th><th>Volume (L)</th><th>Harga/L</th><th>Penjualan (Rp)</th></tr></thead><tbody><tr><td>Pertalite — S1</td><td id="g_row_s1_vol_pt">0</td><td id="g_row_s1_harga_pt">Rp 0</td><td id="g_row_s1_rp_pt">Rp 0</td></tr>
+    <tr><td>Pertalite — S2</td><td id="g_row_s2_vol_pt">0</td><td id="g_row_s2_harga_pt">Rp 0</td><td id="g_row_s2_rp_pt">Rp 0</td></tr>
+    <tr><td>Pertamax — S1</td><td id="g_row_s1_vol_px">0</td><td id="g_row_s1_harga_px">Rp 0</td><td id="g_row_s1_rp_px">Rp 0</td></tr>
+    <tr><td>Pertamax — S2</td><td id="g_row_s2_vol_px">0</td><td id="g_row_s2_harga_px">Rp 0</td><td id="g_row_s2_rp_px">Rp 0</td></tr>
+    <tr class="total-row"><td><strong>Total Global</strong></td><td id="g_total_vol_all">0</td><td>—</td><td id="g_total_rp_all">Rp 0</td></tr>
+    </tbody></table></div></div><div class="card"><div class="card-header red"><span class="pip red"></span>Pengeluaran &amp; Kas Global</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Keterangan</th><th>Jumlah (Rp)</th></tr></thead><tbody><tr><td>Total Penjualan Kotor</td><td id="g_total_jual_kotor">Rp 0</td></tr>
+    <tr><td>Pengeluaran Shift 1</td><td id="g_peng_s1">Rp 0</td></tr>
+    <tr><td>Pengeluaran Shift 2</td><td id="g_peng_s2">Rp 0</td></tr>
+    <tr><td>Total Pengeluaran</td><td id="g_total_peng">Rp 0</td></tr>
+    <tr class="total-row"><td><strong>Sisa Kas Bersih</strong></td><td id="g_sisa_kas">Rp 0</td></tr>
+    </tbody></table></div></div></div>
     <div class="card"><div class="card-header slate"><span class="pip slate"></span>Stok Global BBM</div><div class="stok-body"><div class="stok-product-label"><span class="dot green"></span><span>Pertalite (Global)</span></div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-green" type="text" id="g_stok_awal_pertalite" readonly></div><div><div class="field-label">Total Jual (L)</div><input class="inp ro-green" type="text" id="g_stok_jual_pertalite" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp ro-blue" type="text" id="g_stok_akhir_pertalite" readonly></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="g_selisih_pertalite" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="g_ket_pertalite">⊜ Seimbang</span></div></div><div class="prod-divider"></div><div class="stok-product-label"><span class="dot blue"></span><span>Pertamax (Global)</span></div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-green" type="text" id="g_stok_awal_pertamax" readonly></div><div><div class="field-label">Total Jual (L)</div><input class="inp ro-blue" type="text" id="g_stok_jual_pertamax" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp ro-blue" type="text" id="g_stok_akhir_pertamax" readonly></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" type="text" id="g_selisih_pertamax" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="g_ket_pertamax">⊜ Seimbang</span></div></div></div></div>
   </div>
 
@@ -223,7 +235,11 @@
 </div>
 
 <script>
-  // ======================== SCRIPT DENGAN PEMBULATAN KE BAWAH (FLOOR) UNTUK PENJUALAN & PENYUAPAN ========================
+  // ======================== PERUBAHAN sesuai permintaan ========================
+  // 1. Penjualan: Volume dan Rupiah TIDAK dibulatkan (desimal asli)
+  // 2. Selisih stok (penguapan) = floor(stokAwal) - totalJual - floor(stokAkhir) dengan totalJual desimal
+  // =============================================================================
+
   const STORAGE_KEY = 'spbu3417603_data_final';
   let lockState={s1:false};
   let totLockState={s1_pertalite:false,s1_pertamax:false,s2_pertalite:false,s2_pertamax:false};
@@ -413,26 +429,34 @@
   function renderPengeluaran(shift){ const c=document.getElementById(`${shift}_pengeluaran_list`); if(!c) return; c.innerHTML=pengeluaranData[shift].map(item=>`<div class="pengeluaran-item"><input class="inp" type="text" placeholder="Keterangan..." value="${item.keterangan}" onchange="updatePeng('${shift}',${item.id},'keterangan',this.value)"><div class="peng-row"><input class="inp" type="number" placeholder="Jumlah (Rp)" value="${item.jumlah||''}" onchange="updatePeng('${shift}',${item.id},'jumlah',parseFloat(this.value)||0);calcAll();saveAllToStorage()"><button class="del-btn" onclick="deletePengeluaran('${shift}',${item.id})">×</button></div></div>`).join(''); }
   function updatePeng(shift,id,key,val){ const item=pengeluaranData[shift].find(x=>x.id===id); if(item) item[key]=val; saveAllToStorage(); }
 
-  // ========== HELPER ==========
+  // ========== HELPER FORMAT (desimal untuk liter, integer untuk rupiah) ==========
   const num=id=>parseFloat(document.getElementById(id)?.value)||0;
+  // fmt untuk rupiah dibulatkan ke bawah (uang selalu integer)
   const fmt=n=>'Rp '+Math.floor(Math.abs(n)).toLocaleString('id-ID')+(n<0?' (defisit)':'');
-  const fmtL=n=>Math.floor(Math.abs(n)).toLocaleString('id-ID')+' L';
+  // fmtL untuk liter dengan 2 desimal (tidak dibulatkan)
+  const fmtL=n=>{
+    if(isNaN(n)) return '0 L';
+    return n.toLocaleString('id-ID', {minimumFractionDigits:0, maximumFractionDigits:2}) + ' L';
+  };
   const setVal=(id,v)=>{const el=document.getElementById(id);if(el) el.value=v};
   const setTxt=(id,v)=>{const el=document.getElementById(id);if(el) el.textContent=v};
   function floorToMillion(n){return Math.floor(Math.abs(n)/1000000)*1000000 * (n<0 ? -1 : 1);}
   
-  // Fungsi perhitungan stok dengan pembulatan ke bawah (floor) untuk selisih liter
+  // Fungsi perhitungan stok dengan rumus baru: selisih = floor(stokAwal) - totalJual - floor(stokAkhir)
+  // totalJual (desimal) tidak dibulatkan, stokAwal & stokAkhir dibulatkan ke bawah
   function calcStokDisplay(prefix,product,stokAwal,totalJual,stokAkhir){ 
-    const selisihRaw = stokAwal - totalJual - stokAkhir;
-    const selisih = Math.floor(selisihRaw); // dibulatkan ke bawah
-    setVal(`${prefix}_stok_jual_${product}`,fmtL(totalJual)); 
+    // terapkan floor pada stok awal dan stok akhir
+    const stokAwalFloor = Math.floor(stokAwal);
+    const stokAkhirFloor = Math.floor(stokAkhir);
+    const selisih = stokAwalFloor - totalJual - stokAkhirFloor;
+    setVal(`${prefix}_stok_jual_${product}`, fmtL(totalJual)); 
     const selEl=document.getElementById(`${prefix}_selisih_${product}`); 
-    if(selEl) selEl.value=fmtL(selisih); 
+    if(selEl) selEl.value = fmtL(selisih); 
     const badge=document.getElementById(`${prefix}_ket_${product}`); 
     if(badge){ 
-      if(Math.abs(selisih)<1){ 
+      if(Math.abs(selisih) < 0.01){ 
         badge.className='ket-badge zero'; badge.textContent='⊜ Seimbang'; 
-      } else if(selisih>0){ 
+      } else if(selisih > 0){ 
         badge.className='ket-badge minus'; badge.textContent='▼ Minus (Susut) '+fmtL(selisih); 
       } else { 
         badge.className='ket-badge plus'; badge.textContent='▲ Plus (Lebih) '+fmtL(Math.abs(selisih)); 
@@ -467,36 +491,36 @@
     let res={};
     ['s1','s2'].forEach(shift=>{
       const pp=num(`${shift}_price_pertalite`); const px=num(`${shift}_price_pertamax`);
-      let vPt=0,rPt=0,vPx=0,rPx=0;
+      let vPt=0, rPt=0, vPx=0, rPx=0;
       // Pertalite nozzles: A1, A2, C
       ['A1','A2','C'].forEach(n=>{
         let vRaw = num(`${shift}_tk_${n}`) - num(`${shift}_ta_${n}`);
-        let v = Math.max(0, Math.floor(vRaw));          // volume dibulatkan ke bawah
-        let r = Math.floor(v * pp);                     // rupiah dibulatkan ke bawah
-        setVal(`${shift}_vol_${n}`,fmtL(v)); 
-        setVal(`${shift}_rp_${n}`,fmt(r));
+        let v = Math.max(0, vRaw);                // volume desimal (tidak dibulatkan)
+        let r = v * pp;                           // rupiah desimal (tidak dibulatkan)
+        setVal(`${shift}_vol_${n}`, fmtL(v)); 
+        setVal(`${shift}_rp_${n}`, fmt(r));       // tampilan rupiah tetap dibulatkan ke bawah (uang fisik)
         vPt += v; 
         rPt += r;
       });
       // Pertamax nozzles: B1, B2, D
       ['B1','B2','D'].forEach(n=>{
         let vRaw = num(`${shift}_tk_${n}`) - num(`${shift}_ta_${n}`);
-        let v = Math.max(0, Math.floor(vRaw));
-        let r = Math.floor(v * px);
-        setVal(`${shift}_vol_${n}`,fmtL(v)); 
-        setVal(`${shift}_rp_${n}`,fmt(r));
+        let v = Math.max(0, vRaw);
+        let r = v * px;
+        setVal(`${shift}_vol_${n}`, fmtL(v)); 
+        setVal(`${shift}_rp_${n}`, fmt(r));
         vPx += v; 
         rPx += r;
       });
-      setTxt(`${shift}_total_vol_pertalite`,fmtL(vPt)); 
-      setTxt(`${shift}_total_rp_pertalite`,fmt(rPt));
-      setTxt(`${shift}_total_vol_pertamax`,fmtL(vPx)); 
-      setTxt(`${shift}_total_rp_pertamax`,fmt(rPx));
+      setTxt(`${shift}_total_vol_pertalite`, fmtL(vPt)); 
+      setTxt(`${shift}_total_rp_pertalite`, fmt(rPt));
+      setTxt(`${shift}_total_vol_pertamax`, fmtL(vPx)); 
+      setTxt(`${shift}_total_rp_pertamax`, fmt(rPx));
       const totalPeng=pengeluaranData[shift].reduce((a,x)=>a+(parseFloat(x.jumlah)||0),0);
       const totalJual=rPt+rPx;
-      setTxt(`${shift}_total_pengeluaran`,fmt(totalPeng)); 
-      setTxt(`${shift}_total_penjualan`,fmt(totalJual));
-      setTxt(`${shift}_sisa_kas`,fmt(totalJual-totalPeng));
+      setTxt(`${shift}_total_pengeluaran`, fmt(totalPeng)); 
+      setTxt(`${shift}_total_penjualan`, fmt(totalJual));
+      setTxt(`${shift}_sisa_kas`, fmt(totalJual-totalPeng));
       res[shift]={vPt,rPt,vPx,rPx,totalJual,totalPeng,pricePt:pp,pricePx:px};
     });
     // Stok Shift 1
@@ -504,8 +528,8 @@
     const s1StokAwalPx=num('s1_stok_awal_pertamax');
     const s1StokAkhirPt=num('s1_stok_akhir_pertalite'); 
     const s1StokAkhirPx=num('s1_stok_akhir_pertamax');
-    calcStokDisplay('s1','pertalite',s1StokAwalPt,res.s1.vPt,s1StokAkhirPt);
-    calcStokDisplay('s1','pertamax',s1StokAwalPx,res.s1.vPx,s1StokAkhirPx);
+    calcStokDisplay('s1','pertalite', s1StokAwalPt, res.s1.vPt, s1StokAkhirPt);
+    calcStokDisplay('s1','pertamax', s1StokAwalPx, res.s1.vPx, s1StokAkhirPx);
     
     // Transfer totalisator akhir shift 1 ke awal shift 2
     ['A1','A2','C'].forEach(n=>{
@@ -523,29 +547,29 @@
       if(d) d.value=val?fmtL(val):'—';
     });
     // Stok awal shift 2 = stok akhir shift 1
-    if(document.getElementById('s2_stok_awal_pertalite')) document.getElementById('s2_stok_awal_pertalite').value = s1StokAkhirPt || '';
-    if(document.getElementById('s2_stok_awal_pertamax')) document.getElementById('s2_stok_awal_pertamax').value = s1StokAkhirPx || '';
+    if(document.getElementById('s2_stok_awal_pertalite')) document.getElementById('s2_stok_awal_pertalite').value = s1StokAkhirPt ? fmtL(s1StokAkhirPt) : '';
+    if(document.getElementById('s2_stok_awal_pertamax')) document.getElementById('s2_stok_awal_pertamax').value = s1StokAkhirPx ? fmtL(s1StokAkhirPx) : '';
     
     const s2StokAkhirPt=num('s2_stok_akhir_pertalite'); 
     const s2StokAkhirPx=num('s2_stok_akhir_pertamax');
-    calcStokDisplay('s2','pertalite',s1StokAkhirPt,res.s2.vPt,s2StokAkhirPt);
-    calcStokDisplay('s2','pertamax',s1StokAkhirPx,res.s2.vPx,s2StokAkhirPx);
+    calcStokDisplay('s2','pertalite', s1StokAkhirPt, res.s2.vPt, s2StokAkhirPt);
+    calcStokDisplay('s2','pertamax', s1StokAkhirPx, res.s2.vPx, s2StokAkhirPx);
     
     // Global rekapitulasi
     const s1=res.s1, s2=res.s2;
     const gVPt=s1.vPt+s2.vPt, gRPt=s1.rPt+s2.rPt, gVPx=s1.vPx+s2.vPx, gRPx=s1.rPx+s2.rPx, gPeng=s1.totalPeng+s2.totalPeng, gSisa=gRPt+gRPx-gPeng;
-    setTxt('g_s1_vol_pertalite',fmtL(s1.vPt)); setTxt('g_s2_vol_pertalite',fmtL(s2.vPt)); setTxt('g_total_vol_pertalite',fmtL(gVPt));
-    setTxt('g_s1_vol_pertamax',fmtL(s1.vPx)); setTxt('g_s2_vol_pertamax',fmtL(s2.vPx)); setTxt('g_total_vol_pertamax',fmtL(gVPx));
-    setTxt('g_s1_rp_pertalite',fmt(s1.rPt)); setTxt('g_s2_rp_pertalite',fmt(s2.rPt)); setTxt('g_total_rp_pertalite',fmt(gRPt));
-    setTxt('g_s1_rp_pertamax',fmt(s1.rPx)); setTxt('g_s2_rp_pertamax',fmt(s2.rPx)); setTxt('g_total_rp_pertamax',fmt(gRPx));
-    setTxt('g_row_s1_vol_pt',fmtL(s1.vPt)); setTxt('g_row_s1_harga_pt',fmt(s1.pricePt)); setTxt('g_row_s1_rp_pt',fmt(s1.rPt));
-    setTxt('g_row_s2_vol_pt',fmtL(s2.vPt)); setTxt('g_row_s2_harga_pt',fmt(s2.pricePt)); setTxt('g_row_s2_rp_pt',fmt(s2.rPt));
-    setTxt('g_row_s1_vol_px',fmtL(s1.vPx)); setTxt('g_row_s1_harga_px',fmt(s1.pricePx)); setTxt('g_row_s1_rp_px',fmt(s1.rPx));
-    setTxt('g_row_s2_vol_px',fmtL(s2.vPx)); setTxt('g_row_s2_harga_px',fmt(s2.pricePx)); setTxt('g_row_s2_rp_px',fmt(s2.rPx));
-    setTxt('g_total_vol_all',fmtL(gVPt+gVPx)); setTxt('g_total_rp_all',fmt(gRPt+gRPx));
-    setTxt('g_total_jual_kotor',fmt(gRPt+gRPx)); setTxt('g_peng_s1',fmt(s1.totalPeng)); setTxt('g_peng_s2',fmt(s2.totalPeng)); setTxt('g_total_peng',fmt(gPeng)); setTxt('g_sisa_kas',fmt(gSisa));
-    setTxt('sum_s1_vol_pt',fmtL(s1.vPt)); setTxt('sum_s1_vol_px',fmtL(s1.vPx)); setTxt('sum_s1_jual',fmt(s1.totalJual)); setTxt('sum_s1_peng',fmt(s1.totalPeng)); setTxt('sum_s1_sisa',fmt(s1.totalJual-s1.totalPeng));
-    setTxt('sum_s2_vol_pt',fmtL(s2.vPt)); setTxt('sum_s2_vol_px',fmtL(s2.vPx)); setTxt('sum_s2_jual',fmt(s2.totalJual)); setTxt('sum_s2_peng',fmt(s2.totalPeng)); setTxt('sum_s2_sisa',fmt(s2.totalJual-s2.totalPeng));
+    setTxt('g_s1_vol_pertalite', fmtL(s1.vPt)); setTxt('g_s2_vol_pertalite', fmtL(s2.vPt)); setTxt('g_total_vol_pertalite', fmtL(gVPt));
+    setTxt('g_s1_vol_pertamax', fmtL(s1.vPx)); setTxt('g_s2_vol_pertamax', fmtL(s2.vPx)); setTxt('g_total_vol_pertamax', fmtL(gVPx));
+    setTxt('g_s1_rp_pertalite', fmt(s1.rPt)); setTxt('g_s2_rp_pertalite', fmt(s2.rPt)); setTxt('g_total_rp_pertalite', fmt(gRPt));
+    setTxt('g_s1_rp_pertamax', fmt(s1.rPx)); setTxt('g_s2_rp_pertamax', fmt(s2.rPx)); setTxt('g_total_rp_pertamax', fmt(gRPx));
+    setTxt('g_row_s1_vol_pt', fmtL(s1.vPt)); setTxt('g_row_s1_harga_pt', fmt(s1.pricePt)); setTxt('g_row_s1_rp_pt', fmt(s1.rPt));
+    setTxt('g_row_s2_vol_pt', fmtL(s2.vPt)); setTxt('g_row_s2_harga_pt', fmt(s2.pricePt)); setTxt('g_row_s2_rp_pt', fmt(s2.rPt));
+    setTxt('g_row_s1_vol_px', fmtL(s1.vPx)); setTxt('g_row_s1_harga_px', fmt(s1.pricePx)); setTxt('g_row_s1_rp_px', fmt(s1.rPx));
+    setTxt('g_row_s2_vol_px', fmtL(s2.vPx)); setTxt('g_row_s2_harga_px', fmt(s2.pricePx)); setTxt('g_row_s2_rp_px', fmt(s2.rPx));
+    setTxt('g_total_vol_all', fmtL(gVPt+gVPx)); setTxt('g_total_rp_all', fmt(gRPt+gRPx));
+    setTxt('g_total_jual_kotor', fmt(gRPt+gRPx)); setTxt('g_peng_s1', fmt(s1.totalPeng)); setTxt('g_peng_s2', fmt(s2.totalPeng)); setTxt('g_total_peng', fmt(gPeng)); setTxt('g_sisa_kas', fmt(gSisa));
+    setTxt('sum_s1_vol_pt', fmtL(s1.vPt)); setTxt('sum_s1_vol_px', fmtL(s1.vPx)); setTxt('sum_s1_jual', fmt(s1.totalJual)); setTxt('sum_s1_peng', fmt(s1.totalPeng)); setTxt('sum_s1_sisa', fmt(s1.totalJual-s1.totalPeng));
+    setTxt('sum_s2_vol_pt', fmtL(s2.vPt)); setTxt('sum_s2_vol_px', fmtL(s2.vPx)); setTxt('sum_s2_jual', fmt(s2.totalJual)); setTxt('sum_s2_peng', fmt(s2.totalPeng)); setTxt('sum_s2_sisa', fmt(s2.totalJual-s2.totalPeng));
     
     // Global stok
     const gStokAwalPt=s1StokAwalPt, gStokAwalPx=s1StokAwalPx, gStokAkhirPt=s2StokAkhirPt, gStokAkhirPx=s2StokAkhirPx;
@@ -553,8 +577,8 @@
     if(document.getElementById('g_stok_awal_pertamax')) document.getElementById('g_stok_awal_pertamax').value=gStokAwalPx?fmtL(gStokAwalPx):'0 L';
     if(document.getElementById('g_stok_akhir_pertalite')) document.getElementById('g_stok_akhir_pertalite').value=gStokAkhirPt?fmtL(gStokAkhirPt):'0 L';
     if(document.getElementById('g_stok_akhir_pertamax')) document.getElementById('g_stok_akhir_pertamax').value=gStokAkhirPx?fmtL(gStokAkhirPx):'0 L';
-    const selisihPt = calcStokDisplay('g','pertalite',gStokAwalPt,gVPt,gStokAkhirPt);
-    const selisihPx = calcStokDisplay('g','pertamax',gStokAwalPx,gVPx,gStokAkhirPx);
+    const selisihPt = calcStokDisplay('g','pertalite', gStokAwalPt, gVPt, gStokAkhirPt);
+    const selisihPx = calcStokDisplay('g','pertamax', gStokAwalPx, gVPx, gStokAkhirPx);
     const avgPricePt=(s1.pricePt+s2.pricePt)/2; 
     const avgPricePx=(s1.pricePx+s2.pricePx)/2;
     _global={vPt:gVPt,vPx:gVPx,rPt:gRPt,rPx:gRPx,totalPeng:gPeng,gSisa,stokAkhirPt:gStokAkhirPt,stokAkhirPx:gStokAkhirPx,stokAwalPt:gStokAwalPt,stokAwalPx:gStokAwalPx,selisihPt,selisihPx,avgPricePt,avgPricePx};
@@ -565,30 +589,26 @@
   function calcModal(){
     syncValuationFromDO();
     const {vPt:gVPt, vPx:gVPx, gSisa, totalPeng:gPeng, stokAkhirPt, stokAkhirPx, selisihPt, selisihPx, avgPricePt, avgPricePx} = _global;
-    // Volume sudah dalam bentuk integer (hasil floor dari penjualan)
-    const volFloorPt = gVPt;
-    const volFloorPx = gVPx;
+    // Volume sudah dalam bentuk desimal (tanpa pembulatan)
     const marginPt = num('m_margin_pertalite'); 
     const marginPx = num('m_margin_pertamax');
-    const keuntunganPt = Math.floor(volFloorPt * marginPt); 
-    const keuntunganPx = Math.floor(volFloorPx * marginPx);
-    // Selisih stok sudah dibulatkan ke bawah (floor) di calcStokDisplay, gunakan langsung
-    const selisihTruncPt = selisihPt;
-    const selisihTruncPx = selisihPx;
-    const nilaiPengPt = Math.floor(selisihTruncPt * avgPricePt);
-    const nilaiPengPx = Math.floor(selisihTruncPx * avgPricePx);
+    const keuntunganPt = Math.floor(gVPt * marginPt);   // keuntungan tetap integer
+    const keuntunganPx = Math.floor(gVPx * marginPx);
+    // Selisih stok sudah dihitung dengan rumus baru (bisa desimal)
+    const nilaiPengPt = Math.floor(selisihPt * avgPricePt);
+    const nilaiPengPx = Math.floor(selisihPx * avgPricePx);
     const nilaiPengTotal = nilaiPengPt + nilaiPengPx;
     
-    function pengLabel(selisihTrunc, nilai){ 
-      if(selisihTrunc===0) return {text:'0 L → Rp 0', cls:'zero'}; 
-      const susut=selisihTrunc>0; 
-      const absL=Math.abs(selisihTrunc); 
+    function pengLabel(selisih, nilai){ 
+      if(Math.abs(selisih) < 0.01) return {text:'0 L → Rp 0', cls:'zero'}; 
+      const susut=selisih>0; 
+      const absL=Math.abs(selisih); 
       const absRp=Math.abs(nilai); 
       const sign=susut?'▼ Minus (Susut)':'▲ Plus (Lebih)'; 
-      return {text:`${sign} ${absL} L → ${susut?'-':'+'}${fmt(absRp)}`, cls:susut?'minus':'plus'}; 
+      return {text:`${sign} ${fmtL(absL)} → ${susut?'-':'+'}${fmt(absRp)}`, cls:susut?'minus':'plus'}; 
     }
-    const lPt = pengLabel(selisihTruncPt, nilaiPengPt); 
-    const lPx = pengLabel(selisihTruncPx, nilaiPengPx);
+    const lPt = pengLabel(selisihPt, nilaiPengPt); 
+    const lPx = pengLabel(selisihPx, nilaiPengPx);
     document.getElementById('peng_pt_label').innerHTML = lPt.text; 
     document.getElementById('peng_pt_label').className = `peng-info-val ${lPt.cls}`;
     document.getElementById('peng_px_label').innerHTML = lPx.text; 
@@ -649,34 +669,34 @@
     const nilaiDoPt=Math.floor(num('m_sisa_do_pertalite')*num('m_harga_beli_pertalite')); 
     const nilaiDoPx=Math.floor(num('m_sisa_do_pertamax')*num('m_harga_beli_pertamax')); 
     const totalDo=nilaiDoPt+nilaiDoPx;
-    setVal('m_nilai_do_pertalite',fmt(nilaiDoPt)); 
-    setVal('m_nilai_do_pertamax',fmt(nilaiDoPx));
-    setTxt('m_stat_do_pertalite',fmt(nilaiDoPt)); 
-    setTxt('m_stat_do_pertamax',fmt(nilaiDoPx)); 
-    setTxt('m_stat_total_do',fmt(totalDo)); 
-    setTxt('m_stat_modal_awal',fmt(modalAwal));
+    setVal('m_nilai_do_pertalite', fmt(nilaiDoPt)); 
+    setVal('m_nilai_do_pertamax', fmt(nilaiDoPx));
+    setTxt('m_stat_do_pertalite', fmt(nilaiDoPt)); 
+    setTxt('m_stat_do_pertamax', fmt(nilaiDoPx)); 
+    setTxt('m_stat_total_do', fmt(totalDo)); 
+    setTxt('m_stat_modal_awal', fmt(modalAwal));
     const hargaValPt=num('m_harga_val_pertalite'); 
     const hargaValPx=num('m_harga_val_pertamax'); 
-    const nilaiStokPt=Math.floor(stokAkhirPt*hargaValPt); 
-    const nilaiStokPx=Math.floor(stokAkhirPx*hargaValPx); 
+    const nilaiStokPt=Math.floor(stokAkhirPt * hargaValPt); 
+    const nilaiStokPx=Math.floor(stokAkhirPx * hargaValPx); 
     const totalNilaiStok=nilaiStokPt+nilaiStokPx; 
     const uangBulat=floorToMillion(gSisa);
     document.getElementById('m_uang_note').innerHTML = `Asli: ${fmt(gSisa)} → Dibulatkan ke bawah per juta: ${fmt(uangBulat)}`;
-    setVal('m_stok_akhir_pt_display',fmtL(stokAkhirPt)); 
-    setVal('m_stok_akhir_px_display',fmtL(stokAkhirPx)); 
-    setVal('m_uang_global_display',fmt(uangBulat));
-    setVal('m_nilai_stok_pertalite',fmt(nilaiStokPt)); 
-    setVal('m_nilai_stok_pertamax',fmt(nilaiStokPx)); 
-    setVal('m_total_nilai_stok',fmt(totalNilaiStok));
-    setTxt('m_stat_stok_pertalite',fmt(nilaiStokPt)); 
-    setTxt('m_stat_stok_pertamax',fmt(nilaiStokPx)); 
-    setTxt('m_stat_total_stok',fmt(totalNilaiStok)); 
-    setTxt('m_stat_uang_global',fmt(uangBulat));
+    setVal('m_stok_akhir_pt_display', fmtL(stokAkhirPt)); 
+    setVal('m_stok_akhir_px_display', fmtL(stokAkhirPx)); 
+    setVal('m_uang_global_display', fmt(uangBulat));
+    setVal('m_nilai_stok_pertalite', fmt(nilaiStokPt)); 
+    setVal('m_nilai_stok_pertamax', fmt(nilaiStokPx)); 
+    setVal('m_total_nilai_stok', fmt(totalNilaiStok));
+    setTxt('m_stat_stok_pertalite', fmt(nilaiStokPt)); 
+    setTxt('m_stat_stok_pertamax', fmt(nilaiStokPx)); 
+    setTxt('m_stat_total_stok', fmt(totalNilaiStok)); 
+    setTxt('m_stat_uang_global', fmt(uangBulat));
     const hasilAkhir=totalDo+totalNilaiStok+uangBulat-modalAwal;
-    setVal('m_komponen_do',fmt(totalDo)); 
-    setVal('m_komponen_stok',fmt(totalNilaiStok)); 
-    setVal('m_komponen_uang',fmt(uangBulat)); 
-    setVal('m_komponen_modal',fmt(modalAwal));
+    setVal('m_komponen_do', fmt(totalDo)); 
+    setVal('m_komponen_stok', fmt(totalNilaiStok)); 
+    setVal('m_komponen_uang', fmt(uangBulat)); 
+    setVal('m_komponen_modal', fmt(modalAwal));
     const fv=document.getElementById('m_final_value'); 
     const ff=document.getElementById('m_final_formula'); 
     const fs=document.getElementById('m_final_status');
@@ -697,10 +717,10 @@
       fs.className='ket-badge minus'; 
       fs.textContent='▼ Defisit'; 
     }
-    setTxt('m_sum_do',fmt(totalDo)); 
-    setTxt('m_sum_stok',fmt(totalNilaiStok)); 
-    setTxt('m_sum_uang',fmt(uangBulat)); 
-    setTxt('m_sum_modal',fmt(modalAwal));
+    setTxt('m_sum_do', fmt(totalDo)); 
+    setTxt('m_sum_stok', fmt(totalNilaiStok)); 
+    setTxt('m_sum_uang', fmt(uangBulat)); 
+    setTxt('m_sum_modal', fmt(modalAwal));
   }
 
   // ========== EXPORT RINGKASAN ==========
