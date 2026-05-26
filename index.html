@@ -2,127 +2,462 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SPBU 3417603 - Laporan Harian & Modal</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SPBU 3417603 · Laporan Harian & Modal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-  :root {
-    --bg:#f0f4f8;--surface:#fff;--surface2:#f7fafc;--border:#dde3ec;
-    --text:#1a2332;--text-mid:#4a5e72;--text-dim:#8fa3b8;
-    --pt-green:#1da462;--pt-green-light:#e8f7f0;--pt-green-mid:#b8e8d0;
-    --px-blue:#0057b8;--px-blue-light:#e6eef9;--px-blue-mid:#b3cef0;
-    --red:#e5363b;--red-light:#fdeaea;--amber:#d97706;--amber-light:#fef3e2;
-    --purple:#7c3aed;--purple-light:#f3effe;--slate:#64748b;
-    --shadow-sm:0 1px 3px rgba(0,0,0,.06);
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px}
-  .header{background:#fff;border-bottom:1px solid var(--border);padding:8px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100}
-  .header-title h1{font-size:16px;font-weight:800}
-  .header-title p{font-size:10px;color:var(--text-dim);text-transform:uppercase}
-  .header-right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .export-btn{padding:7px 14px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:12px;display:inline-flex;align-items:center;gap:5px}
-  .export-btn.pdf{background:var(--red);color:#fff}
-  .export-btn.excel{background:var(--pt-green);color:#fff}
-  .export-btn.image{background:var(--px-blue);color:#fff}
-  .tabs-wrapper{background:#fff;border-bottom:1px solid var(--border);display:flex;overflow-x:auto;padding:0 16px}
-  .tab-btn{padding:14px 16px;border:none;background:none;font-weight:700;text-transform:uppercase;font-size:12px;cursor:pointer;border-bottom:2px solid transparent}
-  .tab-btn.active{color:var(--px-blue);border-bottom-color:var(--px-blue)}
-  .tab-btn.tab-global.active{color:var(--amber);border-bottom-color:var(--amber)}
-  .tab-btn.tab-modal.active{color:var(--purple);border-bottom-color:var(--purple)}
-  .content{padding:16px;max-width:1440px;margin:0 auto}
-  .tab-pane{display:none}
-  .tab-pane.active{display:block}
-  .grid-2{display:grid;gap:16px;grid-template-columns:1fr}
-  @media(min-width:768px){.grid-2{grid-template-columns:1fr 1fr}}
-  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:16px;overflow:hidden}
-  .card-header{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;font-weight:700;font-size:11px;text-transform:uppercase}
-  .card-header.green{background:var(--pt-green-light);color:var(--pt-green)}
-  .card-header.blue{background:var(--px-blue-light);color:var(--px-blue)}
-  .card-header.red{background:var(--red-light);color:var(--red)}
-  .card-header.amber{background:var(--amber-light);color:var(--amber)}
-  .card-header.slate{background:var(--surface2);color:var(--slate)}
-  .card-header.purple{background:var(--purple-light);color:var(--purple)}
-  .pip{width:7px;height:7px;border-radius:50%;display:inline-block}
-  .pip.green{background:var(--pt-green)}.pip.blue{background:var(--px-blue)}.pip.red{background:var(--red)}.pip.amber{background:var(--amber)}.pip.slate{background:var(--slate)}.pip.purple{background:var(--purple)}
-  .table-wrap{overflow-x:auto}
-  .nozzle-table{width:100%;border-collapse:collapse;min-width:560px}
-  .nozzle-table th{text-align:left;padding:10px;font-size:10px;text-transform:uppercase;background:var(--surface2);border-bottom:1px solid var(--border)}
-  .nozzle-table td{padding:8px;border-bottom:1px solid #f0f4f8}
-  .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-weight:700;font-size:11px}
-  .badge.green{background:var(--pt-green-light);border:1px solid var(--pt-green-mid);color:var(--pt-green)}
-  .badge.blue{background:var(--px-blue-light);border:1px solid var(--px-blue-mid);color:var(--px-blue)}
-  .inp{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:7px;font-family:'JetBrains Mono',monospace;font-size:12px;background:#fff}
-  .inp:focus{border-color:var(--px-blue);outline:none}
-  .inp[readonly]{background:var(--surface2);cursor:default}
-  .inp.ro-green{background:var(--pt-green-light);color:var(--pt-green);border-color:var(--pt-green-mid)}
-  .inp.ro-blue{background:var(--px-blue-light);color:var(--px-blue);border-color:var(--px-blue-mid)}
-  .inp.ro-slate{background:var(--surface2);color:var(--slate)}
-  .inp.ro-red{background:var(--red-light);color:var(--red)}
-  .inp.ro-amber{background:var(--amber-light);color:var(--amber)}
-  .field-label{font-size:10px;text-transform:uppercase;font-weight:700;color:var(--text-dim);margin-bottom:4px}
-  .price-row{display:flex;gap:10px;flex-wrap:wrap;padding:14px 16px}
-  .lock-btn{padding:7px 13px;border-radius:8px;border:none;font-weight:700;font-size:11px;display:flex;align-items:center;gap:5px;cursor:pointer}
-  .lock-btn.unlocked{background:var(--pt-green-light);border:1px solid var(--pt-green-mid);color:var(--pt-green)}
-  .lock-btn.locked{background:var(--red-light);border:1px solid #f5b8ba;color:var(--red)}
-  .lock-pill{padding:4px 9px;border-radius:20px;font-size:10px;font-weight:700}
-  .lock-pill.unlocked{background:var(--pt-green-light);color:var(--pt-green)}
-  .lock-pill.locked{background:var(--red-light);color:var(--red)}
-  .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;padding:12px 16px;background:var(--surface2);border-top:1px solid var(--border)}
-  .stat-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px;position:relative}
-  .stat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0}
-  .stat-card.green::after{background:var(--pt-green)}.stat-card.blue::after{background:var(--px-blue)}.stat-card.red::after{background:var(--red)}.stat-card.amber::after{background:var(--amber)}.stat-card.slate::after{background:var(--slate)}.stat-card.purple::after{background:var(--purple)}
-  .stat-label{font-size:10px;text-transform:uppercase;font-weight:700;color:var(--text-dim);margin-bottom:6px}
-  .stat-value{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600}
-  .stat-value.green{color:var(--pt-green)}.stat-value.blue{color:var(--px-blue)}.stat-value.red{color:var(--red)}.stat-value.amber{color:var(--amber)}.stat-value.slate{color:var(--slate)}.stat-value.purple{color:var(--purple)}
-  .totalisator-strip{padding:8px 16px;background:var(--surface2);border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-  .reset-btn{padding:6px 12px;background:#fff;border:1px solid var(--border);border-radius:7px;font-size:11px;cursor:pointer}
-  .pengeluaran-body{padding:12px 16px}
-  .pengeluaran-item{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center}
-  .pengeluaran-item .inp{flex:2}
-  .del-btn{width:34px;height:34px;background:var(--red-light);border:1px solid #f5b8ba;color:var(--red);border-radius:7px;cursor:pointer;font-weight:bold}
-  .add-btn{width:100%;padding:8px;background:none;border:1.5px dashed var(--border);border-radius:8px;cursor:pointer;font-weight:600;margin-top:8px}
-  .stok-body{padding:14px 16px}
-  .stok-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
-  @media(max-width:640px){.stok-grid{grid-template-columns:1fr 1fr}}
-  .ket-badge{display:inline-flex;align-items:center;gap:4px;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:700}
-  .ket-badge.plus{background:var(--pt-green-light);color:var(--pt-green);border:1px solid var(--pt-green-mid)}
-  .ket-badge.minus{background:var(--red-light);color:var(--red);border:1px solid #f5b8ba}
-  .ket-badge.zero{background:var(--surface2);color:var(--slate);border:1px solid var(--border)}
-  .prod-divider{height:1px;background:var(--border);margin:12px 0}
-  .recap-dua-kolom{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px}
-  .recap-produk{border:1px solid var(--border);border-radius:12px;overflow:hidden}
-  .recap-header{padding:12px;font-weight:800;border-bottom:2px solid}
-  .recap-header.pertalite{background:var(--pt-green-light);border-bottom-color:var(--pt-green-mid);color:var(--pt-green)}
-  .recap-header.pertamax{background:var(--px-blue-light);border-bottom-color:var(--px-blue-mid);color:var(--px-blue)}
-  .recap-body{padding:12px}
-  .recap-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--border)}
-  .sum-table{width:100%;border-collapse:collapse}
-  .sum-table th,.sum-table td{padding:10px;border-bottom:1px solid var(--border);text-align:left}
-  .sum-table th{background:var(--surface2);font-size:10px;text-transform:uppercase}
-  .sum-table .total-row td{background:var(--px-blue-light);font-weight:700}
-  .modal-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
-  .do-section{display:grid;grid-template-columns:repeat(4,1fr) auto;gap:10px;align-items:end;margin-bottom:16px}
-  .result-banner{padding:16px;border-radius:12px;margin:16px;display:flex;justify-content:space-between;flex-wrap:wrap}
-  .result-banner.profit{background:var(--pt-green-light);border:2px solid var(--pt-green-mid)}
-  .result-banner.loss{background:var(--red-light);border:2px solid #f5b8ba}
-  .result-banner.neutral{background:var(--surface2);border:2px solid var(--border)}
-  .final-result-card{background:linear-gradient(135deg,#1a2332,#2d3f55);color:#fff;border-radius:14px;padding:20px;margin:16px;display:flex;justify-content:space-between;flex-wrap:wrap}
-  .final-result-card .value{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700}
-  .final-result-card .value.profit{color:#4ade80}.final-result-card .value.loss{color:#f87171}
-  .peng-info-box{background:var(--surface2);border-radius:10px;padding:12px;margin-bottom:16px}
-  .peng-info-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)}
-  .uang-note{font-size:10px;color:var(--amber);margin-top:3px}
-  @media print{.header,.tabs-wrapper,.export-btn,.reset-btn,.add-btn,.del-btn,.lock-btn{display:none}.tab-pane{display:block!important}.card{break-inside:avoid}}
+
+  :root {
+    --bg: #f1f5f9;
+    --surface: #ffffff;
+    --surface-2: #f8fafc;
+    --border: #e2e8f0;
+    --border-soft: #eef2f6;
+    --text: #0f172a;
+    --text-muted: #475569;
+    --text-dim: #64748b;
+    --pt-green: #0f7b3a;
+    --pt-green-light: #e8f5ed;
+    --pt-green-mid: #b9e0c7;
+    --px-blue: #0369a1;
+    --px-blue-light: #eef8ff;
+    --px-blue-mid: #bbdfff;
+    --red: #dc2626;
+    --red-light: #fef2f2;
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --purple: #7c3aed;
+    --purple-light: #f4f0ff;
+    --slate: #475569;
+    --slate-light: #f1f5f9;
+    --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 6px -2px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    --radius-card: 20px;
+    --radius-field: 12px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    scroll-behavior: smooth;
+  }
+
+  /* ========= HEADER ========= */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(2px);
+    background: rgba(255,255,255,0.96);
+  }
+  .header-title h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    background: linear-gradient(135deg, #0f172a, #1e3a5f);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  .header-title p {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+  .header-right {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+  .header-right .field-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .export-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-xs);
+  }
+  .export-btn.pdf { background: #dc2626; color: white; }
+  .export-btn.excel { background: #0f7b3a; color: white; }
+  .export-btn.image { background: #0369a1; color: white; }
+  .export-btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+
+  /* ========= TABS ========= */
+  .tabs-wrapper {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    overflow-x: auto;
+    padding: 0 24px;
+    gap: 8px;
+    scrollbar-width: thin;
+  }
+  .tab-btn {
+    padding: 14px 20px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    color: var(--text-muted);
+  }
+  .tab-btn.active {
+    color: var(--px-blue);
+    border-bottom-color: var(--px-blue);
+  }
+  .tab-btn.tab-global.active { color: var(--amber); border-bottom-color: var(--amber); }
+  .tab-btn.tab-modal.active { color: var(--purple); border-bottom-color: var(--purple); }
+
+  /* ========= CONTENT ========= */
+  .content {
+    padding: 24px 28px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
+
+  /* ========= CARDS ========= */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    margin-bottom: 28px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: var(--shadow-md); }
+  .card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-soft);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--surface-2);
+  }
+  .card-header.green { background: var(--pt-green-light); color: var(--pt-green); }
+  .card-header.blue { background: var(--px-blue-light); color: var(--px-blue); }
+  .card-header.red { background: var(--red-light); color: var(--red); }
+  .card-header.amber { background: var(--amber-light); color: var(--amber); }
+  .card-header.slate { background: var(--slate-light); color: var(--slate); }
+  .card-header.purple { background: var(--purple-light); color: var(--purple); }
+
+  .pip {
+    width: 8px;
+    height: 8px;
+    border-radius: 10px;
+    display: inline-block;
+  }
+  .pip.green { background: var(--pt-green); box-shadow: 0 0 0 2px #b9e0c7; }
+  .pip.blue { background: var(--px-blue); box-shadow: 0 0 0 2px #bbdfff; }
+  .pip.red { background: var(--red); }
+  .pip.amber { background: var(--amber); }
+  .pip.slate { background: var(--slate); }
+  .pip.purple { background: var(--purple); }
+
+  /* ========= TABLES & FORMS ========= */
+  .table-wrap { overflow-x: auto; padding: 0 4px; }
+  .nozzle-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+  }
+  .nozzle-table th {
+    text-align: left;
+    padding: 12px 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: var(--surface-2);
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .nozzle-table td { padding: 10px 12px; border-bottom: 1px solid var(--border-soft); vertical-align: middle; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.7rem;
+  }
+  .badge.green { background: var(--pt-green-light); color: var(--pt-green); border: 1px solid var(--pt-green-mid); }
+  .badge.blue { background: var(--px-blue-light); color: var(--px-blue); border: 1px solid var(--px-blue-mid); }
+
+  /* inputs */
+  .inp {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-field);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    background: white;
+    transition: 0.15s;
+  }
+  .inp:focus { border-color: var(--px-blue); outline: none; box-shadow: 0 0 0 3px rgba(3,105,161,0.1); }
+  .inp[readonly] { background: var(--surface-2); cursor: default; opacity: 0.85; }
+  .inp.ro-green { background: var(--pt-green-light); border-color: var(--pt-green-mid); color: #0b5e2e; }
+  .inp.ro-blue { background: var(--px-blue-light); border-color: var(--px-blue-mid); color: #065a84; }
+  .inp.ro-slate { background: var(--slate-light); border-color: #e2e8f0; }
+  .inp.ro-red { background: var(--red-light); border-color: #fecaca; color: #b91c1c; }
+  .inp.ro-amber { background: var(--amber-light); border-color: #fed7aa; color: #b45309; }
+  .inp.ro-purple { background: var(--purple-light); border-color: #ddd6fe; color: #5b21b6; }
+
+  .field-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  .price-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    padding: 18px 20px;
+    background: white;
+  }
+  .price-field { flex: 1; min-width: 140px; }
+
+  /* lock pills & buttons */
+  .lock-btn, .reset-btn {
+    padding: 7px 14px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.7rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+  }
+  .lock-btn.unlocked { background: var(--pt-green-light); border-color: var(--pt-green-mid); color: var(--pt-green); }
+  .lock-btn.locked { background: var(--red-light); border-color: #f5c6cb; color: var(--red); }
+  .reset-btn { background: white; border: 1px solid var(--border); color: var(--slate); }
+  .lock-pill {
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  .lock-pill.unlocked { background: var(--pt-green-light); color: var(--pt-green); }
+  .lock-pill.locked { background: var(--red-light); color: var(--red); }
+
+  .totalisator-strip {
+    padding: 12px 20px;
+    background: var(--surface-2);
+    border-top: 1px solid var(--border-soft);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* stat row */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+    padding: 18px 20px;
+    background: var(--surface-2);
+    border-top: 1px solid var(--border-soft);
+  }
+  .stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 14px 16px;
+    position: relative;
+    box-shadow: var(--shadow-xs);
+  }
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 18px 18px 0 0;
+  }
+  .stat-card.green::after { background: var(--pt-green); }
+  .stat-card.blue::after { background: var(--px-blue); }
+  .stat-card.red::after { background: var(--red); }
+  .stat-card.amber::after { background: var(--amber); }
+  .stat-card.slate::after { background: var(--slate); }
+  .stat-card.purple::after { background: var(--purple); }
+  .stat-label { font-size: 0.65rem; text-transform: uppercase; font-weight: 700; color: var(--text-dim); margin-bottom: 8px; }
+  .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.3px; }
+
+  /* pengeluaran */
+  .pengeluaran-body { padding: 18px 20px; }
+  .pengeluaran-item { display: flex; gap: 12px; margin-bottom: 14px; align-items: center; flex-wrap: wrap; }
+  .pengeluaran-item .inp { flex: 2; min-width: 140px; }
+  .del-btn {
+    width: 38px; height: 38px;
+    background: var(--red-light);
+    border: 1px solid #fbc4c4;
+    color: var(--red);
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.15s;
+  }
+  .add-btn {
+    width: 100%;
+    padding: 12px;
+    background: white;
+    border: 1.5px dashed var(--border);
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: 0.2s;
+  }
+  .add-btn:hover { background: var(--surface-2); border-color: var(--text-dim); }
+
+  /* stok */
+  .stok-body { padding: 16px 20px; }
+  .stok-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 800px) { .stok-grid { grid-template-columns: repeat(2, 1fr); } }
+  .ket-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+  .ket-badge.plus { background: var(--pt-green-light); color: var(--pt-green); border: 1px solid var(--pt-green-mid); }
+  .ket-badge.minus { background: var(--red-light); color: var(--red); border: 1px solid #fbc4c4; }
+  .ket-badge.zero { background: var(--surface-2); color: var(--slate); border: 1px solid var(--border); }
+
+  /* global recap */
+  .grid-2 { display: grid; gap: 24px; grid-template-columns: 1fr 1fr; margin-bottom: 16px; }
+  @media (max-width: 860px) { .grid-2 { grid-template-columns: 1fr; } }
+  .recap-dua-kolom { display: grid; gap: 24px; grid-template-columns: 1fr 1fr; padding: 16px 20px; }
+  @media (max-width: 700px) { .recap-dua-kolom { grid-template-columns: 1fr; } }
+  .recap-produk { border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+  .recap-header { padding: 14px; font-weight: 800; border-bottom: 2px solid; }
+  .recap-header.pertalite { background: var(--pt-green-light); border-bottom-color: var(--pt-green-mid); color: var(--pt-green); }
+  .recap-header.pertamax { background: var(--px-blue-light); border-bottom-color: var(--px-blue-mid); color: var(--px-blue); }
+  .recap-body { padding: 16px; }
+  .recap-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed var(--border-soft); }
+
+  /* tablesum */
+  .sum-table { width: 100%; border-collapse: collapse; }
+  .sum-table th, .sum-table td { padding: 12px 16px; border-bottom: 1px solid var(--border-soft); text-align: left; }
+  .sum-table th { background: var(--surface-2); font-size: 0.7rem; text-transform: uppercase; font-weight: 700; }
+  .sum-table .total-row td { background: var(--px-blue-light); font-weight: 700; }
+
+  /* modal tab */
+  .modal-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 800px) { .modal-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+  .do-section { display: grid; grid-template-columns: 2fr 1fr 2fr auto; gap: 14px; align-items: end; margin-bottom: 20px; }
+  @media (max-width: 780px) { .do-section { grid-template-columns: 1fr; gap: 12px; } }
+  .result-banner {
+    padding: 18px 20px;
+    border-radius: 24px;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .result-banner.profit { background: var(--pt-green-light); border: 1px solid var(--pt-green-mid); }
+  .result-banner.loss { background: var(--red-light); border: 1px solid #f5c6cb; }
+  .result-banner.neutral { background: var(--surface-2); border: 1px solid var(--border); }
+  .final-result-card {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+    border-radius: 28px;
+    padding: 24px;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .final-result-card .value { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 700; }
+  .value.profit { color: #4ade80; }
+  .value.loss { color: #f87171; }
+  .peng-info-box { background: var(--surface-2); border-radius: 20px; padding: 16px; margin: 16px 0; }
+  .peng-info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-soft); font-weight: 500; }
+  .uang-note { font-size: 0.7rem; color: var(--amber); margin-top: 6px; }
+
+  /* misc */
+  .prod-divider { height: 1px; background: var(--border-soft); margin: 20px 0; }
+  .dot { width: 8px; height: 8px; border-radius: 10px; display: inline-block; margin-right: 8px; }
+  .dot.green { background: var(--pt-green); }
+  .dot.blue { background: var(--px-blue); }
+
+  @media print {
+    .header, .tabs-wrapper, .export-btn, .reset-btn, .add-btn, .del-btn, .lock-btn { display: none; }
+    .tab-pane { display: block !important; }
+    .card { break-inside: avoid; box-shadow: none; }
+    body { background: white; padding: 0; margin: 0; }
+  }
 </style>
 </head>
 <body>
 
 <header class="header">
-  <div class="header-left"><div class="header-title"><h1>SPBU 3417603</h1><p>Sistem Laporan Harian & Modal (1 Desimal)</p></div></div>
+  <div class="header-left">
+    <div class="header-title"><h1>SPBU 3417603</h1><p>Sistem Laporan Harian & Modal (presisi 1 desimal)</p></div>
+  </div>
   <div class="header-right">
-    <div><div class="field-label">Tanggal</div><input type="date" id="reportDate" onchange="saveAllToStorage()"></div>
+    <div><div class="field-label">Tanggal Laporan</div><input type="date" id="reportDate" onchange="saveAllToStorage()" style="border-radius:40px; padding:8px 14px; border:1px solid var(--border); font-family:inherit;"></div>
     <button class="export-btn pdf" onclick="exportSummaryPDF()">📄 PDF</button>
     <button class="export-btn excel" onclick="exportSummaryExcel()">📊 Excel</button>
     <button class="export-btn image" onclick="exportSummaryImage()">🖼️ Gambar</button>
@@ -137,14 +472,14 @@
 </div>
 
 <div class="content">
-  <!-- SHIFT 1 -->
+  <!-- SHIFT 1 (sama seperti asli, dipertahankan) -->
   <div id="shift1" class="tab-pane active">
     <div class="card"><div class="card-header amber"><span class="pip amber"></span>Harga Per Liter</div><div class="price-row"><div class="price-field"><div class="field-label">Pertalite (Rp/L)</div><input class="inp" type="number" step="any" min="0" id="s1_price_pertalite" value="10000" oninput="calcAll();saveAllToStorage()"></div><div class="price-field"><div class="field-label">Pertamax (Rp/L)</div><input class="inp" type="number" step="any" min="0" id="s1_price_pertamax" value="13900" oninput="calcAll();saveAllToStorage()"></div><button class="lock-btn unlocked" id="s1_lockBtn" onclick="toggleLock()">🔓 Kunci Harga</button><span class="lock-pill unlocked" id="s1_lockStatus">Tidak Dikunci</span></div></div>
     <div class="grid-2"><div class="card"><div class="card-header green"><span class="pip green"></span>Pertalite — A1, A2, C</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody>
       <tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" step="any" min="0" id="s1_ta_A1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s1_tk_A1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" id="s1_vol_A1" readonly></td><td><input class="inp ro-green" id="s1_rp_A1" readonly></td></tr>
       <tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" step="any" min="0" id="s1_ta_A2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s1_tk_A2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" id="s1_vol_A2" readonly></td><td><input class="inp ro-green" id="s1_rp_A2" readonly></td></tr>
       <tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" step="any" min="0" id="s1_ta_C" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s1_tk_C" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" id="s1_vol_C" readonly></td><td><input class="inp ro-green" id="s1_rp_C" readonly></td></tr>
-    </tbody><tr></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s1_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s1','pertalite')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s1','pertalite')">↺ Reset</button><span class="lock-pill unlocked" id="s1_tot_pt_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s1_total_vol_pertalite">0 L</div></div><div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s1_total_rp_pertalite">Rp 0</div></div></div></div>
+    </tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s1_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s1','pertalite')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s1','pertalite')">↺ Reset</button><span class="lock-pill unlocked" id="s1_tot_pt_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s1_total_vol_pertalite">0 L</div></div><div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s1_total_rp_pertalite">Rp 0</div></div></div></div>
       <div class="card"><div class="card-header blue"><span class="pip blue"></span>Pertamax — B1, B2, D</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody>
         <tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" step="any" min="0" id="s1_ta_B1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s1_tk_B1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" id="s1_vol_B1" readonly></td><td><input class="inp ro-blue" id="s1_rp_B1" readonly></td></tr>
         <tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" step="any" min="0" id="s1_ta_B2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s1_tk_B2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" id="s1_vol_B2" readonly></td><td><input class="inp ro-blue" id="s1_rp_B2" readonly></td></tr>
@@ -154,45 +489,25 @@
     <div class="card"><div class="card-header slate"><span class="pip slate"></span>Stok BBM — Shift 1</div><div class="stok-body"><div class="stok-product-label"><span class="dot green"></span>Pertalite</div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp" type="number" step="any" min="0" id="s1_stok_awal_pertalite" oninput="calcAll();saveAllToStorage()"></div><div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-green" id="s1_stok_jual_pertalite" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" step="any" min="0" id="s1_stok_akhir_pertalite" oninput="calcAll();saveAllToStorage()"></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" id="s1_selisih_pertalite" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s1_ket_pertalite">⊜ Seimbang</span></div></div><div class="prod-divider"></div><div class="stok-product-label"><span class="dot blue"></span>Pertamax</div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp" type="number" step="any" min="0" id="s1_stok_awal_pertamax" oninput="calcAll();saveAllToStorage()"></div><div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-blue" id="s1_stok_jual_pertamax" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" step="any" min="0" id="s1_stok_akhir_pertamax" oninput="calcAll();saveAllToStorage()"></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" id="s1_selisih_pertamax" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s1_ket_pertamax">⊜ Seimbang</span></div></div></div></div>
   </div>
 
-  <!-- SHIFT 2 -->
+  <!-- SHIFT 2 (ringkas namun tetap lengkap) -->
   <div id="shift2" class="tab-pane">
     <div class="card"><div class="card-header amber"><span class="pip amber"></span>Harga Per Liter</div><div class="price-row"><div class="price-field"><div class="field-label">Pertalite (Rp/L)</div><input class="inp" type="number" step="any" min="0" id="s2_price_pertalite" value="10000" oninput="calcAll();saveAllToStorage()"></div><div class="price-field"><div class="field-label">Pertamax (Rp/L)</div><input class="inp" type="number" step="any" min="0" id="s2_price_pertamax" value="13900" oninput="calcAll();saveAllToStorage()"></div></div></div>
-    <div class="grid-2"><div class="card"><div class="card-header green"><span class="pip green"></span>Pertalite — A1, A2, C</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody>
-      <tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" step="any" min="0" id="s2_ta_A1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s2_tk_A1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" id="s2_vol_A1" readonly></td><td><input class="inp ro-green" id="s2_rp_A1" readonly></td></tr>
-      <tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" step="any" min="0" id="s2_ta_A2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s2_tk_A2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" id="s2_vol_A2" readonly></td><td><input class="inp ro-green" id="s2_rp_A2" readonly></td></tr>
-      <tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" step="any" min="0" id="s2_ta_C" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s2_tk_C" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" id="s2_vol_C" readonly></td><td><input class="inp ro-green" id="s2_rp_C" readonly></td></tr>
-    </tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s2','pertalite')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertalite')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_pt_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s2_total_vol_pertalite">0 L</div></div><div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s2_total_rp_pertalite">Rp 0</div></div></div></div>
-      <div class="card"><div class="card-header blue"><span class="pip blue"></span>Pertamax — B1, B2, D</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody>
-        <tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" step="any" min="0" id="s2_ta_B1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s2_tk_B1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" id="s2_vol_B1" readonly></td><td><input class="inp ro-blue" id="s2_rp_B1" readonly></td></tr>
-        <tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" step="any" min="0" id="s2_ta_B2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s2_tk_B2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" id="s2_vol_B2" readonly></td><td><input class="inp ro-blue" id="s2_rp_B2" readonly></td></tr>
-        <tr><td><span class="badge blue">D</span></td><td><input class="inp" type="number" step="any" min="0" id="s2_ta_D" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s2_tk_D" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" id="s2_vol_D" readonly></td><td><input class="inp ro-blue" id="s2_rp_D" readonly></td></tr>
-    </tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_px_lockBtn" onclick="toggleTotalisatorLock('s2','pertamax')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertamax')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_px_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card blue"><div class="stat-label">Total Volume</div><div class="stat-value blue" id="s2_total_vol_pertamax">0 L</div></div><div class="stat-card blue"><div class="stat-label">Total Penjualan</div><div class="stat-value blue" id="s2_total_rp_pertamax">Rp 0</div></div></div></div></div>
+    <div class="grid-2"><div class="card"><div class="card-header green"><span class="pip green"></span>Pertalite — A1, A2, C</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" step="any" min="0" id="s2_ta_A1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s2_tk_A1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" id="s2_vol_A1" readonly></td><td><input class="inp ro-green" id="s2_rp_A1" readonly></td></tr><tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" step="any" min="0" id="s2_ta_A2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s2_tk_A2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" id="s2_vol_A2" readonly></td><td><input class="inp ro-green" id="s2_rp_A2" readonly></td></tr><tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" step="any" min="0" id="s2_ta_C" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s2_tk_C" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" id="s2_vol_C" readonly></td><td><input class="inp ro-green" id="s2_rp_C" readonly></td></tr></tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s2','pertalite')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertalite')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_pt_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s2_total_vol_pertalite">0 L</div></div><div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s2_total_rp_pertalite">Rp 0</div></div></div></div>
+      <div class="card"><div class="card-header blue"><span class="pip blue"></span>Pertamax — B1, B2, D</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody><tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" step="any" min="0" id="s2_ta_B1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s2_tk_B1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" id="s2_vol_B1" readonly></td><td><input class="inp ro-blue" id="s2_rp_B1" readonly></td></tr><tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" step="any" min="0" id="s2_ta_B2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s2_tk_B2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" id="s2_vol_B2" readonly></td><td><input class="inp ro-blue" id="s2_rp_B2" readonly></td></tr><tr><td><span class="badge blue">D</span></td><td><input class="inp" type="number" step="any" min="0" id="s2_ta_D" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s2_tk_D" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" id="s2_vol_D" readonly></td><td><input class="inp ro-blue" id="s2_rp_D" readonly></td></tr></tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s2_tot_px_lockBtn" onclick="toggleTotalisatorLock('s2','pertamax')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s2','pertamax')">↺ Reset</button><span class="lock-pill unlocked" id="s2_tot_px_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card blue"><div class="stat-label">Total Volume</div><div class="stat-value blue" id="s2_total_vol_pertamax">0 L</div></div><div class="stat-card blue"><div class="stat-label">Total Penjualan</div><div class="stat-value blue" id="s2_total_rp_pertamax">Rp 0</div></div></div></div></div>
     <div class="card"><div class="card-header red"><span class="pip red"></span>Pengeluaran Harian — Shift 2</div><div class="pengeluaran-body"><div id="s2_pengeluaran_list"></div><button class="add-btn" onclick="addPengeluaran('s2')">+ Tambah Pengeluaran</button></div><div class="stat-row"><div class="stat-card red"><div class="stat-label">Total Pengeluaran</div><div class="stat-value red" id="s2_total_pengeluaran">Rp 0</div></div><div class="stat-card slate"><div class="stat-label">Total Penjualan Kotor</div><div class="stat-value slate" id="s2_total_penjualan">Rp 0</div></div><div class="stat-card amber"><div class="stat-label">Sisa Kas Bersih</div><div class="stat-value amber" id="s2_sisa_kas">Rp 0</div></div></div></div>
-    <div class="card"><div class="card-header slate"><span class="pip slate"></span>Stok BBM — Shift 2</div><div class="stok-body"><div class="stok-product-label"><span class="dot green"></span>Pertalite</div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-green" id="s2_stok_awal_pertalite" readonly placeholder="Otomatis dari S1"></div><div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-green" id="s2_stok_jual_pertalite" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" step="any" min="0" id="s2_stok_akhir_pertalite" oninput="calcAll();saveAllToStorage()"></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" id="s2_selisih_pertalite" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s2_ket_pertalite">⊜ Seimbang</span></div></div><div class="prod-divider"></div><div class="stok-product-label"><span class="dot blue"></span>Pertamax</div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-blue" id="s2_stok_awal_pertamax" readonly placeholder="Otomatis dari S1"></div><div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-blue" id="s2_stok_jual_pertamax" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" step="any" min="0" id="s2_stok_akhir_pertamax" oninput="calcAll();saveAllToStorage()"></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" id="s2_selisih_pertamax" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s2_ket_pertamax">⊜ Seimbang</span></div></div></div></div>
-    <div class="card"><div class="card-header slate"><span class="pip slate"></span>Totalisator Awal Shift 2 (dari Akhir Shift 1)</div><div class="stok-body"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px"><div><div class="field-label">A1</div><input class="inp ro-green" id="s2_ta_A1_display" readonly></div><div><div class="field-label">A2</div><input class="inp ro-green" id="s2_ta_A2_display" readonly></div><div><div class="field-label">C</div><input class="inp ro-green" id="s2_ta_C_display" readonly></div></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><div><div class="field-label">B1</div><input class="inp ro-blue" id="s2_ta_B1_display" readonly></div><div><div class="field-label">B2</div><input class="inp ro-blue" id="s2_ta_B2_display" readonly></div><div><div class="field-label">D</div><input class="inp ro-blue" id="s2_ta_D_display" readonly></div></div></div></div>
+    <div class="card"><div class="card-header slate"><span class="pip slate"></span>Stok BBM — Shift 2</div><div class="stok-body"><div class="stok-product-label"><span class="dot green"></span>Pertalite</div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-green" id="s2_stok_awal_pertalite" readonly></div><div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-green" id="s2_stok_jual_pertalite" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" step="any" min="0" id="s2_stok_akhir_pertalite" oninput="calcAll();saveAllToStorage()"></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" id="s2_selisih_pertalite" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s2_ket_pertalite">⊜ Seimbang</span></div></div><div class="prod-divider"></div><div class="stok-product-label"><span class="dot blue"></span>Pertamax</div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-blue" id="s2_stok_awal_pertamax" readonly></div><div><div class="field-label">Jual Totalisator (L)</div><input class="inp ro-blue" id="s2_stok_jual_pertamax" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp" type="number" step="any" min="0" id="s2_stok_akhir_pertamax" oninput="calcAll();saveAllToStorage()"></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" id="s2_selisih_pertamax" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="s2_ket_pertamax">⊜ Seimbang</span></div></div></div></div>
+    <div class="card"><div class="card-header slate"><span class="pip slate"></span>Totalisator Awal Shift 2 (dari Akhir Shift 1)</div><div class="stok-body"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px"><div><div class="field-label">A1</div><input class="inp ro-green" id="s2_ta_A1_display" readonly></div><div><div class="field-label">A2</div><input class="inp ro-green" id="s2_ta_A2_display" readonly></div><div><div class="field-label">C</div><input class="inp ro-green" id="s2_ta_C_display" readonly></div></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"><div><div class="field-label">B1</div><input class="inp ro-blue" id="s2_ta_B1_display" readonly></div><div><div class="field-label">B2</div><input class="inp ro-blue" id="s2_ta_B2_display" readonly></div><div><div class="field-label">D</div><input class="inp ro-blue" id="s2_ta_D_display" readonly></div></div></div></div>
   </div>
 
-  <!-- GLOBAL -->
+  <!-- GLOBAL (lengkap) -->
   <div id="global" class="tab-pane">
     <div class="card"><div class="card-header amber"><span class="pip amber"></span>Rekapitulasi Global</div><div class="recap-dua-kolom"><div class="recap-produk"><div class="recap-header pertalite">⛽ Pertalite</div><div class="recap-body"><div class="recap-item"><span>Volume Shift 1</span><span class="recap-value green" id="g_s1_vol_pertalite">0 L</span></div><div class="recap-item"><span>Penjualan Shift 1</span><span class="recap-value green" id="g_s1_rp_pertalite">Rp 0</span></div><div class="recap-item"><span>Volume Shift 2</span><span class="recap-value green" id="g_s2_vol_pertalite">0 L</span></div><div class="recap-item"><span>Penjualan Shift 2</span><span class="recap-value green" id="g_s2_rp_pertalite">Rp 0</span></div><div class="recap-item"><strong>Total Volume</strong><strong class="recap-value green" id="g_total_vol_pertalite">0 L</strong></div><div class="recap-item"><strong>Total Penjualan</strong><strong class="recap-value green" id="g_total_rp_pertalite">Rp 0</strong></div></div></div><div class="recap-produk"><div class="recap-header pertamax">⛽ Pertamax</div><div class="recap-body"><div class="recap-item"><span>Volume Shift 1</span><span class="recap-value blue" id="g_s1_vol_pertamax">0 L</span></div><div class="recap-item"><span>Penjualan Shift 1</span><span class="recap-value blue" id="g_s1_rp_pertamax">Rp 0</span></div><div class="recap-item"><span>Volume Shift 2</span><span class="recap-value blue" id="g_s2_vol_pertamax">0 L</span></div><div class="recap-item"><span>Penjualan Shift 2</span><span class="recap-value blue" id="g_s2_rp_pertamax">Rp 0</span></div><div class="recap-item"><strong>Total Volume</strong><strong class="recap-value blue" id="g_total_vol_pertamax">0 L</strong></div><div class="recap-item"><strong>Total Penjualan</strong><strong class="recap-value blue" id="g_total_rp_pertamax">Rp 0</strong></div></div></div></div></div>
-    <div class="card"><div class="card-header slate"><span class="pip slate"></span>Ringkasan Per Shift</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Shift</th><th>Vol Pertalite</th><th>Vol Pertamax</th><th>Penjualan Kotor</th><th>Pengeluaran</th><th>Sisa Kas</th></tr></thead><tbody><tr><td>Shift 1</td><td id="sum_s1_vol_pt">0 L</td><td id="sum_s1_vol_px">0 L</td><td id="sum_s1_jual">Rp 0</td><td id="sum_s1_peng">Rp 0</td><td id="sum_s1_sisa">Rp 0</td></tr>
-    <tr><td>Shift 2</td><td id="sum_s2_vol_pt">0 L</td><td id="sum_s2_vol_px">0 L</td><td id="sum_s2_jual">Rp 0</td><td id="sum_s2_peng">Rp 0</td><td id="sum_s2_sisa">Rp 0</td></tr>
-    </tbody></table></div></div>
-    <div class="grid-2"><div class="card"><div class="card-header slate"><span class="pip slate"></span>Penjualan Global</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Produk / Shift</th><th>Volume (L)</th><th>Harga/L</th><th>Penjualan (Rp)</th></tr></thead><tbody><tr><td>Pertalite S1</td><td id="g_row_s1_vol_pt">0</td><td id="g_row_s1_harga_pt">Rp 0</td><td id="g_row_s1_rp_pt">Rp 0</td></tr>
-      <tr><td>Pertalite S2</td><td id="g_row_s2_vol_pt">0</td><td id="g_row_s2_harga_pt">Rp 0</td><td id="g_row_s2_rp_pt">Rp 0</td></tr>
-      <tr><td>Pertamax S1</td><td id="g_row_s1_vol_px">0</td><td id="g_row_s1_harga_px">Rp 0</td><td id="g_row_s1_rp_px">Rp 0</td></tr>
-      <tr><td>Pertamax S2</td><td id="g_row_s2_vol_px">0</td><td id="g_row_s2_harga_px">Rp 0</td><td id="g_row_s2_rp_px">Rp 0</td></tr>
-      <tr class="total-row"><td><strong>Total Global</strong></td><td id="g_total_vol_all">0 L</td><td>—</td><td id="g_total_rp_all">Rp 0</td></tr>
-    </tbody>｜｜DSML｜｜</div></div><div class="card"><div class="card-header red"><span class="pip red"></span>Pengeluaran & Kas Global</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Keterangan</th><th>Jumlah (Rp)</th></tr></thead><tbody><tr><td>Total Penjualan Kotor</td><td id="g_total_jual_kotor">Rp 0</td></tr>
-      <tr><td>Pengeluaran Shift 1</td><td id="g_peng_s1">Rp 0</td></tr>
-      <tr><td>Pengeluaran Shift 2</td><td id="g_peng_s2">Rp 0</td></tr>
-      <tr><td>Total Pengeluaran</td><td id="g_total_peng">Rp 0</td></tr>
-      <tr class="total-row"><td><strong>Sisa Kas Bersih</strong></td><td id="g_sisa_kas">Rp 0</td></tr>
-    </tbody></table></div></div></div>
+    <div class="card"><div class="card-header slate"><span class="pip slate"></span>Ringkasan Per Shift</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Shift</th><th>Vol Pertalite</th><th>Vol Pertamax</th><th>Penjualan Kotor</th><th>Pengeluaran</th><th>Sisa Kas</th></tr></thead><tbody><tr><td>Shift 1</td><td id="sum_s1_vol_pt">0 L</td><td id="sum_s1_vol_px">0 L</td><td id="sum_s1_jual">Rp 0</td><td id="sum_s1_peng">Rp 0</td><td id="sum_s1_sisa">Rp 0</td></tr><tr><td>Shift 2</td><td id="sum_s2_vol_pt">0 L</td><td id="sum_s2_vol_px">0 L</td><td id="sum_s2_jual">Rp 0</td><td id="sum_s2_peng">Rp 0</td><td id="sum_s2_sisa">Rp 0</td></tr></tbody></table></div></div>
+    <div class="grid-2"><div class="card"><div class="card-header slate"><span class="pip slate"></span>Penjualan Global</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Produk / Shift</th><th>Volume (L)</th><th>Harga/L</th><th>Penjualan (Rp)</th></tr></thead><tbody><tr><td>Pertalite S1</td><td id="g_row_s1_vol_pt">0</td><td id="g_row_s1_harga_pt">Rp 0</td><td id="g_row_s1_rp_pt">Rp 0</td></tr><tr><td>Pertalite S2</td><td id="g_row_s2_vol_pt">0</td><td id="g_row_s2_harga_pt">Rp 0</td><td id="g_row_s2_rp_pt">Rp 0</td></tr><tr><td>Pertamax S1</td><td id="g_row_s1_vol_px">0</td><td id="g_row_s1_harga_px">Rp 0</td><td id="g_row_s1_rp_px">Rp 0</td></tr><tr><td>Pertamax S2</td><td id="g_row_s2_vol_px">0</td><td id="g_row_s2_harga_px">Rp 0</td><td id="g_row_s2_rp_px">Rp 0</td></tr><tr class="total-row"><td><strong>Total Global</strong></td><td id="g_total_vol_all">0 L</td><td>—</td><td id="g_total_rp_all">Rp 0</td></tr></tbody></table></div></div><div class="card"><div class="card-header red"><span class="pip red"></span>Pengeluaran & Kas Global</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Keterangan</th><th>Jumlah (Rp)</th></tr></thead><tbody><tr><td>Total Penjualan Kotor</td><td id="g_total_jual_kotor">Rp 0</td></tr><tr><td>Pengeluaran Shift 1</td><td id="g_peng_s1">Rp 0</td></tr><tr><td>Pengeluaran Shift 2</td><td id="g_peng_s2">Rp 0</td></tr><tr><td>Total Pengeluaran</td><td id="g_total_peng">Rp 0</td></tr><tr class="total-row"><td><strong>Sisa Kas Bersih</strong></td><td id="g_sisa_kas">Rp 0</td></tr></tbody></table></div></div></div>
     <div class="card"><div class="card-header slate"><span class="pip slate"></span>Stok Global BBM</div><div class="stok-body"><div class="stok-product-label"><span class="dot green"></span>Pertalite (Global)</div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-green" id="g_stok_awal_pertalite" readonly></div><div><div class="field-label">Total Jual (L)</div><input class="inp ro-green" id="g_stok_jual_pertalite" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp ro-blue" id="g_stok_akhir_pertalite" readonly></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" id="g_selisih_pertalite" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="g_ket_pertalite">⊜ Seimbang</span></div></div><div class="prod-divider"></div><div class="stok-product-label"><span class="dot blue"></span>Pertamax (Global)</div><div class="stok-grid"><div><div class="field-label">Stok Awal (L)</div><input class="inp ro-green" id="g_stok_awal_pertamax" readonly></div><div><div class="field-label">Total Jual (L)</div><input class="inp ro-blue" id="g_stok_jual_pertamax" readonly></div><div><div class="field-label">Stok Akhir (L)</div><input class="inp ro-blue" id="g_stok_akhir_pertamax" readonly></div><div><div class="field-label">Selisih (L)</div><input class="inp ro-slate" id="g_selisih_pertamax" readonly></div><div><div class="field-label">Keterangan</div><span class="ket-badge zero" id="g_ket_pertamax">⊜ Seimbang</span></div></div></div></div>
   </div>
 
-  <!-- MODAL -->
+  <!-- MODAL (lengkap) -->
   <div id="modal" class="tab-pane">
     <div class="card"><div class="card-header purple"><span class="pip purple"></span>Keuntungan / Rugi — Margin BBM</div><div class="modal-section-body"><div style="margin-bottom:10px; font-weight:700; font-size:11px">Pengaturan Margin</div><div class="modal-grid-4"><div><div class="field-label">Margin Pertalite (Rp/L)</div><input class="inp" type="number" min="0" id="m_margin_pertalite" value="150" oninput="calcModal();saveAllToStorage()"></div><div><div class="field-label">Margin Pertamax (Rp/L)</div><input class="inp" type="number" min="0" id="m_margin_pertamax" value="200" oninput="calcModal();saveAllToStorage()"></div><div><button class="lock-btn unlocked" id="m_margin_lockBtn" onclick="toggleLockMargin()">🔓 Kunci Margin</button><span class="lock-pill unlocked" id="m_margin_lockStatus">Tidak Dikunci</span></div><div></div></div><div style="margin:10px 0; font-weight:700; font-size:11px">Rincian Margin</div><div class="grid-2"><div><div class="field-label">Pertalite</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px"><div><div class="field-label">Volume (L)</div><input class="inp ro-green" id="m_vol_pertalite" readonly></div><div><div class="field-label">Margin (Rp)</div><input class="inp ro-slate" id="m_margin_pt_display" readonly></div><div><div class="field-label">Keuntungan</div><input class="inp ro-green" id="m_keuntungan_pertalite" readonly></div></div></div><div><div class="field-label">Pertamax</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px"><div><div class="field-label">Volume (L)</div><input class="inp ro-blue" id="m_vol_pertamax" readonly></div><div><div class="field-label">Margin (Rp)</div><input class="inp ro-slate" id="m_margin_px_display" readonly></div><div><div class="field-label">Keuntungan</div><input class="inp ro-blue" id="m_keuntungan_pertamax" readonly></div></div></div></div><div style="margin:10px 0; font-weight:700; font-size:11px">Penguapan / Penyusutan</div><div class="peng-info-box"><div class="peng-info-row"><span>Pertalite — Selisih Stok</span><span class="peng-info-val zero" id="peng_pt_label">0 L → Rp 0</span></div><div class="peng-info-row"><span>Pertamax — Selisih Stok</span><span class="peng-info-val zero" id="peng_px_label">0 L → Rp 0</span></div><div class="peng-info-row"><span>Total Nilai Penguapan</span><span class="peng-info-val zero" id="peng_total_label">Rp 0</span></div></div><div><div class="field-label">Total Pengeluaran Global</div><input class="inp ro-red" id="m_total_pengeluaran_display" readonly></div><div id="margin_result_banner" class="result-banner neutral"><div><div class="result-banner-label neutral" id="margin_result_label">Laba Margin Bersih</div><div class="result-banner-value neutral" id="margin_result_value">Rp 0</div><div class="result-banner-formula" id="margin_result_formula">= (Margin PT + Margin PX) + Nilai Penguapan − Total Pengeluaran</div></div><div><span class="ket-badge zero" id="margin_status_badge">⊜ Impas</span></div></div></div></div>
     <div class="card"><div class="card-header amber"><span class="pip amber"></span>Modal Awal & Sisa DO</div><div class="modal-section-body"><div style="margin-bottom:10px; font-weight:700; font-size:11px">Modal Awal</div><div class="modal-grid-4"><div><div class="field-label">Modal Awal (Rp)</div><input class="inp" type="number" min="0" id="m_modal_awal" value="0" oninput="calcModal();saveAllToStorage()"></div><div><button class="lock-btn unlocked" id="m_modal_lockBtn" onclick="toggleLockModal()">🔓 Kunci Modal Awal</button><span class="lock-pill unlocked" id="m_modal_lockStatus">Tidak Dikunci</span></div><div></div><div></div></div><div class="prod-divider"></div><div style="margin:10px 0; font-weight:700; font-size:11px">Sisa DO (Delivery Order)</div><div class="do-section"><div><div class="field-label">Sisa DO Pertalite (L)</div><input class="inp" type="number" min="0" id="m_sisa_do_pertalite" value="0" oninput="calcModal();saveAllToStorage()"></div><div><div class="field-label">× Harga Beli (Rp/L)</div><input class="inp" type="number" min="0" id="m_harga_beli_pertalite" value="9850" oninput="calcModal();saveAllToStorage()"></div><div><div class="field-label">= Nilai DO PT</div><input class="inp ro-green" id="m_nilai_do_pertalite" readonly></div><div><button class="lock-btn unlocked" id="m_do_pt_lockBtn" onclick="toggleLockDoPt()">🔓 Kunci</button><span class="lock-pill unlocked" id="m_do_pt_lockStatus">Tidak Dikunci</span></div></div><div class="do-section"><div><div class="field-label">Sisa DO Pertamax (L)</div><input class="inp" type="number" min="0" id="m_sisa_do_pertamax" value="0" oninput="calcModal();saveAllToStorage()"></div><div><div class="field-label">× Harga Beli (Rp/L)</div><input class="inp" type="number" min="0" id="m_harga_beli_pertamax" value="13700" oninput="calcModal();saveAllToStorage()"></div><div><div class="field-label">= Nilai DO PX</div><input class="inp ro-blue" id="m_nilai_do_pertamax" readonly></div><div><button class="lock-btn unlocked" id="m_do_px_lockBtn" onclick="toggleLockDoPx()">🔓 Kunci</button><span class="lock-pill unlocked" id="m_do_px_lockStatus">Tidak Dikunci</span></div></div></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Nilai DO Pertalite</div><div class="stat-value green" id="m_stat_do_pertalite">Rp 0</div></div><div class="stat-card blue"><div class="stat-label">Nilai DO Pertamax</div><div class="stat-value blue" id="m_stat_do_pertamax">Rp 0</div></div><div class="stat-card amber"><div class="stat-label">Total Sisa DO</div><div class="stat-value amber" id="m_stat_total_do">Rp 0</div></div><div class="stat-card slate"><div class="stat-label">Modal Awal</div><div class="stat-value slate" id="m_stat_modal_awal">Rp 0</div></div></div></div>
@@ -211,7 +526,6 @@
   const nozzleMap = { pertalite: ['A1','A2','C'], pertamax: ['B1','B2','D'] };
   let _global = {}, _shiftRes = {};
 
-  // ======================== FUNGSI BANTU ========================
   function num(id) { let el = document.getElementById(id); if (!el) return 0; let v = parseFloat(el.value); return isNaN(v) ? 0 : v; }
   function fmtRp(n) { return 'Rp ' + Math.floor(Math.abs(n)).toLocaleString('id-ID') + (n < 0 ? ' (defisit)' : ''); }
   function fmtL(n) { return n.toLocaleString('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' L'; }
@@ -220,7 +534,6 @@
   function setTxt(id, v) { let el = document.getElementById(id); if (el) el.textContent = v; }
   function floorToMillion(n) { return Math.floor(Math.abs(n) / 1000000) * 1000000 * (n < 0 ? -1 : 1); }
 
-  // ======================== PENYIMPANAN ========================
   function saveAllToStorage() {
     const inputs = {};
     document.querySelectorAll('input[id]:not([type=button]):not([type=submit])').forEach(el => {
@@ -245,7 +558,6 @@
     } catch (e) { console.warn(e); }
   }
 
-  // ======================== LOCK UI ========================
   function updateLockUI() {
     const btn = document.getElementById('s1_lockBtn');
     const pill = document.getElementById('s1_lockStatus');
@@ -289,7 +601,7 @@
       } else {
         btn.classList.add('unlocked'); btn.classList.remove('locked');
         btn.textContent = '🔓 Kunci';
-        pill.classList.add('unlocked'); pill.classList.remove('unlocked');
+        pill.classList.add('unlocked'); pill.classList.remove('locked');
         pill.textContent = 'Tidak Dikunci';
       }
     };
@@ -343,7 +655,6 @@
   function toggleLockDoPt() { modalLockState.doPt = !modalLockState.doPt; updateModalLockUI(); applyAllLocks(); saveAllToStorage(); calcModal(); }
   function toggleLockDoPx() { modalLockState.doPx = !modalLockState.doPx; updateModalLockUI(); applyAllLocks(); saveAllToStorage(); calcModal(); }
 
-  // ======================== RESET TOTALISATOR & PENGELUARAN ========================
   function resetTotalisator(shift, prod) {
     if (totLockState[`${shift}_${prod}`]) return;
     nozzleMap[prod].forEach(n => {
@@ -352,6 +663,7 @@
     });
     calcAll(); saveAllToStorage();
   }
+
   function addPengeluaran(shift, save = true) {
     pengeluaranData[shift].push({ id: Date.now() + Math.random(), keterangan: '', jumlah: 0 });
     renderPengeluaran(shift);
@@ -379,7 +691,6 @@
     `).join('');
   }
 
-  // ======================== PERHITUNGAN UTAMA ========================
   function calcStokDisplay(prefix, product, stokAwal, totalJual, stokAkhir) {
     const stokAwalFloor = Math.floor(stokAwal);
     const stokAkhirFloor = Math.floor(stokAkhir);
@@ -595,7 +906,6 @@
     setTxt('m_sum_uang', fmtRp(uangBulat)); setTxt('m_sum_modal', fmtRp(modalAwal));
   }
 
-  // ======================== EKSPOR ========================
   function getSummaryHTML() {
     const date = document.getElementById('reportDate').value || new Date().toISOString().slice(0,10);
     const s1 = _shiftRes.s1 || {}, s2 = _shiftRes.s2 || {}, g = _global;
@@ -611,19 +921,19 @@
       hasilAkhir: parseFloat(document.getElementById('m_final_value')?.textContent.replace(/[^0-9-]/g,'')||0)
     };
     return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Ringkasan SPBU ${date}</title><style>
-      body{font-family:'Segoe UI',Arial,sans-serif;font-size:10pt;margin:2cm;color:#1a2332}
-      h2{color:#0057b8;border-bottom:2px solid #0057b8;padding-bottom:5px}
+      body{font-family:'Inter',sans-serif;font-size:10pt;margin:2cm;color:#0f172a}
+      h2{color:#0369a1;border-bottom:2px solid #0369a1;padding-bottom:5px}
       table{width:100%;border-collapse:collapse;margin:12px 0}
       th,td{border:1px solid #ccc;padding:8px;text-align:left}
-      th{background:#f0f4f8}
-      .total-row td{background:#e6eef9;font-weight:700}
+      th{background:#f8fafc}
+      .total-row td{background:#eef8ff;font-weight:700}
       .recap-box{display:flex;gap:20px;margin:20px 0}
       .box{flex:1;border:1px solid #ddd;border-radius:8px;padding:12px}
-      .box.green{border-left:4px solid #1da462}
-      .box.blue{border-left:4px solid #0057b8}
-      .profit{color:#1da462;font-weight:700}
-      .loss{color:#e5363b;font-weight:700}
-      .footer{font-size:8pt;color:#888;margin-top:20px;text-align:center}
+      .box.green{border-left:4px solid #0f7b3a}
+      .box.blue{border-left:4px solid #0369a1}
+      .profit{color:#0f7b3a;font-weight:700}
+      .loss{color:#dc2626;font-weight:700}
+      .footer{font-size:8pt;color:#64748b;margin-top:20px;text-align:center}
     </style></head><body>
     <h2>SPBU 3417603 - RINGKASAN LAPORAN HARIAN</h2>
     <p><strong>Tanggal:</strong> ${date} &nbsp;|&nbsp; <strong>Dicetak:</strong> ${new Date().toLocaleString('id-ID')}</p>
@@ -651,9 +961,11 @@
     <div class="footer">Dihasilkan oleh Sistem Laporan SPBU 3417603 (1 Desimal)</div>
     </body></html>`;
   }
+
   function exportSummaryPDF() { const w = window.open(); w.document.write(getSummaryHTML()); w.document.close(); w.print(); }
   function exportSummaryExcel() { const blob = new Blob([getSummaryHTML()], { type: 'application/vnd.ms-excel' }); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'ringkasan_spbu.xls'; link.click(); URL.revokeObjectURL(link.href); }
   function exportSummaryImage() { const div = document.createElement('div'); div.innerHTML = getSummaryHTML(); document.body.appendChild(div); html2canvas(div, { scale: 3, backgroundColor: '#ffffff' }).then(canvas => { const link = document.createElement('a'); link.download = 'ringkasan_spbu.png'; link.href = canvas.toDataURL(); link.click(); document.body.removeChild(div); }).catch(err => alert('Gagal membuat gambar')); }
+
   function switchTab(id, btn) {
     document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -663,7 +975,6 @@
     if (id === 'modal') calcModal();
   }
 
-  // ======================== INIT ========================
   document.addEventListener('DOMContentLoaded', () => {
     loadAllFromStorage();
     renderPengeluaran('s1');
