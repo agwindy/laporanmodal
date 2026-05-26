@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SPBU 3417603 - Laporan Harian & Modal (1 Desimal)</title>
+<title>SPBU 3417603 - Laporan Harian & Modal </title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
@@ -22,11 +22,10 @@
   .header-title h1{font-size:16px;font-weight:800}
   .header-title p{font-size:10px;color:var(--text-dim);text-transform:uppercase}
   .header-right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .export-btn,.reset-all{padding:7px 14px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:12px;display:inline-flex;align-items:center;gap:5px}
+  .export-btn{padding:7px 14px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:12px;display:inline-flex;align-items:center;gap:5px}
   .export-btn.pdf{background:var(--red);color:#fff}
   .export-btn.excel{background:var(--pt-green);color:#fff}
   .export-btn.image{background:var(--px-blue);color:#fff}
-  .reset-all{background:var(--slate);color:#fff}
   .tabs-wrapper{background:#fff;border-bottom:1px solid var(--border);display:flex;overflow-x:auto;padding:0 16px}
   .tab-btn{padding:14px 16px;border:none;background:none;font-weight:700;text-transform:uppercase;font-size:12px;cursor:pointer;border-bottom:2px solid transparent}
   .tab-btn.active{color:var(--px-blue);border-bottom-color:var(--px-blue)}
@@ -127,7 +126,6 @@
     <button class="export-btn pdf" onclick="exportSummaryPDF()">📄 PDF</button>
     <button class="export-btn excel" onclick="exportSummaryExcel()">📊 Excel</button>
     <button class="export-btn image" onclick="exportSummaryImage()">🖼️ Gambar</button>
-    <button class="reset-all" onclick="resetAllData()">🗑️ Reset Semua Data</button>
   </div>
 </header>
 
@@ -146,7 +144,7 @@
       <tr><td><span class="badge green">A1</span></td><td><input class="inp" type="number" step="any" min="0" id="s1_ta_A1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s1_tk_A1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" id="s1_vol_A1" readonly></td><td><input class="inp ro-green" id="s1_rp_A1" readonly></td></tr>
       <tr><td><span class="badge green">A2</span></td><td><input class="inp" type="number" step="any" min="0" id="s1_ta_A2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s1_tk_A2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" id="s1_vol_A2" readonly></td><td><input class="inp ro-green" id="s1_rp_A2" readonly></td></tr>
       <tr><td><span class="badge green">C</span></td><td><input class="inp" type="number" step="any" min="0" id="s1_ta_C" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s1_tk_C" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-green" id="s1_vol_C" readonly></td><td><input class="inp ro-green" id="s1_rp_C" readonly></td></tr>
-    </tbody></table></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s1_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s1','pertalite')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s1','pertalite')">↺ Reset</button><span class="lock-pill unlocked" id="s1_tot_pt_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s1_total_vol_pertalite">0 L</div></div><div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s1_total_rp_pertalite">Rp 0</div></div></div></div>
+    </tbody><tr></div><div class="totalisator-strip"><button class="lock-btn unlocked" id="s1_tot_pt_lockBtn" onclick="toggleTotalisatorLock('s1','pertalite')">🔓 Kunci Totalisator</button><button class="reset-btn" onclick="resetTotalisator('s1','pertalite')">↺ Reset</button><span class="lock-pill unlocked" id="s1_tot_pt_status">Tidak Dikunci</span></div><div class="stat-row"><div class="stat-card green"><div class="stat-label">Total Volume</div><div class="stat-value green" id="s1_total_vol_pertalite">0 L</div></div><div class="stat-card green"><div class="stat-label">Total Penjualan</div><div class="stat-value green" id="s1_total_rp_pertalite">Rp 0</div></div></div></div>
       <div class="card"><div class="card-header blue"><span class="pip blue"></span>Pertamax — B1, B2, D</div><div class="table-wrap"><table class="nozzle-table"><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody>
         <tr><td><span class="badge blue">B1</span></td><td><input class="inp" type="number" step="any" min="0" id="s1_ta_B1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s1_tk_B1" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" id="s1_vol_B1" readonly></td><td><input class="inp ro-blue" id="s1_rp_B1" readonly></td></tr>
         <tr><td><span class="badge blue">B2</span></td><td><input class="inp" type="number" step="any" min="0" id="s1_ta_B2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp" type="number" step="any" min="0" id="s1_tk_B2" oninput="calcAll();saveAllToStorage()"></td><td><input class="inp ro-blue" id="s1_vol_B2" readonly></td><td><input class="inp ro-blue" id="s1_rp_B2" readonly></td></tr>
@@ -185,7 +183,7 @@
       <tr><td>Pertamax S1</td><td id="g_row_s1_vol_px">0</td><td id="g_row_s1_harga_px">Rp 0</td><td id="g_row_s1_rp_px">Rp 0</td></tr>
       <tr><td>Pertamax S2</td><td id="g_row_s2_vol_px">0</td><td id="g_row_s2_harga_px">Rp 0</td><td id="g_row_s2_rp_px">Rp 0</td></tr>
       <tr class="total-row"><td><strong>Total Global</strong></td><td id="g_total_vol_all">0 L</td><td>—</td><td id="g_total_rp_all">Rp 0</td></tr>
-    </tbody></table></div></div><div class="card"><div class="card-header red"><span class="pip red"></span>Pengeluaran & Kas Global</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Keterangan</th><th>Jumlah (Rp)</th></tr></thead><tbody><tr><td>Total Penjualan Kotor</td><td id="g_total_jual_kotor">Rp 0</td></tr>
+    </tbody>｜｜DSML｜｜</div></div><div class="card"><div class="card-header red"><span class="pip red"></span>Pengeluaran & Kas Global</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Keterangan</th><th>Jumlah (Rp)</th></tr></thead><tbody><tr><td>Total Penjualan Kotor</td><td id="g_total_jual_kotor">Rp 0</td></tr>
       <tr><td>Pengeluaran Shift 1</td><td id="g_peng_s1">Rp 0</td></tr>
       <tr><td>Pengeluaran Shift 2</td><td id="g_peng_s2">Rp 0</td></tr>
       <tr><td>Total Pengeluaran</td><td id="g_total_peng">Rp 0</td></tr>
@@ -216,15 +214,13 @@
   // ======================== FUNGSI BANTU ========================
   function num(id) { let el = document.getElementById(id); if (!el) return 0; let v = parseFloat(el.value); return isNaN(v) ? 0 : v; }
   function fmtRp(n) { return 'Rp ' + Math.floor(Math.abs(n)).toLocaleString('id-ID') + (n < 0 ? ' (defisit)' : ''); }
-  // Format liter dengan 1 desimal
   function fmtL(n) { return n.toLocaleString('id-ID', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' L'; }
-  // Membulatkan volume ke 1 desimal (0.1)
   function round1(n) { return Math.round(n * 10) / 10; }
   function setVal(id, v) { let el = document.getElementById(id); if (el) el.value = v; }
   function setTxt(id, v) { let el = document.getElementById(id); if (el) el.textContent = v; }
   function floorToMillion(n) { return Math.floor(Math.abs(n) / 1000000) * 1000000 * (n < 0 ? -1 : 1); }
 
-  // ======================== PENYIMPANAN & RESET ========================
+  // ======================== PENYIMPANAN ========================
   function saveAllToStorage() {
     const inputs = {};
     document.querySelectorAll('input[id]:not([type=button]):not([type=submit])').forEach(el => {
@@ -247,12 +243,6 @@
       if (data.totLockState) totLockState = data.totLockState;
       if (data.modalLockState) modalLockState = data.modalLockState;
     } catch (e) { console.warn(e); }
-  }
-  function resetAllData() {
-    if (confirm('Hapus semua data yang tersimpan? Tindakan ini tidak dapat dibatalkan.')) {
-      localStorage.removeItem(STORAGE_KEY);
-      location.reload();
-    }
   }
 
   // ======================== LOCK UI ========================
@@ -419,7 +409,7 @@
       for (let n of ['A1','A2','C']) {
         let vRaw = num(`${shift}_tk_${n}`) - num(`${shift}_ta_${n}`);
         if (vRaw < 0) vRaw = 0;
-        let v = round1(vRaw);   // bulatkan ke 1 desimal
+        let v = round1(vRaw);
         let r = v * pricePt;
         let rFloor = Math.floor(r);
         setVal(`${shift}_vol_${n}`, fmtL(v));
@@ -639,7 +629,7 @@
     <p><strong>Tanggal:</strong> ${date} &nbsp;|&nbsp; <strong>Dicetak:</strong> ${new Date().toLocaleString('id-ID')}</p>
     <div class="recap-box"><div class="box green"><strong>⛽ PERTALITE</strong><br>Volume S1: ${fmtL(s1.vPt||0)}<br>Penjualan S1: ${fmtRp(s1.rPt||0)}<br>Volume S2: ${fmtL(s2.vPt||0)}<br>Penjualan S2: ${fmtRp(s2.rPt||0)}<br><strong>Total Volume: ${fmtL(g.vPt||0)}</strong><br><strong>Total Penjualan: ${fmtRp(g.rPt||0)}</strong></div>
     <div class="box blue"><strong>⛽ PERTAMAX</strong><br>Volume S1: ${fmtL(s1.vPx||0)}<br>Penjualan S1: ${fmtRp(s1.rPx||0)}<br>Volume S2: ${fmtL(s2.vPx||0)}<br>Penjualan S2: ${fmtRp(s2.rPx||0)}<br><strong>Total Volume: ${fmtL(g.vPx||0)}</strong><br><strong>Total Penjualan: ${fmtRp(g.rPx||0)}</strong></div></div>
-    </table><thead><tr><th>Shift</th><th>Vol Pertalite</th><th>Vol Pertamax</th><th>Penjualan Kotor</th><th>Pengeluaran</th><th>Sisa Kas</th></tr></thead><tbody>
+    <table><thead><tr><th>Shift</th><th>Vol Pertalite</th><th>Vol Pertamax</th><th>Penjualan Kotor</th><th>Pengeluaran</th><th>Sisa Kas</th></tr></thead><tbody>
     <tr><td>Shift 1</td><td>${fmtL(s1.vPt||0)}</td><td>${fmtL(s1.vPx||0)}</td><td>${fmtRp((s1.rPt||0)+(s1.rPx||0))}</td><td>${fmtRp(s1.totalPeng||0)}</td><td>${fmtRp((s1.totalJual||0)-(s1.totalPeng||0))}</td></tr>
     <tr><td>Shift 2</td><td>${fmtL(s2.vPt||0)}</td><td>${fmtL(s2.vPx||0)}</td><td>${fmtRp((s2.rPt||0)+(s2.rPx||0))}</td><td>${fmtRp(s2.totalPeng||0)}</td><td>${fmtRp((s2.totalJual||0)-(s2.totalPeng||0))}</td></tr>
     <tr class="total-row"><td><strong>GLOBAL</strong></td><td><strong>${fmtL(g.vPt||0)}</strong></td><td><strong>${fmtL(g.vPx||0)}</strong></td><td><strong>${fmtRp((g.rPt||0)+(g.rPx||0))}</strong></td><td><strong>${fmtRp(g.totalPeng||0)}</strong></td><td><strong>${fmtRp(g.gSisa||0)}</strong></td></tr>
