@@ -77,9 +77,14 @@
   .nozzle-table{width:100%;border-collapse:collapse;min-width:560px}
   .nozzle-table th{padding:10px 10px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);text-align:left;background:var(--surface2);border-bottom:1px solid var(--border);font-weight:700}
   .nozzle-table td{padding:8px 8px;border-bottom:1px solid #f0f4f8;vertical-align:middle}
+  .nozzle-table tfoot td{padding:8px 8px;font-weight:700;border-top:2px solid var(--border);background:var(--surface2)}
+  .nozzle-table .subtotal-pt{background:#f9fdfb;color:var(--pt-green);font-weight:700}
+  .nozzle-table .subtotal-px{background:#f8fafd;color:var(--px-blue);font-weight:700}
+  .nozzle-table .grand-total{background:var(--amber-light);color:var(--amber);font-weight:800}
   .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-weight:700;font-size:11px}
   .badge.green{background:var(--pt-green-light);border:1px solid var(--pt-green-border);color:var(--pt-green)}
   .badge.blue{background:var(--px-blue-light);border:1px solid var(--px-blue-border);color:var(--px-blue)}
+  .badge.amber-badge{background:var(--amber-light);border:1px solid #f6d090;color:var(--amber)}
   .inp{width:100%;background:#fff;border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:7px;font-family:'JetBrains Mono',monospace;font-size:12px;outline:none}
   .inp:focus{border-color:var(--px-blue);box-shadow:0 0 0 3px rgba(0,87,184,.08)}
   .inp[readonly]{cursor:default;font-weight:600}
@@ -189,7 +194,6 @@
 <div class="content">
   <!-- SHIFT 1 -->
   <div id="shift1" class="tab-pane active">
-    <!-- Tab Export Bar Shift 1 -->
     <div class="tab-export-bar">
       <span class="tab-export-label">Export Shift 1:</span>
       <button class="tab-export-btn pdf" onclick="exportTabPDF('s1')">📄 PDF</button>
@@ -209,7 +213,6 @@
 
   <!-- SHIFT 2 -->
   <div id="shift2" class="tab-pane">
-    <!-- Tab Export Bar Shift 2 -->
     <div class="tab-export-bar">
       <span class="tab-export-label">Export Shift 2:</span>
       <button class="tab-export-btn pdf" onclick="exportTabPDF('s2')">📄 PDF</button>
@@ -233,7 +236,6 @@
 
   <!-- GLOBAL -->
   <div id="global" class="tab-pane">
-    <!-- Tab Export Bar Global -->
     <div class="tab-export-bar">
       <span class="tab-export-label">Export Global:</span>
       <button class="tab-export-btn pdf" onclick="exportTabPDF('global')">📄 PDF</button>
@@ -242,6 +244,28 @@
     </div>
 
     <div class="card"><div class="card-header amber"><span class="pip amber"></span>Rekapitulasi Global</div><div class="recap-dua-kolom"><div class="recap-produk"><div class="recap-header pertalite">⛽ Pertalite</div><div class="recap-body"><div class="recap-item"><span class="recap-label">Volume Shift 1</span><span class="recap-value green" id="g_s1_vol_pertalite">0 L</span></div><div class="recap-item"><span class="recap-label">Penjualan Shift 1</span><span class="recap-value green" id="g_s1_rp_pertalite">Rp 0</span></div><div class="recap-item"><span class="recap-label">Volume Shift 2</span><span class="recap-value green" id="g_s2_vol_pertalite">0 L</span></div><div class="recap-item"><span class="recap-label">Penjualan Shift 2</span><span class="recap-value green" id="g_s2_rp_pertalite">Rp 0</span></div><div class="recap-item"><span class="recap-label" style="font-weight:800">Total Volume</span><span class="recap-value green" style="font-weight:800" id="g_total_vol_pertalite">0 L</span></div><div class="recap-item"><span class="recap-label" style="font-weight:800">Total Penjualan</span><span class="recap-value green" style="font-weight:800" id="g_total_rp_pertalite">Rp 0</span></div></div></div><div class="recap-produk"><div class="recap-header pertamax">⛽ Pertamax</div><div class="recap-body"><div class="recap-item"><span class="recap-label">Volume Shift 1</span><span class="recap-value blue" id="g_s1_vol_pertamax">0 L</span></div><div class="recap-item"><span class="recap-label">Penjualan Shift 1</span><span class="recap-value blue" id="g_s1_rp_pertamax">Rp 0</span></div><div class="recap-item"><span class="recap-label">Volume Shift 2</span><span class="recap-value blue" id="g_s2_vol_pertamax">0 L</span></div><div class="recap-item"><span class="recap-label">Penjualan Shift 2</span><span class="recap-value blue" id="g_s2_rp_pertamax">Rp 0</span></div><div class="recap-item"><span class="recap-label" style="font-weight:800">Total Volume</span><span class="recap-value blue" style="font-weight:800" id="g_total_vol_pertamax">0 L</span></div><div class="recap-item"><span class="recap-label" style="font-weight:800">Total Penjualan</span><span class="recap-value blue" style="font-weight:800" id="g_total_rp_pertamax">Rp 0</span></div></div></div></div></div>
+
+    <!-- TABEL DETAIL NOZZLE GLOBAL -->
+    <div class="card"><div class="card-header slate"><span class="pip slate"></span>Detail Nozzle — Global (S1 Awal → S2 Akhir)</div>
+    <div class="table-wrap"><table class="nozzle-table">
+    <thead><tr><th>Nozzle</th><th>Produk</th><th>Tot. Awal (S1)</th><th>Tot. Akhir (S2)</th><th>Volume Global (L)</th><th>Penjualan Global (Rp)</th></tr></thead>
+    <tbody>
+      <!-- Pertalite -->
+      <tr><td><span class="badge green">A1</span></td><td><span class="badge green">Pertalite</span></td><td><input class="inp ro-slate" type="text" id="g_ta_A1" readonly></td><td><input class="inp ro-slate" type="text" id="g_tk_A1" readonly></td><td><input class="inp ro-green" type="text" id="g_vol_A1" readonly></td><td><input class="inp ro-green" type="text" id="g_rp_A1" readonly></td></tr>
+      <tr><td><span class="badge green">A2</span></td><td><span class="badge green">Pertalite</span></td><td><input class="inp ro-slate" type="text" id="g_ta_A2" readonly></td><td><input class="inp ro-slate" type="text" id="g_tk_A2" readonly></td><td><input class="inp ro-green" type="text" id="g_vol_A2" readonly></td><td><input class="inp ro-green" type="text" id="g_rp_A2" readonly></td></tr>
+      <tr><td><span class="badge green">C</span></td><td><span class="badge green">Pertalite</span></td><td><input class="inp ro-slate" type="text" id="g_ta_C" readonly></td><td><input class="inp ro-slate" type="text" id="g_tk_C" readonly></td><td><input class="inp ro-green" type="text" id="g_vol_C" readonly></td><td><input class="inp ro-green" type="text" id="g_rp_C" readonly></td></tr>
+      <!-- Pertamax -->
+      <tr><td><span class="badge blue">B1</span></td><td><span class="badge blue">Pertamax</span></td><td><input class="inp ro-slate" type="text" id="g_ta_B1" readonly></td><td><input class="inp ro-slate" type="text" id="g_tk_B1" readonly></td><td><input class="inp ro-blue" type="text" id="g_vol_B1" readonly></td><td><input class="inp ro-blue" type="text" id="g_rp_B1" readonly></td></tr>
+      <tr><td><span class="badge blue">B2</span></td><td><span class="badge blue">Pertamax</span></td><td><input class="inp ro-slate" type="text" id="g_ta_B2" readonly></td><td><input class="inp ro-slate" type="text" id="g_tk_B2" readonly></td><td><input class="inp ro-blue" type="text" id="g_vol_B2" readonly></td><td><input class="inp ro-blue" type="text" id="g_rp_B2" readonly></td></tr>
+      <tr><td><span class="badge blue">D</span></td><td><span class="badge blue">Pertamax</span></td><td><input class="inp ro-slate" type="text" id="g_ta_D" readonly></td><td><input class="inp ro-slate" type="text" id="g_tk_D" readonly></td><td><input class="inp ro-blue" type="text" id="g_vol_D" readonly></td><td><input class="inp ro-blue" type="text" id="g_rp_D" readonly></td></tr>
+    </tbody>
+    <tfoot>
+      <tr class="subtotal-pt"><td colspan="4"><strong>Subtotal Pertalite</strong></td><td><strong id="g_subtotal_vol_pt">0 L</strong></td><td><strong id="g_subtotal_rp_pt">Rp 0</strong></td></tr>
+      <tr class="subtotal-px"><td colspan="4"><strong>Subtotal Pertamax</strong></td><td><strong id="g_subtotal_vol_px">0 L</strong></td><td><strong id="g_subtotal_rp_px">Rp 0</strong></td></tr>
+      <tr class="grand-total"><td colspan="4"><strong>GRAND TOTAL</strong></td><td><strong id="g_grandtotal_vol">0 L</strong></td><td><strong id="g_grandtotal_rp">Rp 0</strong></td></tr>
+    </tfoot>
+    </table></div></div>
+
     <div class="card"><div class="card-header slate"><span class="pip slate"></span>Ringkasan Per Shift</div><div class="table-wrap"><table class="sum-table"><thead><tr><th>Shift</th><th>Vol Pertalite</th><th>Vol Pertamax</th><th>Penjualan Kotor</th><th>Pengeluaran</th><th>Sisa Kas</th></tr></thead><tbody><tr><td><strong>Shift 1</strong></td><td id="sum_s1_vol_pt">0 L</td><td id="sum_s1_vol_px">0 L</td><td id="sum_s1_jual">Rp 0</td><td id="sum_s1_peng">Rp 0</td><td id="sum_s1_sisa">Rp 0</td></tr>
     <tr><td><strong>Shift 2</strong></td><td id="sum_s2_vol_pt">0 L</td><td id="sum_s2_vol_px">0 L</td><td id="sum_s2_jual">Rp 0</td><td id="sum_s2_peng">Rp 0</td><td id="sum_s2_sisa">Rp 0</td></tr>
     </tbody></table></div></div>
@@ -282,7 +306,7 @@
   let pengeluaranData={s1:[],s2:[]};
   let modalLockState={margin:false,modal:false,doPt:false,doPx:false};
   const nozzleMap={pertalite:['A1','A2','C'],pertamax:['B1','B2','D']};
-  let _global={}, _shiftRes={};
+  let _global={}, _shiftRes={}, _nozzleRes={s1:{},s2:{}};
 
   // ========== FORMATTERS (Volume dengan 1 desimal) ==========
   function fmtVolume(value) {
@@ -412,6 +436,7 @@
   function calcAll(){
     syncShift2Prices(); syncValuationFromDO(); validateStokAkhirS2();
     let res={};
+    _nozzleRes = { s1: {}, s2: {} };
     ['s1','s2'].forEach(shift=>{
       const pp=num(`${shift}_price_pertalite`), px=num(`${shift}_price_pertamax`);
       let vPt=0, rPt=0, vPx=0, rPx=0;
@@ -422,6 +447,7 @@
         const r = Math.round(v * pp);
         setVal(`${shift}_vol_${n}`, fmtL(v));
         setVal(`${shift}_rp_${n}`, fmt(r));
+        _nozzleRes[shift][n] = { v, r, prod: 'pertalite' };
         vPt += v;
         rPt += r;
       });
@@ -432,6 +458,7 @@
         const r = Math.round(v * px);
         setVal(`${shift}_vol_${n}`, fmtL(v));
         setVal(`${shift}_rp_${n}`, fmt(r));
+        _nozzleRes[shift][n] = { v, r, prod: 'pertamax' };
         vPx += v;
         rPx += r;
       });
@@ -473,6 +500,35 @@
     setTxt('g_total_jual_kotor', fmt(gRPt+gRPx)); setTxt('g_peng_s1', fmt(s1.totalPeng)); setTxt('g_peng_s2', fmt(s2.totalPeng)); setTxt('g_total_peng', fmt(gPeng)); setTxt('g_sisa_kas', fmt(gSisa));
     setTxt('sum_s1_vol_pt', fmtL(s1.vPt)); setTxt('sum_s1_vol_px', fmtL(s1.vPx)); setTxt('sum_s1_jual', fmt(s1.totalJual)); setTxt('sum_s1_peng', fmt(s1.totalPeng)); setTxt('sum_s1_sisa', fmt(s1.totalJual-s1.totalPeng));
     setTxt('sum_s2_vol_pt', fmtL(s2.vPt)); setTxt('sum_s2_vol_px', fmtL(s2.vPx)); setTxt('sum_s2_jual', fmt(s2.totalJual)); setTxt('sum_s2_peng', fmt(s2.totalPeng)); setTxt('sum_s2_sisa', fmt(s2.totalJual-s2.totalPeng));
+
+    // ========== TABEL DETAIL NOZZLE GLOBAL ==========
+    let globalVolPt = 0, globalRpPt = 0;
+    let globalVolPx = 0, globalRpPx = 0;
+    const allNozzles = ['A1','A2','C','B1','B2','D'];
+    allNozzles.forEach(n=>{
+      const vS1 = _nozzleRes.s1[n]?.v || 0;
+      const rS1 = _nozzleRes.s1[n]?.r || 0;
+      const vS2 = _nozzleRes.s2[n]?.v || 0;
+      const rS2 = _nozzleRes.s2[n]?.r || 0;
+      const vGlobal = Math.round((vS1 + vS2) * 10) / 10;
+      const rGlobal = rS1 + rS2;
+      const taS1 = num(`s1_ta_${n}`);
+      const tkS2 = num(`s2_tk_${n}`);
+      const isPertalite = ['A1','A2','C'].includes(n);
+      setVal(`g_ta_${n}`, taS1 ? fmtL(taS1) : '—');
+      setVal(`g_tk_${n}`, tkS2 ? fmtL(tkS2) : '—');
+      setVal(`g_vol_${n}`, fmtL(vGlobal));
+      setVal(`g_rp_${n}`, fmt(rGlobal));
+      if(isPertalite){ globalVolPt += vGlobal; globalRpPt += rGlobal; }
+      else{ globalVolPx += vGlobal; globalRpPx += rGlobal; }
+    });
+    setTxt('g_subtotal_vol_pt', fmtL(globalVolPt));
+    setTxt('g_subtotal_rp_pt', fmt(globalRpPt));
+    setTxt('g_subtotal_vol_px', fmtL(globalVolPx));
+    setTxt('g_subtotal_rp_px', fmt(globalRpPx));
+    setTxt('g_grandtotal_vol', fmtL(globalVolPt + globalVolPx));
+    setTxt('g_grandtotal_rp', fmt(globalRpPt + globalRpPx));
+
     const gStokAwalPt=s1StokAwalPt, gStokAwalPx=s1StokAwalPx, gStokAkhirPt=s2StokAkhirPt, gStokAkhirPx=s2StokAkhirPx;
     if(document.getElementById('g_stok_awal_pertalite')) document.getElementById('g_stok_awal_pertalite').value= fmtL(gStokAwalPt);
     if(document.getElementById('g_stok_awal_pertamax')) document.getElementById('g_stok_awal_pertamax').value= fmtL(gStokAwalPx);
@@ -491,12 +547,10 @@
     syncValuationFromDO();
     const {vPt:gVPt, vPx:gVPx, gSisa, totalPeng:gPeng, stokAkhirPt, stokAkhirPx, selisihPt, selisihPx, avgPricePt, avgPricePx} = _global;
     const marginPt = num('m_margin_pertalite'), marginPx = num('m_margin_pertamax');
-    // **PERUBAHAN: volume untuk margin dibulatkan ke bawah (floor)**
     const volFloorPt = Math.floor(gVPt);
     const volFloorPx = Math.floor(gVPx);
     const keuntunganPt = volFloorPt * marginPt;
     const keuntunganPx = volFloorPx * marginPx;
-    // Penguapan tetap menggunakan nilai desimal (selisih sudah 1 desimal)
     const nilaiPengPt = Math.round(selisihPt * avgPricePt);
     const nilaiPengPx = Math.round(selisihPx * avgPricePx);
     const nilaiPengTotal = nilaiPengPt + nilaiPengPx;
@@ -516,7 +570,7 @@
     else if(nilaiPengTotal > 0){ pengTotalEl.innerHTML=`▼ Minus (Susut) → -${fmt(Math.abs(nilaiPengTotal))}`;pengTotalEl.className='peng-info-val minus'; }
     else{ pengTotalEl.innerHTML=`▲ Plus (Lebih) → +${fmt(Math.abs(nilaiPengTotal))}`;pengTotalEl.className='peng-info-val plus'; }
     const labaMarginBersih = Math.round(keuntunganPt + keuntunganPx + nilaiPengTotal - gPeng);
-    setVal('m_vol_pertalite', fmtL(gVPt));   // tampilan volume tetap dengan 1 desimal
+    setVal('m_vol_pertalite', fmtL(gVPt));
     setVal('m_vol_pertamax', fmtL(gVPx));
     setVal('m_margin_pt_display', fmt(marginPt));
     setVal('m_margin_px_display', fmt(marginPx));
@@ -555,7 +609,7 @@
     setTxt('m_sum_do', fmt(totalDo)); setTxt('m_sum_stok', fmt(totalNilaiStok)); setTxt('m_sum_uang', fmt(uangBulat)); setTxt('m_sum_modal', fmt(modalAwal));
   }
 
-  // ========== EXPORT FUNGSI (tidak diubah) ==========
+  // ========== EXPORT FUNGSI ==========
   function getTabHTML(shiftKey){
     const date=document.getElementById('reportDate').value||new Date().toISOString().slice(0,10);
     const isS1=shiftKey==='s1', isS2=shiftKey==='s2', isGlobal=shiftKey==='global';
@@ -572,15 +626,26 @@
       tableRows=`<tr class="total-row"><td><strong>${shiftLabel}</strong></td><td><strong>${fmtL(s.vPt||0)}</strong></td><td><strong>${fmtL(s.vPx||0)}</strong></td><td><strong>${fmt((s.rPt||0)+(s.rPx||0))}</strong></td><td><strong>${fmt(s.totalPeng||0)}</strong></td><td><strong>${fmt((s.totalJual||0)-(s.totalPeng||0))}</strong></td></tr>`;
     }
     let nozzleRows='';
-    ['A1','A2','C','B1','B2','D'].forEach(n=>{
-      if(!isGlobal){
+    if(isGlobal){
+      ['A1','A2','C','B1','B2','D'].forEach(n=>{
+        const taEl=document.getElementById(`g_ta_${n}`);
+        const tkEl=document.getElementById(`g_tk_${n}`);
+        const volEl=document.getElementById(`g_vol_${n}`);
+        const rpEl=document.getElementById(`g_rp_${n}`);
+        if(volEl){
+          const produk = ['A1','A2','C'].includes(n) ? 'Pertalite' : 'Pertamax';
+          nozzleRows+=`<tr><td>${n}</td><td>${produk}</td><td>${taEl?taEl.value:'-'}</td><td>${tkEl?tkEl.value:'-'}</td><td>${volEl.value}</td><td>${rpEl?rpEl.value:'-'}</td></tr>`;
+        }
+      });
+    } else {
+      ['A1','A2','C','B1','B2','D'].forEach(n=>{
         const volEl=document.getElementById(`${shiftKey}_vol_${n}`);
         const rpEl=document.getElementById(`${shiftKey}_rp_${n}`);
         const taEl=document.getElementById(`${shiftKey}_ta_${n}`);
         const tkEl=document.getElementById(`${shiftKey}_tk_${n}`);
         if(volEl){ nozzleRows+=`<tr><td>${n}</td><td>${taEl?taEl.value:'-'}</td><td>${tkEl?tkEl.value:'-'}</td><td>${volEl.value}</td><td>${rpEl?rpEl.value:'-'}</td></tr>`; }
-      }
-    });
+      });
+    }
     let pengRows='';
     const shiftList=isGlobal?['s1','s2']:[shiftKey];
     shiftList.forEach(sh=>{
@@ -593,7 +658,7 @@
     </head><body>
     <h2>SPBU 3417603 — Laporan ${shiftLabel}</h2>
     <p><strong>Tanggal:</strong> ${date} &nbsp;|&nbsp; <strong>Dicetak:</strong> ${new Date().toLocaleString('id-ID')}</p>
-    ${!isGlobal&&nozzleRows?`<h3>Detail Nozzle</h3><table><thead><tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr></thead><tbody>${nozzleRows}</tbody></table>`:''}
+    ${nozzleRows?`<h3>${isGlobal?'Detail Nozzle Global (S1 Awal → S2 Akhir)':'Detail Nozzle'}</h3><table><thead>${isGlobal?'<tr><th>Nozzle</th><th>Produk</th><th>Tot. Awal (S1)</th><th>Tot. Akhir (S2)</th><th>Volume (L)</th><th>Penjualan (Rp)</th></tr>':'<tr><th>Nozzle</th><th>Tot. Awal</th><th>Tot. Akhir</th><th>Jual (L)</th><th>Jual (Rp)</th></tr>'}</thead><tbody>${nozzleRows}</tbody></table>`:''}
     <h3>Ringkasan Penjualan</h3>
     <table><thead><tr><th>Shift</th><th>Vol Pertalite</th><th>Vol Pertamax</th><th>Penjualan Kotor</th><th>Pengeluaran</th><th>Sisa Kas</th></tr></thead><tbody>${tableRows}</tbody></table>
     ${pengRows?`<h3>Pengeluaran</h3><table><thead><tr><th>Keterangan</th><th>Jumlah</th></tr></thead><tbody>${pengRows}</tbody></table>`:''}
